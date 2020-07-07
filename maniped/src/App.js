@@ -15,11 +15,12 @@ function App() {
   }
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form>
         <label for="avatar">Choose a profile picture:</label>
 
         <input type="file"
         id="avatar" name="avatar"></input>
+        <button onClick={() => handleSubmit()}></button>
       </form>
     </div>
 
