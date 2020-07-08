@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 
 import Nav from './components/Nav.js';
 import HomePage from './components/HomePage.js';
+import About from './components/About.js';
 import './App.css';
 
 class App extends React.Component {
@@ -11,6 +12,7 @@ class App extends React.Component {
      <div>
         <Nav/>
         <Route path='/' exact render={(props) => <HomePage {...props} />} ></Route>
+        <Route parh='/about' exact render={(props) => <About {...props} />}></Route>
         
 
        

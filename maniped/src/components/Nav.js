@@ -14,8 +14,9 @@ function Nav (props) {
 
                 <div className='frontFlex'>
 
-                    <img src='./logo.png'/>
-                    <p> | </p>
+                    {/* <img src='./logo.png'/>
+                    <p> | </p> */}
+                    
                     <p className='p2'>maniPed</p>
                     
                 </div>
