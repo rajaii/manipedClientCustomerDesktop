@@ -1,5 +1,5 @@
 .parallax1 {
-    background-image: url('../assets/strike.jpeg');
+    background-image: url('../assets/cosmetics_1.jpg');
     min-height: 700px;
     
     background-attachment: fixed;
@@ -23,7 +23,7 @@
 
 }
 .parallax2 {
-    background-image: url('../assets/buddha.jpeg');
+    background-image: url('../assets/hair_2.jpg');
     min-height: 700px;
     
     background-attachment: fixed;
@@ -34,7 +34,7 @@
 }
 
 .parallax3 {
-    background-image: url('../assets/paradise.jpeg');
+    background-image: url('../assets/nails_1.jpg');
     min-height: 700px;
     
     background-attachment: fixed;
