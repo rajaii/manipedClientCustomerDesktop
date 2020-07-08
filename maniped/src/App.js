@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom';
 import Nav from './components/Nav.js';
 import HomePage from './components/HomePage.js';
 import About from './components/About.js';
+import Services from './components/Services.js';
 import './App.css';
 
 class App extends React.Component {
@@ -13,6 +14,7 @@ class App extends React.Component {
         <Nav/>
         <Route exact path='/' render={(props) => <HomePage {...props} />} ></Route>
         <Route exact path='/about' render={(props) => <About {...props} />}></Route>
+        <Route exact path='/services' render={(props) => <Services {...props} />}></Route>
         
 
        
@@ -20,7 +22,7 @@ class App extends React.Component {
    )
  }
 
-        // about, services, login, signup,
+        // services, login, signup,
  
 }
 
