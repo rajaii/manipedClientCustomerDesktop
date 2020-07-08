@@ -16,7 +16,7 @@ function Nav (props) {
 
                     {/* <img src='./logo.png'/>
                     <p> | </p> */}
-                    
+
                     <p className='p2'>maniPed</p>
                     
                 </div>
@@ -26,7 +26,7 @@ function Nav (props) {
             <div className='navFlex'>
 
                 <Link className='p' to='/'>Home</Link>
-                <Link className='p' to='/mission'>About</Link>
+                <Link className='p' to='/about'>About</Link>
                 <Link className='p' to='/services'>Services</Link>
                 <Link className='p' to='/login'>Login</Link>
                 <Link className='p' to='/signup'>Signup</Link>
