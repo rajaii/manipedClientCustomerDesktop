@@ -29,7 +29,7 @@ function Nav (props) {
                 <Link className='p' to='/about'>About</Link>
                 <Link className='p' to='/services'>Services</Link>
                 <Link className='p' to='/login'>Login</Link>
-                <Link className='p' to='/signup'>Signup</Link>
+                <Link className='p' to='/register'>Signup</Link>
 
             </div>
 
