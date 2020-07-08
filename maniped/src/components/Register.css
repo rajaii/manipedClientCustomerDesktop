@@ -1,0 +1,22 @@
+.formCont {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    margin: 0 auto;
+    
+}
+.finFlex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.finFlex .link {
+    text-decoration: none;
+    color: black;
+
+}
+.finFlex .link:hover {
+    cursor: pointer;
+    color: white;
+    background-color: black;
+}

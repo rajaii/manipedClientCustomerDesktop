@@ -1,0 +1,45 @@
+.parallax1 {
+    background-image: url('../assets/cosmetics_1.jpg');
+    min-height: 700px;
+    
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.picPara1 {
+    width: 700px;
+    background-color: grey;
+    opacity: .5;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+.flex1 {
+    display: flex;
+    justify-content: center;
+
+}
+.parallax2 {
+    background-image: url('../assets/hair_2.jpg');
+    min-height: 700px;
+    
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.parallax3 {
+    background-image: url('../assets/nails_1.jpg');
+    min-height: 700px;
+    
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}

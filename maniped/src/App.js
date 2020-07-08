@@ -1,30 +1,31 @@
 import React from 'react';
-import axios from 'axios';
+import { Route } from 'react-router-dom';
+
+import Nav from './components/Nav.js';
+import HomePage from './components/HomePage.js';
+import About from './components/About.js';
+import Services from './components/Services.js';
+import Register from './components/Register.js';
 import './App.css';
 
-function App() {
+class App extends React.Component {
+ render() {
+   return (
+     <div>
+        <Nav/>
+        <Route exact path='/' render={(props) => <HomePage {...props} />} ></Route>
+        <Route exact path='/about' render={(props) => <About {...props} />}></Route>
+        <Route exact path='/services' render={(props) => <Services {...props} />}></Route>
+        <Route exact path='/register' render={(props) => <Register {...props} />}></Route>
+        
 
-  const handleSubmit = (pic) => {
-    axios.post('http://localhost:3000/api/avatars', pic)
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => {
-      console.log(err);
-    })
-  }
-  return (
-    <div>
-      <form>
-        <label for="avatar">Choose a profile picture:</label>
-
-        <input type="file"
-        id="avatar" name="avatar"></input>
-        <button onClick={() => handleSubmit()}></button>
-      </form>
+       
     </div>
+   )
+ }
 
-  );
+        // services, login, signup,
+ 
 }
 
 export default App;
