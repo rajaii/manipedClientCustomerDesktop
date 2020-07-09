@@ -8,7 +8,7 @@ function Nav (props) {
 
     return (
         
-        <div className='search'>
+        <div className='search' id='sticky'>
 
             <div>
 

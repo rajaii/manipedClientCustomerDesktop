@@ -1,4 +1,5 @@
 .formCont {
+    padding-top: 219px;
     display: flex;
     flex-direction: column;
     width: 500px;

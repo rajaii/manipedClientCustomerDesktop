@@ -1,0 +1,30 @@
+.loginCont {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+label, input {
+    height: 33px;
+    font-size: 1.5rem;
+}
+
+button {
+    height: 66px;
+}
+.sLink {
+    text-decoration: none;
+    color: black;
+
+}
+.sLink:hover{
+    color: white;
+    background-color: black;
+}
+.logFlex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
