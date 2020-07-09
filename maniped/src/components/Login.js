@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import * as yup from 'yup';
 
 import './Login.css';
 
@@ -23,6 +24,7 @@ class Login extends React.Component {
         return (
         <div className='loginCont'>
             <form className='loginCont' type='submit'>
+                <h1 className="existing">Existing Users Sign In Here:</h1>
                 <label>Enter username here:</label>
                 <input 
                 type='text'
@@ -42,7 +44,7 @@ class Login extends React.Component {
                 <button>Login</button>
             </form>
             <div className='logFlex'>
-                <p>Not yet a user? </p> <Link className='sLink' to='/signup'>Signup today</Link> 
+                <p>Not yet a user? </p> <Link className='sLink' to='/register'>Signup today</Link> 
             </div>
         </div>
         )

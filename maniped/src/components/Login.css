@@ -28,3 +28,13 @@ button {
     align-items: center;
     justify-content: center;
 }
+
+.existing {
+        margin-bottom: 50px;
+        font-size: 2rem;
+        width: 585px;
+        color: white;
+        text-shadow: 0 0 10px black;
+        -webkit-text-stroke: 1px;
+        -webkit-text-stroke-color: red;
+    }

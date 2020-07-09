@@ -10,9 +10,9 @@ CURRENT =>=>=>:
     
    __components: login, signup,
 
-        make Navbar stick to top
-
         yup for validation
+        https://medium.com/@rossbulat/introduction-to-yup-object-validation-in-react-9863af93dc0e
+        https://github.com/jquense/yup
 
         handleSubmits on ^, 
 

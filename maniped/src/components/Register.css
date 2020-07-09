@@ -21,3 +21,17 @@
     color: white;
     background-color: black;
 }
+
+.welcome {
+    margin-bottom: 50px;
+    font-size: 2rem;
+    width: 585px;
+    color: white;
+    text-shadow: 0 0 10px black;
+    -webkit-text-stroke: 1px;
+    -webkit-text-stroke-color: red;
+}
+.p {
+    color: white;
+    margin-bottom: 5px
+}
