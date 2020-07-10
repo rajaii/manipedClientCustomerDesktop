@@ -7,6 +7,7 @@ import About from './components/About.js';
 import Services from './components/Services.js';
 import Register from './components/Register.js';
 import Login from './components/Login.js';
+import PrivateRoute from './components/PrivateRoute.js';
 import './App.css';
 
 class App extends React.Component {
@@ -27,7 +28,7 @@ class App extends React.Component {
    )
  }
 
-        // services, login, signup,
+      
  
 }
 

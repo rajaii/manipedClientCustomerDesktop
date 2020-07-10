@@ -21,7 +21,7 @@ export const REGISTER_START = 'REGISTER_START';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAILURE = 'REGISTER_FAILURE';
 
-export const getData = creds => dispatch => {
+export const register = creds => dispatch => {
     dispatch({type: REGISTER_START});
     return axiosWithAuth().post('http://localhost:4000/api/auth/register', creds)
     .then(res => dispatch({type: REGISTER_SUCCESS, payload: res.data}))

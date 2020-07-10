@@ -1,18 +1,22 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as yup from 'yup';
+import { connect } from 'react-redux';
 
+import { register } from '../actions/authActions.js';
 import './Register.css';
 
-//get yup validation object
+
 //set up yup.isvalid function
+//const valid = await registrationSchema.isValid(this.state);
+//handlesubmit, if valid => call action which will do axios and set reducer and post to be 
 
 //set up protected routes
 //reg and login (localstorage) actions and reducer (authreducer)
-//axioswithauth set headers
-// password "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
-//phone number
-let schema = yup.object().shape({
+//axioswithauth set headers'
+//
+
+let registrationSchema = yup.object().shape({
     first_name: yup.string().required('First name is required'),
     last_name: yup.string().required('Last name is required'),
     username: yup.string().required('Username is required').min(5),
@@ -23,7 +27,7 @@ let schema = yup.object().shape({
     verifyPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match')
   });
 
-class Signup extends React.Component {
+class Register extends React.Component {
     constructor(props) {
     super(props);
     this.state = {
@@ -46,11 +50,10 @@ handleChange = e => {
    
 }
 
-handleRadioChange = e => {
-    this.setState({
-        ...this.state,
-        [e.target.name]: true
-    })
+handleSubmit = e => {
+    e.preventDefault();
+
+
 }
 
     render () {
@@ -58,6 +61,7 @@ handleRadioChange = e => {
         <div>
             
             <form className='formCont' type='submit'>
+            
             <h1 className="welcome">Welcome to maniPed!  Let's get you started with your new user account.</h1>
                 <label>Enter first name here:</label>
                 <input 
@@ -108,7 +112,7 @@ handleRadioChange = e => {
                 onChange={this.handleChange}
                 />
                  <label>Enter password here:</label>
-                 <p>Must have at least 8 1 upper case letter, at least 1 lower case letter, at least 1 number, and at least 1 special character:</p>
+                 <p className='p'>Must have at least 8 1 upper case letter, at least 1 lower case letter, at least 1 number, and at least 1 special character:</p>
                 <input 
                 type='password'
                 name='password'
@@ -126,7 +130,9 @@ handleRadioChange = e => {
                 />
                 
                 <button>Sign Up</button>
-
+                {/* !!!!!!!!!!!!!!!!!!run logic to run this when registerrgin */}
+                <div className='lds-hourglass'>Registering...</div>
+                
             </form>
             <div className='finFlex'>
                 <p>Already a user?</p>
@@ -137,4 +143,10 @@ handleRadioChange = e => {
     }
 }
 
-export default Signup;
+const mapStateToProps = state => {
+    return {
+        registering: state.loginReducer.registering
+    }
+}
+
+export default connect(mapStateToProps, { register })(Register);
