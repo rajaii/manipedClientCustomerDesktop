@@ -39,6 +39,10 @@ class Login extends React.Component {
             if (d === true) {
             console.log('true')
             this.props.login(this.state)
+            this.setState({
+                username: '',
+                password: ''
+            })
             } else {
                 console.log('false')
             }

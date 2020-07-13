@@ -27,6 +27,19 @@ let registrationSchema = yup.object().shape({
     verifyPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match')
   });
 
+  function Spinner(props) {
+    const registering = props.registering;
+    if (registering) {
+        return (
+            <div>
+                <div className='lds-hourglass'>Registering...</div>
+            </div>
+        )
+    } else {
+    return null
+    }
+}    
+
 
 
 class Register extends React.Component {
@@ -69,6 +82,16 @@ async handleSubmit (e) {
         if (d === true) {
         console.log('true')
         this.props.register(body)
+        this.setState({
+            first_name: '',
+            last_name: '',
+            username: '',
+            email: '',
+            phone_number: '',
+            zipcode: '',
+            password: '',
+            verifyPassword: '',
+        })
         } else {
             console.log('false')
         }
@@ -154,7 +177,7 @@ async handleSubmit (e) {
                 />
                 
                 <button>Sign Up</button>
-                {this.props.registering && <div className='lds-hourglass'>Registering...</div>} 
+                <Spinner registering={this.props.registering}/>
                 
                 
             </form>
