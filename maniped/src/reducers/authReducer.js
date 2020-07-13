@@ -8,7 +8,7 @@ const initialState = {
     
 }
 
-function loginReducer(state=initialState, action) {
+export function loginReducer(state=initialState, action) {
     
     switch(action.type) {
         case LOGIN_START:
@@ -35,7 +35,7 @@ function loginReducer(state=initialState, action) {
     
 }
 
-function regsiterReducer(state=initialState, action) {
+export function regsiterReducer(state=initialState, action) {
     
     switch(action.type) {
         case REGISTER_START:
@@ -61,4 +61,3 @@ function regsiterReducer(state=initialState, action) {
     
 }
 
-export default loginReducer;

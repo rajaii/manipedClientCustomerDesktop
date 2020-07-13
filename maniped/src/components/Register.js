@@ -27,6 +27,8 @@ let registrationSchema = yup.object().shape({
     verifyPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match')
   });
 
+
+
 class Register extends React.Component {
     constructor(props) {
     super(props);
@@ -40,6 +42,7 @@ class Register extends React.Component {
         password: '',
         verifyPassword: '',
     }
+    this.handleSubmit = this.handleSubmit.bind(this);
     }
 
 handleChange = e => {
@@ -49,41 +52,62 @@ handleChange = e => {
     })
    
 }
-
-handleSubmit = e => {
+async handleSubmit (e) {
     e.preventDefault();
-
-
+    const body = {
+        first_name: this.state.first_name,
+        last_name: this.state.last_name,
+        username: this.state.username,
+        email: this.state.email,
+        phone_number: this.state.phone_number,
+        zipcode: this.state.zipcode,
+        password: this.state.password,
+    }
+    registrationSchema.isValid(this.state)
+    .then(d => {
+        console.log(d)
+        if (d === true) {
+        console.log('true')
+        this.props.register(body)
+        } else {
+            console.log('false')
+        }
+    })
+    .catch(err => console.log(err))
 }
 
+
     render () {
+        let displayValidationError = false;
+
         return(
         <div>
             
-            <form className='formCont' type='submit'>
+            <form className='formCont' type='submit' onSubmit={this.handleSubmit}>
             
             <h1 className="welcome">Welcome to maniPed!  Let's get you started with your new user account.</h1>
+            {/* {displayValidationError === true ? <div>YOU MUST PROPERLY ENTER ALL FIELDS IN ORDER TO REGISTER</div> : null} */}
                 <label>Enter first name here:</label>
                 <input 
                 type='text'
-                name='firstName'
-                value={this.state.firstName}
+                name='first_name'
+                value={this.state.first_name}
                 placeholder='first name'
                 onChange={this.handleChange}
                 />
                 <label>Enter last name here:</label>
                 <input 
                 type='text'
-                name='lastName'
-                value={this.state.lastName}
+                name='last_name'
+                value={this.state.last_name}
                 placeholder='last name'
                 onChange={this.handleChange}
                 />
                  <label>Enter username here (at least 5 characters):</label>
                 <input 
                 type='text'
-                name='userName'
-                value={this.state.userName}
+                name='username'
+                value={this.state.username}
                 placeholder='username'
                 onChange={this.handleChange}
                 />
@@ -98,8 +122,8 @@ handleSubmit = e => {
                  <label>Enter phone number here:</label>
                 <input 
                 type='text'
-                name='phoneNumber'
-                value={this.state.phoneNumber}
+                name='phone_number'
+                value={this.state.phone_number}
                 placeholder='phone number'
                 onChange={this.handleChange}
                 />
@@ -130,8 +154,8 @@ handleSubmit = e => {
                 />
                 
                 <button>Sign Up</button>
-                {/* !!!!!!!!!!!!!!!!!!run logic to run this when registerrgin */}
-                <div className='lds-hourglass'>Registering...</div>
+                {/* {this.props.registering && <div className='lds-hourglass'>Registering...</div>} */}
+                
                 
             </form>
             <div className='finFlex'>
@@ -150,3 +174,4 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, { register })(Register);
+

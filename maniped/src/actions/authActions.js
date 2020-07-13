@@ -1,7 +1,5 @@
 import axios from "axios";
 
-import axiosWithAuth from './axiosWithAuth';
-
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
@@ -23,8 +21,8 @@ export const REGISTER_FAILURE = 'REGISTER_FAILURE';
 
 export const register = creds => dispatch => {
     dispatch({type: REGISTER_START});
-    return axiosWithAuth().post('http://localhost:4000/api/auth/register', creds)
+    return axios.post('http://localhost:4000/api/auth/register', creds)
     .then(res => dispatch({type: REGISTER_SUCCESS, payload: res.data}))
-    .catch(err => dispatch({type: REGISTER_FAILURE, payload: err.response}))
+    .catch(err => dispatch({type: REGISTER_FAILURE, payload: err}))
 }
 
