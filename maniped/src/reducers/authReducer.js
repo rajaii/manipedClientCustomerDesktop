@@ -3,6 +3,7 @@ import {LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_START, REGISTER_SUCC
 const initialState = {
         registering: false,
         loggingIn: false,
+        welcomeMessage: '',
         isLoggedIn: false,
         error: null
     
@@ -21,6 +22,7 @@ export function loginReducer(state=initialState, action) {
             return {
                 ...state,
                 isLoggedIn: true,
+                welcomeMessage: action.payload,
                 loggingIn: false
             }
         case LOGIN_FAILURE:

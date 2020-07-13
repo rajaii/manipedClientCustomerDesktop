@@ -154,7 +154,7 @@ async handleSubmit (e) {
                 />
                 
                 <button>Sign Up</button>
-                {/* {this.props.registering && <div className='lds-hourglass'>Registering...</div>} */}
+                {this.props.registering && <div className='lds-hourglass'>Registering...</div>} 
                 
                 
             </form>
