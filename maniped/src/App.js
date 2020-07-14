@@ -6,9 +6,12 @@ import HomePage from './components/HomePage.js';
 import About from './components/About.js';
 import Services from './components/Services.js';
 import Register from './components/Register.js';
+import Login from './components/Login.js';
+import PrivateRoute from './components/PrivateRoute.js';
 import './App.css';
 
 class App extends React.Component {
+  
  render() {
    return (
      <div>
@@ -17,6 +20,7 @@ class App extends React.Component {
         <Route exact path='/about' render={(props) => <About {...props} />}></Route>
         <Route exact path='/services' render={(props) => <Services {...props} />}></Route>
         <Route exact path='/register' render={(props) => <Register {...props} />}></Route>
+        <Route exact path='/login' render={(props) => <Login {...props} />}></Route>
         
 
        
@@ -24,7 +28,7 @@ class App extends React.Component {
    )
  }
 
-        // services, login, signup,
+      
  
 }
 

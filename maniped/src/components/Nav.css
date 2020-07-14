@@ -1,9 +1,16 @@
 .search {
+    height: 109px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #ff006f;
-    
+}  
+
+#sticky {
+    position: fixed;
+    top: 0;
+    width: 100%; 
+    z-index: 1;
 }
 .frontFlex  {
     display: flex;
