@@ -7,6 +7,8 @@ manigod reg and pre-admin access, and admin interface
 CURRENT =>=>=>: 
 
 props.history.push(loginpage) after successful reg
+
+
     notes from yup docs:
         validation errors so use validation instead of isVAlid so can set the error messages see register.js
 
@@ -104,6 +106,8 @@ PLANNING (possible future features not added in yet):
     //find a framework to handle this, but may need to delete that later
 
 API to FE INTEGRATION:
+
+    reg/login: if errors from BE display those to user ie username taken.
 
     images: 
     For upload and api:
