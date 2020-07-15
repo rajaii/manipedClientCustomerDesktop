@@ -6,27 +6,13 @@ manigod reg and pre-admin access, and admin interface
 
 CURRENT =>=>=>: 
 
-props.history.push(loginpage) after successful reg
 
 
-    notes from yup docs:
-        validation errors so use validation instead of isVAlid so can set the error messages see register.js
-
-         make errors using the validation error as did on line 189 on register.js and also use the inner array to tag all errors at once thrown 
-         try reg with nothing in there and inspect register.state.validationError and find the logic from there
-    
-   __components: login, signup,
-
-       setup the loading symbols here
-       setup error messages on login /reg as form getting filled
-
-        setup protectedRoutes,
-
-        setup axiosWithAuth set headers to have token,
+        setup protectedRoutes
 
 
 
-    __components: make other landing page components nicer/more interactive:
+    __components: make other landing page components nicer/more interactive
 
         Plan:
             About: links to team functionality history paragraph
@@ -107,7 +93,11 @@ PLANNING (possible future features not added in yet):
 
 API to FE INTEGRATION:
 
-    reg/login: if errors from BE display those to user ie username taken.
+    reg/login: 
+        if errors from BE display those to user ie username taken.
+
+        push user on fe to login on successful login, if decide to do on fe look at comments on register.js but props.history.push is a PIA with    
+        react-router-v4 try to do from BE
 
     images: 
     For upload and api:
@@ -117,8 +107,6 @@ API to FE INTEGRATION:
     ABANDONED THIS CLOUD STORAGE IS MORE EFFECTIVE.  LEAVE ALL ROUTERS/HELPERS UNUSED AND MIGRATIONS COMMENTED OUT UNTIL LATER MAY TWEAK TO USE WITH CLOUD
     OR DELETE WHAT ISN'T NEEDED LATER. 
 
-    Validation:
-    use yup to make sure emails and zips are validated before requests go through for reg and anything else taht needs emeail or zip.
 
     RATINGS:
     may need to tweak the nullability of the ratings and rating ids later when we see the flow of how services are entered from front end when done 

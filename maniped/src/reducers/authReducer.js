@@ -1,7 +1,9 @@
 import {LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_START, REGISTER_SUCCESS, REGISTER_FAILURE } from '../actions/authActions.js';
 
 const initialState = {
-        registering: false,
+        successfulRegister: false,
+        registering: false, 
+        registerData: null,
         loggingIn: false,
         welcomeMessage: '',
         isLoggedIn: false,
@@ -49,6 +51,7 @@ export function regsiterReducer(state=initialState, action) {
         case REGISTER_SUCCESS:
             return {
                 ...state,
+                successfulRegister: true,
                 registering: false
             }
         case REGISTER_FAILURE:
