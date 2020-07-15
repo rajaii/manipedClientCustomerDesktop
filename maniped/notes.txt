@@ -10,16 +10,28 @@ CURRENT =>=>=>:
 
         setup protectedRoutes
 
+        make logo
 
 
-    __components: make other landing page components nicer/more interactive
 
-        Plan:
-            About: links to team functionality history paragraph
+    __components: dashboard,  
 
-            Services: paragraphs and functionality
+    plan: class dashboard with componentDidMount running and getting all their info from Be and displaying :
+        <DashHeader />:
+            maniped on left, logout on top right in middle book an appointment 
+        <DashSubHeader />:  
+            below that a subheader component that displays services flex-direction row.  map through available_services endpoint and display services with link that will take 
+            user to all providers that offer this service in their area
 
-            Home: add contact here and paragraphs and
+        <Feed />:
+            will contain many things, will be made as we go, for now just start with recent orders, favorites, and take from there..
+
+
+
+
+     
+
+        
 
             
             
@@ -48,6 +60,9 @@ PROGRAMMATICS (tweaks to those features that are added already):
 
 
     API:
+
+        
+
         Cloud storage for photos and then link storage in db for pulling to FE for image display tweak routes/helpers and migrations accordingly 
         when get there see API to FE INTEGRATION: Images
 
@@ -81,6 +96,8 @@ PROGRAMMATICS (tweaks to those features that are added already):
 
 
 PLANNING (possible future features not added in yet):
+
+    possbily tie available_services to providers and make route do more, just get for fe and post for admin for now done before this.
 
     services: mani pedi, waxing, hair, 
 
@@ -123,6 +140,7 @@ API to FE INTEGRATION:
     BOOKINGS AND SERVICES
     when making bookings (post see bookingsRouter line 56-57) userId will come from the users data, and provider_id will come from a screen where you click on the provider to book
     confirmations sent to provider upon user booking, when they click to confirm, the put will be called to change the tbl.boolean comfrimed to 1
+
 
     post will be used when the provider completes the service.  They will verify to end and then it will post to completed services, and then rating 
     notifications will go out to both user and provider (immediately to provider like uber does) see line 70-72 of servicesRouter.js
