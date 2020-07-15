@@ -67,3 +67,16 @@
       transform: rotate(1800deg);
     }
   }
+
+  .Error {
+    color: red;
+    margin-top: 25px 
+  }
+   .ErrorB {
+     color: red
+   }
+
+   .flex {
+     display: flex;
+     flex-direction: row;
+   }

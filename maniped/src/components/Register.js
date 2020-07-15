@@ -20,13 +20,13 @@ let registrationSchema = yup.object().shape({
     first_name: yup.string().required('First name is required'),
     last_name: yup.string().required('Last name is required'),
     username: yup.string().required('Username is required').min(5),
-    email: yup.string().email().required('Email is required'),
-    phone_number: yup.string().matches(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/).required('Phone number is required'),
-    zipcode: yup.string().matches(/^\d{5}([-]|\s*)?(\d{4})?$/).required('Zipcode is required'),
-    password: yup.string().matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/).required('Password is required'),
+    email: yup.string().email('Please enter a valid email').required('Email is required'),
+    phone_number: yup.string().matches(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/, 'Please enter a valid phone number').required('Phone number is required'),
+    zipcode: yup.string().matches(/^\d{5}([-]|\s*)?(\d{4})?$/, 'Must be valid zip code').required('Zipcode is required'),
+    password: yup.string().matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, 'Password must have at least 8 1 upper case letter, at least 1 lower case letter, at least 1 number, and at least 1 special character ').required('Password is required'),
     verifyPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match')
   });
-
+//either passwords must match or must have ...... and is required
   function Spinner(props) {
     const registering = props.registering;
     if (registering) {
@@ -54,6 +54,7 @@ class Register extends React.Component {
         zipcode: '',
         password: '',
         verifyPassword: '',
+        validationError: {inner: []}
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -76,11 +77,30 @@ async handleSubmit (e) {
         zipcode: this.state.zipcode,
         password: this.state.password,
     }
-    registrationSchema.isValid(this.state)
+    // registrationSchema.isValid(this.state)
+    // .then(d => {
+    //     console.log(d)
+    //     if (d === true) {
+    //     console.log('true')
+    //     this.props.register(body)
+    //     this.setState({
+    //         first_name: '',
+    //         last_name: '',
+    //         username: '',
+    //         email: '',
+    //         phone_number: '',
+    //         zipcode: '',
+    //         password: '',
+    //         verifyPassword: '',
+    //     })
+    //     } else {
+    //         console.log('false')
+    //     }
+    // })
+    // .catch(err => console.log(err))
+    registrationSchema.validate(this.state, {abortEarly: false})
     .then(d => {
-        console.log(d)
-        if (d === true) {
-        console.log('true')
+        if (d) {
         this.props.register(body)
         this.setState({
             first_name: '',
@@ -92,11 +112,15 @@ async handleSubmit (e) {
             password: '',
             verifyPassword: '',
         })
-        } else {
-            console.log('false')
-        }
+        } 
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+        console.log(err)
+        this.setState({
+            validationError: err
+        })
+        
+    })
 }
 
 
@@ -105,11 +129,9 @@ async handleSubmit (e) {
 
         return(
         <div>
-            
             <form className='formCont' type='submit' onSubmit={this.handleSubmit}>
-            
             <h1 className="welcome">Welcome to maniPed!  Let's get you started with your new user account.</h1>
-            {/* {displayValidationError === true ? <div>YOU MUST PROPERLY ENTER ALL FIELDS IN ORDER TO REGISTER</div> : null} */}
+            {this.state.validationError && this.state.validationError.inner.filter(i => i.message === "First name is required").length > 0 ?  <div className="ErrorB">FIRST NAME IS REQUIRED RE-ENTER AND CLICK SIGN UP</div> : null}
                 <label>Enter first name here:</label>
                 <input 
                 type='text'
@@ -118,6 +140,7 @@ async handleSubmit (e) {
                 placeholder='first name'
                 onChange={this.handleChange}
                 />
+                 {this.state.validationError && this.state.validationError.inner.filter(i => i.message === "Last name is required").length > 0 ?  <div className="ErrorB">LAST NAME IS REQUIRED RE-ENTER AND CLICK SIGN UP</div> : null}
                 <label>Enter last name here:</label>
                 <input 
                 type='text'
@@ -126,6 +149,8 @@ async handleSubmit (e) {
                 placeholder='last name'
                 onChange={this.handleChange}
                 />
+                 {this.state.validationError && this.state.validationError.inner.filter(i => i.message === "Username is required").length > 0 ?  <div className="ErrorB">USERNAME IS REQUIRED RE-ENTER AND CLICK SIGN UP</div> : null}
+                 {this.state.validationError && this.state.validationError.inner.filter(i => i.message === "username must be at least 5 characters").length > 0 ?  <div className="Error">USERNAME MUST BE AT LEAST 5 CHARACTERS</div> : null}
                  <label>Enter username here (at least 5 characters):</label>
                 <input 
                 type='text'
@@ -134,6 +159,8 @@ async handleSubmit (e) {
                 placeholder='username'
                 onChange={this.handleChange}
                 />
+                {this.state.validationError && this.state.validationError.inner.filter(i => i.message === "Email is required").length > 0 ?  <div className="Error">EMAIL IS REQUIRED RE-ENTER AND CLICK SIGN UP</div> : null}
+                 {this.state.validationError && this.state.validationError.inner.filter(i => i.message === "Please enter a valid email").length > 0 ?  <div className="Error">MUST BE A VALID EMAIL RE-ENTER AND CLICK SIGN UP</div> : null}
                  <label>Enter email here:</label>
                 <input 
                 type='text'
@@ -142,6 +169,8 @@ async handleSubmit (e) {
                 placeholder='email'
                 onChange={this.handleChange}
                 />
+                 {this.state.validationError && this.state.validationError.inner.filter(i => i.message === "Phone number is required").length > 0 ?  <div className="Error">PHONE NUMBER IS REQUIRED RE-ENTER AND CLICK SIGN UP</div> : null}
+                 {this.state.validationError && this.state.validationError.inner.filter(i => i.message === "Please enter a valid phone number").length > 0 ?  <div className="Error">MUST BE A VALID PHONE NUMBER RE-ENTER AND CLICK SIGN UP</div> : null}
                  <label>Enter phone number here:</label>
                 <input 
                 type='text'
@@ -150,6 +179,8 @@ async handleSubmit (e) {
                 placeholder='phone number'
                 onChange={this.handleChange}
                 />
+                 {this.state.validationError && this.state.validationError.inner.filter(i => i.message === "Zipcode is required").length > 0 ?  <div className="Error">ZIPCODE IS REQUIRED RE-ENTER AND CLICK SIGN UP</div> : null}
+                 {this.state.validationError && this.state.validationError.inner.filter(i => i.message === "Must be valid zip code").length > 0 ?  <div className="Error">MUST BE A VALID ZIPCODE RE-ENTER AND CLICK SIGN UP</div> : null}
                 <label>Enter zipcode here:</label>
                 <input 
                 type='text'
@@ -160,6 +191,8 @@ async handleSubmit (e) {
                 />
                  <label>Enter password here:</label>
                  <p className='p'>Must have at least 8 1 upper case letter, at least 1 lower case letter, at least 1 number, and at least 1 special character:</p>
+                 {this.state.validationError && this.state.validationError.inner.filter(i => i.message === "Password is required").length > 0 ?  <div className="ErrorB">PASSWORD IS REQUIRED RE-ENTER AND CLICK SIGN UP</div> : null}
+                 {this.state.validationError && this.state.validationError.inner.filter(i => i.message === "Password must have at least 8 1 upper case letter, at least 1 lower case letter, at least 1 number, and at least 1 special character ").length > 0 ?  <div className="Error">REPEAT: USE AT LEAST 1 UPPER CASE, 1 LOWER CASE, 1 NUMBER, 1 SPECIAL CHARACTER RE-ENTER AND CLICK SIGN UP</div> : null}
                 <input 
                 type='password'
                 name='password'
@@ -167,6 +200,7 @@ async handleSubmit (e) {
                 placeholder='password'
                 onChange={this.handleChange}
                 />
+                {this.state.validationError && this.state.validationError.inner.filter(i => i.message === "Passwords must match").length > 0 ?  <div className="ErrorB">PASSWORDS MUST MATCH, RE-ENTER AND CLICK SIGN UP</div> : null} 
                  <label>Verify password here:</label>
                 <input 
                 type='password'
@@ -177,9 +211,8 @@ async handleSubmit (e) {
                 />
                 
                 <button>Sign Up</button>
-                <Spinner registering={this.props.registering}/>
-                
-                
+                {this.props.registering === true ? <div className='lds-hourglass'>Registering...</div> : null}
+            
             </form>
             <div className='finFlex'>
                 <p>Already a user?</p>
@@ -192,9 +225,10 @@ async handleSubmit (e) {
 
 const mapStateToProps = state => {
     return {
-        registering: state.loginReducer.registering
+        registering: state.regsiterReducer.registering
     }
 }
 
 export default connect(mapStateToProps, { register })(Register);
 
+//2 cases: this.state.validationError.inner.filter(i => i.message === "Passwords must match")

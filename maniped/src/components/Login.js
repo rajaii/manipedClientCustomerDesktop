@@ -18,7 +18,9 @@ class Login extends React.Component {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            validationError: {inner: []}
+
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -32,22 +34,27 @@ class Login extends React.Component {
     }
 
     async handleSubmit (e) {
+        const body = {
+            username: this.state.username,
+            password: this.state.password
+        }
         e.preventDefault();
-        loginSchema.isValid(this.state)
+        loginSchema.validate(this.state, {abortEarly: false})
         .then(d => {
-            console.log(d)
-            if (d === true) {
-            console.log('true')
-            this.props.login(this.state)
+            if (d) {
+            this.props.login(body)
             this.setState({
                 username: '',
                 password: ''
             })
-            } else {
-                console.log('false')
             }
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+             console.log(err)
+             this.setState({
+                validationError: err
+            })
+        })
     }
 
     render () {
@@ -55,6 +62,7 @@ class Login extends React.Component {
         <div className='loginCont'>
             <form className='loginCont' type='submit' onSubmit={this.handleSubmit}>
                 <h1 className="existing">Existing Users Sign In Here:</h1>
+                {this.state.validationError && this.state.validationError.inner.filter(i => i.message === "Username is required").length > 0 ?  <div className="ErrorB">USERNAME IS REQUIRED RE-ENTER AND CLICK SIGN UP</div> : null}
                 <label>Enter username here:</label>
                 <input 
                 type='text'
@@ -64,6 +72,7 @@ class Login extends React.Component {
                 onChange={this.handleChange}
                 />
                 <label>Enter password here:</label>
+                {this.state.validationError && this.state.validationError.inner.filter(i => i.message === "Password is required").length > 0 ?  <div className="ErrorB">PASSWORD IS REQUIRED RE-ENTER AND CLICK SIGN UP</div> : null}
                 <input 
                 type='password'
                 name='password'
@@ -72,6 +81,7 @@ class Login extends React.Component {
                 onChange={this.handleChange}
                 />
                 <button>Login</button>
+                {this.props.loggingIn === true ? <div className='lds-hourglass'>Logging In...</div> : null}
             </form>
             <div className='logFlex'>
                 <p>Not yet a user? </p> <Link className='sLink' to='/register'>Signup today</Link> 
