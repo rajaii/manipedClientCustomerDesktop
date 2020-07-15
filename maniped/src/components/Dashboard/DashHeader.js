@@ -1,4 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import '../Nav.css';
 
 class DashHeader extends React.Component {
     constructor(props) {
@@ -10,9 +13,35 @@ class DashHeader extends React.Component {
 
     render() {
         return (
+        <div className='search' id='sticky'>
+
             <div>
-                DashHeader
+
+                <div className='frontFlex'>
+
+                    {/* <img src='./logo.png'/>
+                    <p> | </p> */}
+
+                    <p className='p2'>maniPed</p>
+                    
+                </div>
+                
             </div>
+                
+            <div className='midFlex'>
+                <p className='p2'>Welcome USER</p>
+                <Link className='x' to='/booknow'>Book an appointment now</Link>
+            </div>
+        
+            <div className='newNavFlex'>
+
+                
+                <p className='logout'>Logout</p>
+                
+
+            </div>
+
+        </div>
         )
         
     }

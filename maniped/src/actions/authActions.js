@@ -8,9 +8,8 @@ export const login = creds => dispatch => {
     dispatch({type: LOGIN_START});
     return axios.post('http://localhost:4000/api/auth/login', creds)
     .then(res => {
-        console.log(res.data)
         localStorage.setItem('token', res.data.jwt_token);
-        dispatch({type: LOGIN_SUCCESS, payload: res.data.message})
+        dispatch({type: LOGIN_SUCCESS, payload: res.data.message});
     })
     .catch(err => dispatch({type: LOGIN_FAILURE, payload: err.response}))
 

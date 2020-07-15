@@ -49,3 +49,20 @@
 .hide {
     display: none
 }
+
+/*DASHHEADER DIFFS VVV **************************************************************************************** */
+
+.midFlex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.newNavFlex {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.logout {
+    font-size: 1.75rem;
+}

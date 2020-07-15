@@ -6,7 +6,7 @@ manigod reg and pre-admin access, and admin interface
 
 CURRENT =>=>=>: 
 
-
+        make logout route in BE.
 
         setup protectedRoutes
 
@@ -18,7 +18,7 @@ CURRENT =>=>=>:
 
     plan: class dashboard with componentDidMount running and getting all their info from Be and displaying :
         <DashHeader />:
-            maniped on left, logout on top right in middle book an appointment 
+            maniped on left, Hello User on logout on top right in middle book an appointment 
         <DashSubHeader />:  
             below that a subheader component that displays services flex-direction row.  map through available_services endpoint and display services with link that will take 
             user to all providers that offer this service in their area

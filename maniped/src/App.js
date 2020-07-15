@@ -16,7 +16,7 @@ class App extends React.Component {
  render() {
    return (
      <div>
-        <Nav/>
+        <Nav />
         <Route exact path='/' render={(props) => <HomePage {...props} />} ></Route>
         <Route exact path='/about' render={(props) => <About {...props} />}></Route>
         <Route exact path='/services' render={(props) => <Services {...props} />}></Route>
