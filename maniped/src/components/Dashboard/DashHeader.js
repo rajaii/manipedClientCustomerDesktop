@@ -1,6 +1,6 @@
 import React from 'react';
 
-class DashBoard extends React.Component {
+class DashHeader extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -11,11 +11,11 @@ class DashBoard extends React.Component {
     render() {
         return (
             <div>
-                ASSHOLE
+                DashHeader
             </div>
         )
         
     }
 }
 
-export default DashBoard;
+export default DashHeader;

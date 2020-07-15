@@ -45,3 +45,7 @@
     color: white;
     cursor: pointer;
 }
+
+.hide {
+    display: none
+}

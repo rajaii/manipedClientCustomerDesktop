@@ -7,7 +7,7 @@ import About from './components/About.js';
 import Services from './components/Services.js';
 import Register from './components/Register.js';
 import Login from './components/Login.js';
-import Dashbord from './components/Dashboard.js';
+import Dashboard from './components/Dashboard/Dashboard.js';
 import PrivateRoute from './components/PrivateRoute.js';
 import './App.css';
 
@@ -22,7 +22,7 @@ class App extends React.Component {
         <Route exact path='/services' render={(props) => <Services {...props} />}></Route>
         <Route exact path='/register' render={(props) => <Register {...props} />}></Route>
         <Route exact path='/login' render={(props) => <Login {...props} />}></Route>
-        <Route exact path='/dashboard' render={(props) => <Dashbord {...props} />}></Route>
+        <Route exact path='/dashboard' render={(props) => <Dashboard {...props} />}></Route>
 
        
     </div>
