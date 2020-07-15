@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 
 import './Nav.css';
@@ -7,7 +8,8 @@ import './Nav.css';
 function Nav (props) {
 
     return (
-        
+       
+      <div className={props.isLoggedIn ? 'hide' : null}>
         <div className='search' id='sticky'>
 
             <div>
@@ -34,8 +36,15 @@ function Nav (props) {
             </div>
 
         </div>
+    </div>  
     
     )
 };
 
-export default Nav;
+const mapStateToProps = state => {
+    return {
+        isLoggedIn: state.loginReducer.isLoggedIn
+    }
+}
+
+export default connect(mapStateToProps, {})(Nav);

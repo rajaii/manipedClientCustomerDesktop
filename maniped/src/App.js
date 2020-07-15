@@ -7,6 +7,7 @@ import About from './components/About.js';
 import Services from './components/Services.js';
 import Register from './components/Register.js';
 import Login from './components/Login.js';
+import Dashboard from './components/Dashboard/Dashboard.js';
 import PrivateRoute from './components/PrivateRoute.js';
 import './App.css';
 
@@ -15,13 +16,13 @@ class App extends React.Component {
  render() {
    return (
      <div>
-        <Nav/>
+        <Nav />
         <Route exact path='/' render={(props) => <HomePage {...props} />} ></Route>
         <Route exact path='/about' render={(props) => <About {...props} />}></Route>
         <Route exact path='/services' render={(props) => <Services {...props} />}></Route>
         <Route exact path='/register' render={(props) => <Register {...props} />}></Route>
         <Route exact path='/login' render={(props) => <Login {...props} />}></Route>
-        
+        <Route exact path='/dashboard' render={(props) => <Dashboard {...props} />}></Route>
 
        
     </div>

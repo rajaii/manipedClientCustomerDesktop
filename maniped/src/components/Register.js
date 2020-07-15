@@ -2,19 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 import { connect } from 'react-redux';
+// import { withRouter } from 'react-router-dom';
 
 import { register } from '../actions/authActions.js';
 import './Register.css';
 
-
-//set up yup.isvalid function
-//const valid = await registrationSchema.isValid(this.state);
-//handlesubmit, if valid => call action which will do axios and set reducer and post to be 
-
-//set up protected routes
-//reg and login (localstorage) actions and reducer (authreducer)
-//axioswithauth set headers'
-//
 
 let registrationSchema = yup.object().shape({
     first_name: yup.string().required('First name is required'),
@@ -26,19 +18,6 @@ let registrationSchema = yup.object().shape({
     password: yup.string().matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, 'Password must have at least 8 1 upper case letter, at least 1 lower case letter, at least 1 number, and at least 1 special character ').required('Password is required'),
     verifyPassword: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match')
   });
-//either passwords must match or must have ...... and is required
-  function Spinner(props) {
-    const registering = props.registering;
-    if (registering) {
-        return (
-            <div>
-                <div className='lds-hourglass'>Registering...</div>
-            </div>
-        )
-    } else {
-    return null
-    }
-}    
 
 
 
@@ -77,27 +56,7 @@ async handleSubmit (e) {
         zipcode: this.state.zipcode,
         password: this.state.password,
     }
-    // registrationSchema.isValid(this.state)
-    // .then(d => {
-    //     console.log(d)
-    //     if (d === true) {
-    //     console.log('true')
-    //     this.props.register(body)
-    //     this.setState({
-    //         first_name: '',
-    //         last_name: '',
-    //         username: '',
-    //         email: '',
-    //         phone_number: '',
-    //         zipcode: '',
-    //         password: '',
-    //         verifyPassword: '',
-    //     })
-    //     } else {
-    //         console.log('false')
-    //     }
-    // })
-    // .catch(err => console.log(err))
+   
     registrationSchema.validate(this.state, {abortEarly: false})
     .then(d => {
         if (d) {
@@ -113,6 +72,11 @@ async handleSubmit (e) {
             verifyPassword: '',
         })
         } 
+        console.log(this.context)
+        // if (this.props.successfulRegister === true) {
+        //     console.log(this.props.history)
+        //     this.props.history.push('/login')
+        // }
     })
     .catch(err => {
         console.log(err)
@@ -125,7 +89,6 @@ async handleSubmit (e) {
 
 
     render () {
-        let displayValidationError = false;
 
         return(
         <div>
@@ -225,10 +188,13 @@ async handleSubmit (e) {
 
 const mapStateToProps = state => {
     return {
-        registering: state.regsiterReducer.registering
+        registering: state.regsiterReducer.registering,
+        successfulRegister: state.regsiterReducer.successfulRegister
     }
 }
 
+// const registerWithRouter = withRouter(Register);
+
 export default connect(mapStateToProps, { register })(Register);
 
-//2 cases: this.state.validationError.inner.filter(i => i.message === "Passwords must match")
+

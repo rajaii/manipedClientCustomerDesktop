@@ -6,49 +6,25 @@ manigod reg and pre-admin access, and admin interface
 
 CURRENT =>=>=>: 
 
-props.history.push(loginpage) after successful reg
+        make logout route in BE.
 
+        setup protectedRoutes
 
-    notes from yup docs:
-        validation errors so use validation instead of isVAlid so can set the error messages see register.js
-
-         make errors using the validation error as did on line 189 on register.js and also use the inner array to tag all errors at once thrown 
-         try reg with nothing in there and inspect register.state.validationError and find the logic from there
-    
-   __components: login, signup,
-
-       setup the loading symbols here
-       setup error messages on login /reg as form getting filled
-
-        setup protectedRoutes,
-
-        setup axiosWithAuth set headers to have token,
+        make logo
 
 
 
-    __components: make other landing page components nicer/more interactive:
+    __components: dashboard,  
 
-        Plan:
-            About: links to team functionality history paragraph
+    plan: class dashboard with componentDidMount running and getting all their info from Be and displaying :
+        <DashHeader />:
+            maniped on left, Hello User on logout on top right in middle book an appointment 
+        <DashSubHeader />:  
+            below that a subheader component that displays services flex-direction row.  map through available_services endpoint and display services with link that will take 
+            user to all providers that offer this service in their area
 
-            Services: paragraphs and functionality
-
-            Home: add contact here and paragraphs and
-
-            
-            
-            
-         
-
-
-
-        
-
-        
-
-
-
-    
+        <Feed />:
+            will contain many things, will be made as we go, for now just start with recent orders, favorites, and take from there..
 
 
 
@@ -62,6 +38,9 @@ PROGRAMMATICS (tweaks to those features that are added already):
 
 
     API:
+
+        
+
         Cloud storage for photos and then link storage in db for pulling to FE for image display tweak routes/helpers and migrations accordingly 
         when get there see API to FE INTEGRATION: Images
 
@@ -96,6 +75,8 @@ PROGRAMMATICS (tweaks to those features that are added already):
 
 PLANNING (possible future features not added in yet):
 
+    possbily tie available_services to providers and make route do more, just get for fe and post for admin for now done before this.
+
     services: mani pedi, waxing, hair, 
 
     Figure out if manigods use same interface as admin as well, or have a public manigods w special permissions that can not add to admin db and 
@@ -107,7 +88,11 @@ PLANNING (possible future features not added in yet):
 
 API to FE INTEGRATION:
 
-    reg/login: if errors from BE display those to user ie username taken.
+    reg/login: 
+        if errors from BE display those to user ie username taken.
+
+        push user on fe to login on successful login, if decide to do on fe look at comments on register.js but props.history.push is a PIA with    
+        react-router-v4 try to do from BE
 
     images: 
     For upload and api:
@@ -117,8 +102,6 @@ API to FE INTEGRATION:
     ABANDONED THIS CLOUD STORAGE IS MORE EFFECTIVE.  LEAVE ALL ROUTERS/HELPERS UNUSED AND MIGRATIONS COMMENTED OUT UNTIL LATER MAY TWEAK TO USE WITH CLOUD
     OR DELETE WHAT ISN'T NEEDED LATER. 
 
-    Validation:
-    use yup to make sure emails and zips are validated before requests go through for reg and anything else taht needs emeail or zip.
 
     RATINGS:
     may need to tweak the nullability of the ratings and rating ids later when we see the flow of how services are entered from front end when done 
@@ -135,6 +118,7 @@ API to FE INTEGRATION:
     BOOKINGS AND SERVICES
     when making bookings (post see bookingsRouter line 56-57) userId will come from the users data, and provider_id will come from a screen where you click on the provider to book
     confirmations sent to provider upon user booking, when they click to confirm, the put will be called to change the tbl.boolean comfrimed to 1
+
 
     post will be used when the provider completes the service.  They will verify to end and then it will post to completed services, and then rating 
     notifications will go out to both user and provider (immediately to provider like uber does) see line 70-72 of servicesRouter.js
