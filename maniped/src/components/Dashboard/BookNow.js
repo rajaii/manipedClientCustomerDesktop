@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchAvailableServices } from '../../actions/appActions.js';
+import { postBooking } from '../../actions/appActions.js';
 import './Dashboard.css';
 
 
-class DashSubHeader extends React.Component {
+class BookNow extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,15 +13,15 @@ class DashSubHeader extends React.Component {
         }
     }
     componentDidMount() {
-        this.props.fetchAvailableServices()
+        this.props.fetchUserInfo()
     }
 
     render() {
         return (
             <div className='serviceList'>
-                {this.props.availableServices && this.props.availableServices.map(s => {
+                {/* {this.props.userInfo && this.props.userInfo.map(s => {
                   return  <p className='service'>{s.type}</p>
-                })}
+                })} */}
             </div>
         )
         
@@ -30,8 +30,8 @@ class DashSubHeader extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        availableServices: state.availableServicesReducer.availableServices
+        userInfo: state.userInfoReducer.userInfo
     }
 }
 
-export default connect(mapStateToProps, { fetchAvailableServices })(DashSubHeader);
+export default connect(null, { fetchUserInfo })(Feed);

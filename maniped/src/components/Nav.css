@@ -70,3 +70,9 @@
 .logout:hover {
     cursor: pointer;
 }
+
+.x {
+    text-decoration: none;
+    font-size: 2rem;
+    color: teal;
+}

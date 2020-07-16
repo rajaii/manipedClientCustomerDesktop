@@ -28,6 +28,10 @@ CURRENT =>=>=>:
             user to all providers that offer this service in their area
 
         <Feed />:
+            enable booking action and reducer, and completed_services reducer and actions so can pull info for feed and make bookings
+
+            profile tab top right so can go and see/adjust profile info
+
             will contain many things, will be made as we go, for now just start with recent orders, favorites, and take from there..
 
 

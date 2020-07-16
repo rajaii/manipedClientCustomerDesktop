@@ -16,6 +16,10 @@ class DashHeader extends React.Component {
         this.props.fetchUserInfo();
     }
 
+    handlebook = () => {
+        
+    }
+
     render() {
         return (
         <div className='search' id='sticky'>
@@ -54,7 +58,7 @@ class DashHeader extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        userInfo: state.fetchUserInfoReducer.userInfo
+        userInfo: state.userInfoReducer.userInfo
     }
 }
 
