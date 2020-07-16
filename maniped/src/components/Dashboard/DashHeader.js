@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
+import { fetchUserInfo } from '../../actions/appActions.js';
 import '../Nav.css';
 
 class DashHeader extends React.Component {
@@ -9,6 +11,9 @@ class DashHeader extends React.Component {
         this.state = {
 
         }
+    }
+    componentDidMount() {
+        this.props.fetchUserInfo();
     }
 
     render() {
@@ -29,7 +34,7 @@ class DashHeader extends React.Component {
             </div>
                 
             <div className='midFlex'>
-                <p className='p2'>Welcome USER</p>
+                <p className='p2'>Welcome {this.props.userInfo && this.props.userInfo[0].username}</p>
                 <Link className='x' to='/booknow'>Book an appointment now</Link>
             </div>
         
@@ -47,4 +52,10 @@ class DashHeader extends React.Component {
     }
 }
 
-export default DashHeader;
+const mapStateToProps = state => {
+    return {
+        userInfo: state.fetchUserInfoReducer.userInfo
+    }
+}
+
+export default connect(mapStateToProps, { fetchUserInfo })(DashHeader);

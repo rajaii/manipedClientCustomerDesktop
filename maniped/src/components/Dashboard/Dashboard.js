@@ -12,9 +12,9 @@ class DashBoard extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='dash'>
                 <DashHeader />
-                <DashSubHeader/>
+                <DashSubHeader />
             </div>
         )
         

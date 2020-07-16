@@ -5,7 +5,7 @@ manigod reg and pre-admin access, and admin interface
  
 
 CURRENT =>=>=>: 
-
+    (later_current)
         make logout route in BE.
 
         setup protectedRoutes
@@ -16,10 +16,14 @@ CURRENT =>=>=>:
 
     __components: dashboard,  
 
-    plan: class dashboard with componentDidMount running and getting all their info from Be and displaying :
+    DEBUG: put axiosWithAuth on fethes on appactions.js
         <DashHeader />:
             maniped on left, Hello User on logout on top right in middle book an appointment 
+            !!!TODO make logout functional, make the axios call to logout endpoint which will be made in be after V done
+
+
         <DashSubHeader />:  
+
             below that a subheader component that displays services flex-direction row.  map through available_services endpoint and display services with link that will take 
             user to all providers that offer this service in their area
 

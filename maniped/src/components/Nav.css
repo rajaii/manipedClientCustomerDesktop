@@ -66,3 +66,7 @@
 .logout {
     font-size: 1.75rem;
 }
+
+.logout:hover {
+    cursor: pointer;
+}
