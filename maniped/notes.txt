@@ -173,3 +173,16 @@ Home will have a landing page with login taking customers to their dashboard
 components: nav, about, services, login, signup, 
 
 dashboard (when logged in) will have more things ie search for services, providers in area, messaging, etc 
+
+
+================================================================================================================================
+
+ZIPCODE API NOTES AND PSEUDO:
+
+use radius finder to find all zipcodes within a radius entered by user to their entered zip code as well,
+map through the providers and pull out all providers whose zip codes match the ones on the radius list.
+
+display these to the user, user can click a buttoon to book now and will go to booking component making a providerfetch call with the
+providers id going into state and the fetch from a provider call that is made to that id when clicking to book
+
+Maybe use caches for optimization(later)
