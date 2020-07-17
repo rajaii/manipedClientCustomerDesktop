@@ -1,6 +1,7 @@
 import { FETCH_AVAILABLE_SERVICES_START, FETCH_AVAILABLE_SERVICES_SUCCESS, FETCH_AVAILABLE_SERVICES_FAILURE, FETCH_USER_INFO_START, 
 FETCH_USER_INFO_SUCCESS, FETCH_USER_INFO_FAILURE, FETCH_BOOKINGS_START, FETCH_BOOKINGS_SUCCESS, FETCH_BOOKINGS_FAILURE, POST_BOOKINGS_START, 
-POST_BOOKINGS_SUCCESS, POST_BOOKINGS_FAILURE } from '../actions/appActions.js';
+POST_BOOKINGS_SUCCESS, POST_BOOKINGS_FAILURE, FETCH_PROVIDERS_INFO_START, FETCH_PROVIDERS_INFO_SUCCESS, FETCH_PROVIDERS_INFO_FAILURE, 
+FETCH_PROVIDER_INFO_START, FETCH_PROVIDER_INFO_SUCCESS, FETCH_PROVIDER_INFO_FAILURE } from '../actions/appActions.js';
 
 const availableServicesInitialState = {
     fetching: false,
@@ -23,6 +24,14 @@ const bookingsInitialState = {
     newBooking: null,
     error: null,
 
+}
+
+const providerInitialState = {
+    fetchingProviders: false,
+    fetchingProvider: false,
+    providers: null,
+    provider: null,
+    error: null
 }
 
 
@@ -121,5 +130,51 @@ export function bookingsReducer(state=bookingsInitialState, action) {
         default:
             return state
     }
+    
+}
+
+
+export function providerReducer(state=providerInitialState, action) {
+    
+    switch(action.type) {
+        case FETCH_PROVIDERS_INFO_START:
+            return {
+                ...state,
+                fetchingProviders: true,
+
+            }
+        case FETCH_PROVIDERS_INFO_SUCCESS:
+            return {
+                ...state,
+                providers: action.payload,
+                fetchingProviders: false
+            }
+        case FETCH_PROVIDERS_INFO_FAILURE:
+            return {
+                ...state,
+                fetchingProviders: false,
+                error: action.payload
+            }
+        case FETCH_PROVIDER_INFO_START:
+            return {
+                ...state,
+                fetchingProvider: true,
+
+            }
+        case FETCH_PROVIDER_INFO_SUCCESS:
+            return {
+                ...state,
+                provider: action.payload,
+                fetchingProvider: false
+            }
+        case FETCH_PROVIDER_INFO_FAILURE:
+            return {
+                ...state,
+                fetchingProvider: false,
+                error: action.payload
+            }
+        default:
+            return state
+        }
     
 }

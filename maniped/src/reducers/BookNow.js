@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { postBooking } from '../../actions/appActions.js';
+import { postBooking } from '../actions/appActions.js';
 import './Dashboard.css';
 
 
