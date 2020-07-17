@@ -9,6 +9,7 @@ import Register from './components/Register.js';
 import Login from './components/Login.js';
 import Dashboard from './components/Dashboard/Dashboard.js';
 import BookNow from './components/BookNow.js';
+import ProviderSearch from './components/ProviderSearch.js';
 import PrivateRoute from './components/PrivateRoute.js';
 import './App.css';
 
@@ -25,6 +26,7 @@ class App extends React.Component {
         <Route exact path='/login' render={(props) => <Login {...props} />}></Route>
         <Route exact path='/dashboard' render={(props) => <Dashboard {...props} />}></Route>
         <Route exact path='/booknow' render={(props) => <BookNow {...props} />}></Route>
+        <Route exact path='/providersearch' render={(props) => <ProviderSearch {...props} />}></Route>
 
        
     </div>

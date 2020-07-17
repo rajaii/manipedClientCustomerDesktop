@@ -17,7 +17,7 @@ class DashHeader extends React.Component {
     }
 
     handlebook = () => {
-        
+
     }
 
     render() {
@@ -39,7 +39,7 @@ class DashHeader extends React.Component {
                 
             <div className='midFlex'>
                 <p className='p2'>Welcome {this.props.userInfo && this.props.userInfo[0].username}</p>
-                <Link className='x' to='/booknow'>Book an appointment now</Link>
+                <Link className='x' to='/providersearch'>Book an appointment now</Link>
             </div>
         
             <div className='newNavFlex'>
