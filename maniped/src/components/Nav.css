@@ -50,6 +50,10 @@
     display: none
 }
 
+.l {
+    display: none
+}
+
 /*DASHHEADER DIFFS VVV **************************************************************************************** */
 
 .midFlex {
@@ -65,4 +69,14 @@
 
 .logout {
     font-size: 1.75rem;
+}
+
+.logout:hover {
+    cursor: pointer;
+}
+
+.x {
+    text-decoration: none;
+    font-size: 2rem;
+    color: teal;
 }

@@ -5,25 +5,33 @@ manigod reg and pre-admin access, and admin interface
  
 
 CURRENT =>=>=>: 
-
+    (later_current)
         make logout route in BE.
 
         setup protectedRoutes
 
         make logo
 
-
+    __ put in protectedRoutes
 
     __components: dashboard,  
 
-    plan: class dashboard with componentDidMount running and getting all their info from Be and displaying :
+        
         <DashHeader />:
-            maniped on left, Hello User on logout on top right in middle book an appointment 
-        <DashSubHeader />:  
-            below that a subheader component that displays services flex-direction row.  map through available_services endpoint and display services with link that will take 
-            user to all providers that offer this service in their area
+            !!!TODO make logout functional, make the axios call to logout endpoint which will be made in be after V done
 
         <Feed />:
+        action and reducer for provider so can get provider info for booking finish book form with radios populated from provider services, and provider search too
+            
+            BOOKINGS will be enabled through the top and dashSubheader component
+            enable booking action and reducer, 
+             
+            Book now will bring up post now form and can make a booking through there
+            
+            and completed_services reducer and actions so can pull info for feed and make bookings
+
+            profile tab top right so can go and see/adjust profile info
+
             will contain many things, will be made as we go, for now just start with recent orders, favorites, and take from there..
 
 
@@ -142,6 +150,9 @@ DEBUGGINGS:
     _SEED Error: Error while executing "C:\Users\rosin\a_jProjects\maniPed\seeds\bookings.js" seed: truncate "future_bookings" restart identity - cannot truncate a table referenced in a 
     foreign key constraint
      may have to add created at in seeds if doesnt run, also knexfile configs were changed, adding seed dir and pool config
+
+     line 33 and 34 of nav.js in FE desktop set better (more specific) logic to see if user logged in.  prob using authreducer.isLoggedIn will work when 
+     app is running and not cutting in and off, so try that again when deployed and test to see.   
 
 
 

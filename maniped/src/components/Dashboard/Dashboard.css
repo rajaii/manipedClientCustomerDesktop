@@ -1,0 +1,20 @@
+.dash {
+    display: flex;
+    flex-direction: column;
+}
+
+.serviceList {
+    margin-top: 109px;
+    display: flex;
+    flex-direction: row;
+    color: white;
+    font-size: 1.75rem;
+    justify-content: space-evenly;
+    background-color: indianred;
+    height: 100px;
+    align-items: center;
+}
+
+.service:hover {
+    cursor: pointer;
+}
