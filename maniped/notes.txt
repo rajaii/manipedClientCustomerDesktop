@@ -6,6 +6,9 @@ manigod reg and pre-admin access, and admin interface
 
 CURRENT =>=>=>: 
     (later_current)
+
+        add providerId in bookNow state
+
         make logout route in BE.
 
         setup protectedRoutes
@@ -20,8 +23,9 @@ CURRENT =>=>=>:
         <DashHeader />:
             !!!TODO make logout functional, make the axios call to logout endpoint which will be made in be after V done
 
-        <Feed />:
-        action and reducer for provider so can get provider info for booking finish book form with radios populated from provider services, and provider search too
+        <Feed />
+==========================> ZIPCODE API Provider Search component, book now buttons will go to provider search which will then show providers
+availablility and pricing and have a link book that will go to book for that provider. maybe somehow link all if this to my booknow, but seprarathe for now.
             
             BOOKINGS will be enabled through the top and dashSubheader component
             enable booking action and reducer, 

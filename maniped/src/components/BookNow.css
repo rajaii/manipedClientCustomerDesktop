@@ -5,10 +5,23 @@
     align-items: center;
 }
 
-.checkbox {
+.checkboxs {
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .block {
     display: block;
+    text-align: center;
+}
+.m0a {
+    margin: 0 auto;
+}
+.ml {
+    margin-left: 120px;
+}
+.mbmt {
+    margin-top: 7px;
+    margin-bottom: 7px;
 }
