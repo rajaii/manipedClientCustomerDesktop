@@ -1,7 +1,8 @@
 import { FETCH_AVAILABLE_SERVICES_START, FETCH_AVAILABLE_SERVICES_SUCCESS, FETCH_AVAILABLE_SERVICES_FAILURE, FETCH_USER_INFO_START, 
 FETCH_USER_INFO_SUCCESS, FETCH_USER_INFO_FAILURE, FETCH_BOOKINGS_START, FETCH_BOOKINGS_SUCCESS, FETCH_BOOKINGS_FAILURE, POST_BOOKINGS_START, 
 POST_BOOKINGS_SUCCESS, POST_BOOKINGS_FAILURE, FETCH_PROVIDERS_INFO_START, FETCH_PROVIDERS_INFO_SUCCESS, FETCH_PROVIDERS_INFO_FAILURE, 
-FETCH_PROVIDER_INFO_START, FETCH_PROVIDER_INFO_SUCCESS, FETCH_PROVIDER_INFO_FAILURE } from '../actions/appActions.js';
+FETCH_PROVIDER_INFO_START, FETCH_PROVIDER_INFO_SUCCESS, FETCH_PROVIDER_INFO_FAILURE, FETCH_LOCAL_PROVIDERS_START, FETCH_LOCAL_PROVIDERS_SUCCESS, 
+FETCH_LOCAL_PROVIDERS_FAILURE } from '../actions/appActions.js';
 
 const availableServicesInitialState = {
     fetching: false,
@@ -31,6 +32,12 @@ const providerInitialState = {
     fetchingProvider: false,
     providers: null,
     provider: null,
+    error: null
+}
+
+const localProviderInitialState = {
+    fetchingLocalProviders: false,
+    localProviders: null,
     error: null
 }
 
@@ -176,5 +183,33 @@ export function providerReducer(state=providerInitialState, action) {
         default:
             return state
         }
+    
+}
+
+
+export function localProviderReducer(state=localProviderInitialState, action) {
+    
+    switch(action.type) {
+        case FETCH_LOCAL_PROVIDERS_START:
+            return {
+                ...state,
+                fetchingLocalProviders: true,
+
+            }
+        case FETCH_LOCAL_PROVIDERS_SUCCESS:
+            return {
+                ...state,
+                localProviders: action.payload,
+                fetchingLocalProviders: false
+            }
+        case FETCH_LOCAL_PROVIDERS_FAILURE:
+            return {
+                ...state,
+                fetchingLocalProviders: false,
+                error: action.payload
+            }
+        default:
+            return state
+    }
     
 }

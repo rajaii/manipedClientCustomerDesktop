@@ -38,3 +38,33 @@ button {
         -webkit-text-stroke: 1px;
         -webkit-text-stroke-color: red;
     }
+
+
+
+.radio {
+    margin-top: -1px;
+    vertical-align: middle;
+}
+
+.distanceOptions {
+    display: flex;
+}
+
+.searchCont {
+    display: flex;
+    justify-content: center;
+}
+
+.searchLabel {
+    margin-bottom: 10px;
+    font-size: 2rem;
+    width: 585px;
+    color: white;
+    text-shadow: 0 0 10px black;
+    -webkit-text-stroke: 1px;
+    -webkit-text-stroke-color: red;
+}
+
+.l {
+    margin-top: 135px;
+}

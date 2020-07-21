@@ -84,3 +84,18 @@ export const fetchProviderInfo = (id) => dispatch => {
     .catch(err => dispatch({type: FETCH_PROVIDER_INFO_FAILURE, payload: err.response}))
 
 }
+
+export const FETCH_LOCAL_PROVIDERS_START = 'FETCH_LOCAL_PROVIDERS_START';
+export const FETCH_LOCAL_PROVIDERS_SUCCESS = 'FETCH_LOCAL_PROVIDERS_SUCCESS';
+export const FETCH_LOCAL_PROVIDERS_FAILURE = 'FETCH_LOCAL_PROVIDERS_FAILURE';
+
+export const fetchLocalProviders = (body) => dispatch => {
+    dispatch({type: FETCH_LOCAL_PROVIDERS_START});
+    return axiosWithAuth().post(`http://localhost:4000/api/nearby`, body)
+    .then(res => {
+        dispatch({type: FETCH_LOCAL_PROVIDERS_SUCCESS, payload: res.data})
+    })
+    .catch(err => dispatch({type: FETCH_LOCAL_PROVIDERS_FAILURE, payload: err.response}))
+
+}
+
