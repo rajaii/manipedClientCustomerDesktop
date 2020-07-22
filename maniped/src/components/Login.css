@@ -88,3 +88,35 @@ button {
     width: 100px;
     background-color: hotpink;
   }
+
+  .localFlex {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: white;
+      width: 583px;
+      margin: 0 auto;
+      margin-top: 25px;
+  }
+
+  .locals {
+    border: 2px solid blanchedalmond;
+    font-size: 2rem;
+    background: lightslategray;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 96%;
+    width: 96%;
+    height: 231px;
+    line-height: 40px;
+  }
+
+  .bookLink {
+    text-decoration: none;
+    border: 2px solid purple;
+    margin-top: -10px;
+  }
+
+  .aboveLink {
+      margin-bottom: 10px;
+  }

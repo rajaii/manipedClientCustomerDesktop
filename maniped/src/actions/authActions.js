@@ -9,7 +9,8 @@ export const login = creds => dispatch => {
     return axios.post('http://localhost:4000/api/auth/login', creds)
     .then(res => {
         localStorage.setItem('token', res.data.jwt_token);
-        dispatch({type: LOGIN_SUCCESS, payload: res.data.message});
+        localStorage.setItem('uID', res.data.id);
+        dispatch({type: LOGIN_SUCCESS, payload: res.data});
     })
     .catch(err => dispatch({type: LOGIN_FAILURE, payload: err.response}))
 
@@ -28,3 +29,13 @@ export const register = creds => dispatch => {
     .catch(err => dispatch({type: REGISTER_FAILURE, payload: err}))
 }
 
+export const LOGOUT = 'LOGOUT';
+
+export const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('uID');
+    return {
+        type: LOGOUT,
+        
+    }
+}

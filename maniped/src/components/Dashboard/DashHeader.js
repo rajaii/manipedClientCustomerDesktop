@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { fetchUserInfo } from '../../actions/appActions.js';
+import { logout } from '../../actions/authActions.js';
 import '../Nav.css';
 
 class DashHeader extends React.Component {
@@ -16,8 +17,9 @@ class DashHeader extends React.Component {
         this.props.fetchUserInfo();
     }
 
-    handlebook = () => {
-
+    handleLogout = e => {
+        e.preventDefault();
+        this.props.logout();
     }
 
     render() {
@@ -45,7 +47,7 @@ class DashHeader extends React.Component {
             <div className='newNavFlex'>
 
                 
-                <p className='logout'>Logout</p>
+                <p onClick={this.handleLogout} className='logout'>Logout</p>
                 
 
             </div>
@@ -58,8 +60,9 @@ class DashHeader extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        userInfo: state.userInfoReducer.userInfo
+        userInfo: state.userInfoReducer.userInfo,
+        isLoggedIn: state.loginReducer.isLoggedIn
     }
 }
 
-export default connect(mapStateToProps, { fetchUserInfo })(DashHeader);
+export default connect(mapStateToProps, { fetchUserInfo, logout })(DashHeader);

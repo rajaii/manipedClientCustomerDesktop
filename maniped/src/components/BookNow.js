@@ -1,25 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { postBooking, fetchUserInfo, fetchProviderInfo, fetchAvailableServices } from '../actions/appActions.js';
+import { postBooking, fetchUsersInfo, fetchProviderInfo, fetchAvailableServices } from '../actions/appActions.js';
 import './BookNow.css'
 
 
 class BookNow extends React.Component {
     constructor(props) {
         super(props);
+        const { providerId, userId } = this.props.location.state;
         this.state = {
             booking_date: null,
             booking_time: null,
             service: null,
-            user_id: (this.props.userInfo && this.props.userInfo[0].id) || null,
-            provider_id: null 
+            user_id: userId,
+            provider_id: providerId
         }
     }
     componentDidMount() {
         this.props.fetchAvailableServices();
-        this.props.fetchUserInfo();
-        this.props.fetchProviderInfo();
     }
     handleChange = e => {
         this.setState({
@@ -33,6 +32,8 @@ class BookNow extends React.Component {
     }
 
     render() {
+        
+
         let today = new Date(),
         day = today.getDate(),
         month = today.getMonth()+1, //January is 0
@@ -107,9 +108,10 @@ const mapStateToProps = state => {
         userInfo: state.userInfoReducer.userInfo,
         providersInfo: state.providerReducer.providers,
         providerInfo: state.providerReducer.provider,
-        availableServices: state.availableServicesReducer.availableServices
+        availableServices: state.availableServicesReducer.availableServices,
+        userId: state.loginReducer.welcomeMessage
     }
 }
 
 
-export default connect(mapStateToProps, { fetchUserInfo, postBooking, fetchProviderInfo, fetchProviderInfo, fetchAvailableServices })(BookNow);
+export default connect(mapStateToProps, { fetchUsersInfo, postBooking, fetchProviderInfo, fetchProviderInfo, fetchAvailableServices })(BookNow);

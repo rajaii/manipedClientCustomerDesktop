@@ -2,7 +2,7 @@ import { FETCH_AVAILABLE_SERVICES_START, FETCH_AVAILABLE_SERVICES_SUCCESS, FETCH
 FETCH_USER_INFO_SUCCESS, FETCH_USER_INFO_FAILURE, FETCH_BOOKINGS_START, FETCH_BOOKINGS_SUCCESS, FETCH_BOOKINGS_FAILURE, POST_BOOKINGS_START, 
 POST_BOOKINGS_SUCCESS, POST_BOOKINGS_FAILURE, FETCH_PROVIDERS_INFO_START, FETCH_PROVIDERS_INFO_SUCCESS, FETCH_PROVIDERS_INFO_FAILURE, 
 FETCH_PROVIDER_INFO_START, FETCH_PROVIDER_INFO_SUCCESS, FETCH_PROVIDER_INFO_FAILURE, FETCH_LOCAL_PROVIDERS_START, FETCH_LOCAL_PROVIDERS_SUCCESS, 
-FETCH_LOCAL_PROVIDERS_FAILURE } from '../actions/appActions.js';
+FETCH_LOCAL_PROVIDERS_FAILURE, FETCH_USERS_INFO_START, FETCH_USERS_INFO_SUCCESS, FETCH_USERS_INFO_FAILURE } from '../actions/appActions.js';
 
 const availableServicesInitialState = {
     fetching: false,
@@ -12,8 +12,10 @@ const availableServicesInitialState = {
 }
 
 const userInfoInitialState = {
-    fetching: false,
+    fetchingUserInfo: false,
+    fetchingUsersInfo: false,
     userInfo: null,
+    usersInfo: null,
     error: null,
     
 }
@@ -75,19 +77,37 @@ export function userInfoReducer(state=userInfoInitialState, action) {
         case FETCH_USER_INFO_START:
             return {
                 ...state,
-                fetching: true,
+                fetchingUserInfo: true,
 
             }
         case FETCH_USER_INFO_SUCCESS:
             return {
                 ...state,
                 userInfo: action.payload,
-                fetching: false
+                fetchingUserInfo: false
             }
         case FETCH_USER_INFO_FAILURE:
             return {
                 ...state,
-                fetching: false,
+                fetchingUserInfo: false,
+                error: action.payload
+            }
+        case FETCH_USERS_INFO_START:
+            return {
+                ...state,
+                fetchingUsersInfo: true,
+
+            }
+        case FETCH_USERS_INFO_SUCCESS:
+            return {
+                ...state,
+                usersInfo: action.payload,
+                fetchingUsersInfo: false
+            }
+        case FETCH_USERS_INFO_FAILURE:
+            return {
+                ...state,
+                fetchingUsersInfo: false,
                 error: action.payload
             }
         default:
