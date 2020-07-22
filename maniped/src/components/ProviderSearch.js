@@ -82,18 +82,31 @@ class ProviderSearch extends React.Component {
 
                 <div className='distanceOptions'>
                     <label>10 miles</label><br></br>
-                    <input className='radio' type="radio" name="distance" value="10" onChange={this.handleChange}/>
+                    <input className='radio' type="radio" name="distance" value="10" checked={(this.state.distance === '10')} onChange={this.handleChange}/>
 
                     <label>5 miles</label><br></br>
-                    <input className='radio' type="radio" name="distance" value="5" onChange={this.handleChange}/>
+                    <input className='radio' type="radio" name="distance" value="5" checked={(this.state.distance === '5')} onChange={this.handleChange}/>
 
                     <label>1 mile</label><br></br>
-                    <input className='radio' type="radio" name="distance" value="1" onChange={this.handleChange}/><br></br>
+                    <input className='radio' type="radio" name="distance" value="1" checked={(this.state.distance === '1')} onChange={this.handleChange}/><br></br>
                 </div>
                 
-                <button>Search</button>
-                {/* {this.props.loggingIn === true ? <div className='lds-hourglass'>Logging In...</div> : null} */}
+                <button className="search">Search</button>
+                {this.props.fetchingLocalProviders === true ? <div className='lds-hourglass'>Searching...</div> : null} 
             </form>
+
+            <div>
+                {this.props.localProviders && this.props.localProviders.map(p => {
+                    return (
+                        <div>
+                            <p>Provider: {p.first_name, p.last_name}</p>
+                            <p>Provider's zip code: {p.zipcode}</p>
+                            <p>Availability: {p.availability}</p>
+                            <p>Services and pricing: {p.services_and_pricing_1}, {p.services_and_pricing_2}, {p.services_and_pricing_3}, {p.services_and_pricing_4}, {p.services_and_pricing_5}</p>
+                        </div>
+                    )
+                })}
+            </div>
 
         </div>
         )
@@ -105,7 +118,7 @@ const mapStateToProps = state => {
         providersInfo: state.providerReducer.providersInfo,
         providerInfo: state.providerReducer.providerInfor,
         localProviders: state.localProviderReducer.localProviders,
-        fetchingLocalProviders: state.localProviderReducer.fetchLocalProviders
+        fetchingLocalProviders: state.localProviderReducer.fetchingLocalProviders
     }
 }
 
