@@ -38,3 +38,53 @@ button {
         -webkit-text-stroke: 1px;
         -webkit-text-stroke-color: red;
     }
+
+
+
+.radio {
+    margin-top: -1px;
+    vertical-align: middle;
+}
+
+.distanceOptions {
+    display: flex;
+}
+
+.searchCont {
+    display: flex;
+    justify-content: center;
+}
+
+.searchLabel {
+    margin-bottom: 10px;
+    font-size: 2rem;
+    width: 585px;
+    color: white;
+    text-shadow: 0 0 10px black;
+    -webkit-text-stroke: 1px;
+    -webkit-text-stroke-color: red;
+}
+
+.l {
+    margin-top: 135px;
+}
+
+@keyframes lds-hourglass {
+    0% {
+      transform: rotate(0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    50% {
+      transform: rotate(900deg);
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    100% {
+      transform: rotate(1800deg);
+    }
+  }
+
+  .search {
+    height: 36px;
+    width: 100px;
+    background-color: hotpink;
+  }

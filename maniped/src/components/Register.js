@@ -72,11 +72,6 @@ async handleSubmit (e) {
             verifyPassword: '',
         })
         } 
-        console.log(this.context)
-        // if (this.props.successfulRegister === true) {
-        //     console.log(this.props.history)
-        //     this.props.history.push('/login')
-        // }
     })
     .catch(err => {
         console.log(err)
@@ -193,7 +188,6 @@ const mapStateToProps = state => {
     }
 }
 
-// const registerWithRouter = withRouter(Register);
 
 export default connect(mapStateToProps, { register })(Register);
 
