@@ -49,7 +49,7 @@ export const POST_BOOKINGS_FAILURE = 'POST_BOOKINGS_FAILURE';
 
 export const postBooking = booking => dispatch => {
     dispatch({type: POST_BOOKINGS_START});
-    return axiosWithAuth().get('http://localhost:4000/api/future_bookings', booking)
+    return axiosWithAuth().post('http://localhost:4000/api/future_bookings', booking)
     .then(res => {
         dispatch({type: POST_BOOKINGS_SUCCESS, payload: res.data})
     })

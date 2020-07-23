@@ -105,11 +105,11 @@ class ProviderSearch extends React.Component {
                         {this.props.localProviders && this.props.localProviders.map(p => {
                             return (
                                 <div className='locals'>
-                                    <p>Provider: {p.first_name} {p.last_name}</p>
+                                    <p>Provider: {p.first_name} {p.last_name[0]}</p>
                                     <p>Provider's zip code: {p.zipcode}</p>
                                     <p>Availability: {p.availability}</p>
                                     <p className='aboveLink'>Services and pricing: {p.services_and_pricing_1}, {p.services_and_pricing_2}, {p.services_and_pricing_3}</p>
-                                    <Link className='bookLink' to={{pathname: '/booknow', state: {providerId: p.id, userId: userId }}}>Click here to book this provider</Link>
+                                    <Link className='bookLink' to={{pathname: '/booknow', state: {providerId: p.id, userId: userId, provider: `${p.first_name} ${p.last_name[0]}` }}}>Click here to book this provider</Link>
                                 </div>
                             )
                         })}

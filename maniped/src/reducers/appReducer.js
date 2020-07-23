@@ -21,10 +21,11 @@ const userInfoInitialState = {
 }
 
 const bookingsInitialState = {
-    fetching: false,
-    posting: false,
+    fetchingBookings: false,
+    postingBooking: false,
     bookings: null,
     newBooking: null,
+    newBookingDone: false,
     error: null,
 
 }
@@ -122,36 +123,37 @@ export function bookingsReducer(state=bookingsInitialState, action) {
         case FETCH_BOOKINGS_START:
             return {
                 ...state,
-                fetching: true,
+                fetchingBookings: true,
 
             }
         case FETCH_BOOKINGS_SUCCESS:
             return {
                 ...state,
                 bookings: action.payload,
-                fetching: false
+                fetchingBookings: false
             }
         case FETCH_BOOKINGS_FAILURE:
             return {
                 ...state,
-                fetching: false,
+                fetchingBookings: false,
                 error: action.payload
             }
         case POST_BOOKINGS_START:
             return {
                 ...state,
-                posting: true
+                postingBooking: true
             }
         case POST_BOOKINGS_SUCCESS:
             return {
                 ...state,
                 newBooking: action.payload, //push this onto a congrats screen saying you have booked ...
-                posting: false
+                newBookingDone: true,
+                postingBooking: false
             }
         case POST_BOOKINGS_FAILURE:
             return {
                 ...state,
-                posting: false,
+                postingBooking: false,
                 error: action.payload
             }
         default:
