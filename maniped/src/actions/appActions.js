@@ -49,7 +49,7 @@ export const POST_BOOKINGS_FAILURE = 'POST_BOOKINGS_FAILURE';
 
 export const postBooking = booking => dispatch => {
     dispatch({type: POST_BOOKINGS_START});
-    return axiosWithAuth().get('http://localhost:4000/api/future_bookings', booking)
+    return axiosWithAuth().post('http://localhost:4000/api/future_bookings', booking)
     .then(res => {
         dispatch({type: POST_BOOKINGS_SUCCESS, payload: res.data})
     })
@@ -96,6 +96,21 @@ export const fetchLocalProviders = (body) => dispatch => {
         dispatch({type: FETCH_LOCAL_PROVIDERS_SUCCESS, payload: res.data})
     })
     .catch(err => dispatch({type: FETCH_LOCAL_PROVIDERS_FAILURE, payload: err.response}))
+
+}
+
+export const FETCH_USERS_INFO_START = 'FETCH_USERS_INFO_START';
+export const FETCH_USERS_INFO_SUCCESS = 'FETCH_USERS_INFO_SUCCESS';
+export const FETCH_USERS_INFO_FAILURE = 'FETCH_USERS_INFO_FAILURE';
+
+export const fetchUsersInfo = (id) => dispatch => {
+    console.log(id)
+    dispatch({type: FETCH_USERS_INFO_START});
+    return axiosWithAuth().get(`http://localhost:4000/api/users/${id}`)
+    .then(res => {
+        dispatch({type: FETCH_USERS_INFO_SUCCESS, payload: res.data})
+    })
+    .catch(err => dispatch({type: FETCH_USERS_INFO_FAILURE, payload: err.response}))
 
 }
 

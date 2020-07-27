@@ -1,11 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { logout } from '../actions/authActions.js';
 
 
 import './Nav.css';
 
 function Nav (props) {
+
+    function handleLogout(e)  {
+        e.preventDefault();
+        props.logout();
+    }
 
     return (
        
@@ -30,8 +36,9 @@ function Nav (props) {
                 <Link className='p' to='/'>Home</Link>
                 <Link className='p' to='/about'>About</Link>
                 <Link className='p' to='/services'>Services</Link>
-                <Link className='p' to='/login'>Login</Link>
-                <Link className='p' to='/register'>Signup</Link>
+                {/*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/}
+                {props.isLoggedIn ? <p onClick={handleLogout} className='logout'>Logout</p> : <Link className='p' to='/login'>Login</Link>}
+                {props.isLoggedIn ? null : <Link className='p' to='/register'>Signup</Link>}
 
             </div>
 
@@ -47,4 +54,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {})(Nav);
+export default connect(mapStateToProps, { logout })(Nav);

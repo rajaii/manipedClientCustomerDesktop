@@ -7,30 +7,24 @@ manigod reg and pre-admin access, and admin interface
 CURRENT =>=>=>: 
     (later_current)
 
-        add providerId in bookNow state
-
-        make logout route in BE.
-
-        setup protectedRoutes
-
-        make logo
-
-    __ put in protectedRoutes
-
-    __components: dashboard,  
+        store tokens in cookie (security)
 
         
-        <DashHeader />:
-            !!!TODO make logout functional, make the axios call to logout endpoint which will be made in be after V done
 
         <Feed />
-==========================> ZIPCODE API Provider Search component, book now buttons will go to provider search which will then show providers
-availablility and pricing and have a link book that will go to book for that provider. maybe somehow link all if this to my booknow, but seprarathe for now.
+
+            dashboard not working on privateRoute
+
+            figure out how to push (use from login to dash when logged in, use on booking to go to dash when success message discarded)
+
+            setup protectedRoutes
             
-            BOOKINGS will be enabled through the top and dashSubheader component
-            enable booking action and reducer, 
+            send out success message to user and push to dashboard debug
+
+            take care of rebooking bug see notes on BookNow.js 122-124;
              
-            Book now will bring up post now form and can make a booking through there
+    
+            set up cancellation action, reducer, and mechanism on dashboard somewhere
             
             and completed_services reducer and actions so can pull info for feed and make bookings
 
@@ -51,7 +45,9 @@ PROGRAMMATICS (tweaks to those features that are added already):
 
     API:
 
-        
+        make it so frontend provider app and email message go to provider to confirm after booking post made.
+
+        make it so duplicate bookings can not happen.
 
         Cloud storage for photos and then link storage in db for pulling to FE for image display tweak routes/helpers and migrations accordingly 
         when get there see API to FE INTEGRATION: Images
