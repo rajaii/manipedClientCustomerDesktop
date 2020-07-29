@@ -36,7 +36,6 @@ class BookNow extends React.Component {
             return
         } else {
         e.preventDefault();
-        const { providerId, userId } = this.props.location.state;
         this.props.postBooking(this.state);
         this.setState({
             booking_date: '',
@@ -48,6 +47,7 @@ class BookNow extends React.Component {
             user_name: ''
         })
         //somehow refresh out so user can book someone else here as is is buggy will keep on same state info
+        this.props.history.push('/dashboard');
     }
     }
 

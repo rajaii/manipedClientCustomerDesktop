@@ -25,7 +25,8 @@ CURRENT =>=>=>:
 
             
         When on Provider DASH          
- =========> PSEUDO:
+ =========> go in feed and make the call to the users bookings and render them in a  map on the feed and lightly style feed then V
+
             in dash make a tab for future bookings displaying only those confirmed,
 
             in feed make a tab for profile that will go to an interface to edit profile

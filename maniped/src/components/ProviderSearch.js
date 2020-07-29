@@ -21,7 +21,8 @@ class ProviderSearch extends React.Component {
         this.state = {
             zipCode: '',
             distance: null,
-            validationError: {inner: []}
+            validationError: {inner: []},
+            handleClicked: false,
         }
         this.handleSubmit = this.handleSubmit.bind(this)
     }
@@ -46,6 +47,9 @@ class ProviderSearch extends React.Component {
             .then(d => {
                 if (d) {
                     this.props.fetchLocalProviders(body);
+                    this.setState({
+                        handleClicked: true
+                    })
                     this.setState({
                         zipCode: '',
                         distance: null,
@@ -103,7 +107,7 @@ class ProviderSearch extends React.Component {
                     </div>
 
                     <div className='localFlex'>
-                        {this.props.localProviders && this.props.localProviders.map(p => {
+                        {this.state.handleClicked && this.props.localProviders && this.props.localProviders.map(p => {
                             return (
                                 <div className='locals'>
                                     <p>Provider: {p.first_name} {p.last_name[0]}</p>
