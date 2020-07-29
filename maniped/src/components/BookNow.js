@@ -9,13 +9,15 @@ import './BookNow.css';
 class BookNow extends React.Component {
     constructor(props) {
         super(props);
-        const { providerId, userId } = this.props.location.state;
+        const { providerId, userId, user_name, provider_name } = this.props.location.state;
         this.state = {
             booking_date: '',
             booking_time: '',
             services_and_pricing: '',
             user_id: userId,
+            user_name: user_name,
             provider_id: providerId,
+            provider_name: provider_name
         }
     }
     componentDidMount() {
@@ -40,9 +42,12 @@ class BookNow extends React.Component {
             booking_date: '',
             booking_time: '',
             services_and_pricing: '',
-            user_id: userId,
-            provider_id: providerId,
+            user_id: '',
+            provider_id: '',
+            provider_name: '',
+            user_name: ''
         })
+        //somehow refresh out so user can book someone else here as is is buggy will keep on same state info
     }
     }
 
@@ -132,7 +137,7 @@ than once///////////////////////////////////////////////////////////////////////
 
                         <div className='success'>
                             <h1 className='conf'>Confirmation message:</h1>
-                            <p className='successP'>Congratulations, you have just completed your booking.</p>
+                            <p className='successP'>Congratulations, you have just completed your booking with {`${this.props.newBooking.booking[0].provider_name}`}.</p>
                             <p className='successP'>Booking date: {`${this.props.newBooking.booking[0].booking_date.slice(0,10)}`}</p>
                             <p className='successP'>Booking time: {`${this.props.newBooking.booking[0].booking_time.slice(0,5)} ${parseInt(this.props.newBooking.booking[0].booking_time.slice(0,2), 10) < 12 ? 'AM' : ''}`}</p>
                             <p className='successP'>Appointment type: {`${this.props.newBooking.booking[0].services_and_pricing}`}</p>

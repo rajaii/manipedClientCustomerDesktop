@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchUserInfo } from '../../actions/appActions.js';
+import { fetchBookings } from '../../actions/appActions.js';
 import './Dashboard.css';
 
 
@@ -13,15 +13,19 @@ class Feed extends React.Component {
         }
     }
     componentDidMount() {
-        this.props.fetchUserInfo()
+        this.props.fetchBookings(localStorage.getItem('uID'))
     }
 
     render() {
         return (
-            <div className='serviceList'>
-                {/* {this.props.userInfo && this.props.userInfo.map(s => {
-                  return  <p className='service'>{s.type}</p>
-                })} */}
+            <div className='feed'>
+                Your Upcoming Services:
+                {/* {this.props.bookings && this.props.bookings.map(b => {
+                  return (
+                      <p className='service'>{b.se}</p>
+                      <p className='service'></p>
+                  )
+                })}  */}
             </div>
         )
         
@@ -30,8 +34,8 @@ class Feed extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        userInfo: state.userInfoReducer.userInfo
+        bookings: state.bookingsReducer.bookings
     }
 }
 
-export default connect(mapStateToProps, { fetchUserInfo })(Feed);
+export default connect(mapStateToProps, { fetchBookings })(Feed);

@@ -64,6 +64,7 @@ class ProviderSearch extends React.Component {
 
     render () {
         let userId = localStorage.getItem("uID");
+        let usersName = localStorage.getItem("uName");
         return (
                 <div>
                     <div className='searchCont l'>
@@ -109,7 +110,7 @@ class ProviderSearch extends React.Component {
                                     <p>Provider's zip code: {p.zipcode}</p>
                                     <p>Availability: {p.availability}</p>
                                     <p className='aboveLink'>Services and pricing: {p.services_and_pricing_1}, {p.services_and_pricing_2}, {p.services_and_pricing_3}</p>
-                                    <Link className='bookLink' to={{pathname: '/booknow', state: {providerId: p.id, userId: userId, provider: `${p.first_name} ${p.last_name[0]}` }}}>Click here to book this provider</Link>
+                                    <Link className='bookLink' to={{pathname: '/booknow', state: {providerId: p.id, userId: userId, provider_name: `${p.first_name} ${p.last_name[0]}`, user_name: usersName}}}>Click here to book this provider</Link>
                                 </div>
                             )
                         })}

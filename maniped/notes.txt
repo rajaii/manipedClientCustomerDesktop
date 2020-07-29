@@ -2,7 +2,15 @@ PROJECT = custy app react and native, provider app react and native, admin app w
 manigod reg and pre-admin access, and admin interface
 
 ===============================================================================================================================================
- 
+ Color combos :
+ #CC1559 - maroonish
+  #FF5EAA- pink one
+  #96B3D3- blueish one
+  #FFFFFF- white
+   #585858- dark grey
+   #646464- light grey
+   src: https://www.colorcombos.com/color-scheme-240.html
+
 
 CURRENT =>=>=>: 
     (later_current)
@@ -25,7 +33,7 @@ CURRENT =>=>=>:
             in feed feed future appointments and favorites (highest completeds)
 
 
-            3)programmatically send reminders 24 hours and 1 hour before the meerting to both.  Fire up gps on provider and user within hour, have provider
+            3)programmatically send reminders 24 hours and 1 hour before the meerting to both. TWILIO for this and for messaging  Fire up gps on provider and user within hour, have provider
             tap button to indicate on the way and then show on user app how far they are.
 
             AFTER ^ intiate logic to complete service, rate, confirmations, messages, emails, etc socketio messageing too

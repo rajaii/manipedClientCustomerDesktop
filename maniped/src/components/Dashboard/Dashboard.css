@@ -7,14 +7,17 @@
     margin-top: 109px;
     display: flex;
     flex-direction: row;
-    color: white;
     font-size: 1.75rem;
     justify-content: space-evenly;
-    background-color: indianred;
+    background-color: #FF5EAA;
     height: 100px;
     align-items: center;
+    color: #FFFFFF;
 }
 
 .service:hover {
     cursor: pointer;
+}
+.feed {
+    background-color: #96B3D3;
 }
