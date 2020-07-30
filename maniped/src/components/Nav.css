@@ -81,4 +81,10 @@
     text-decoration: none;
     font-size: 2rem;
     color: #96B3D3;
+    font-family: cursive;
+}
+
+.p2 {
+    font-size: 2rem;    
+    font-family: fantasy;
 }

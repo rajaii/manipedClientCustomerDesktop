@@ -19,9 +19,9 @@ export const FETCH_USER_INFO_START = 'FETCH_USER_INFO_START';
 export const FETCH_USER_INFO_SUCCESS = 'FETCH_USER_INFO_SUCCESS';
 export const FETCH_USER_INFO_FAILURE = 'FETCH_USER_INFO_FAILURE';
 
-export const fetchUserInfo = () => dispatch => {
+export const fetchUserInfo = (id) => dispatch => {
     dispatch({type: FETCH_USER_INFO_START});
-    return axiosWithAuth().get('http://localhost:4000/api/users')
+    return axiosWithAuth().get(`http://localhost:4000/api/users/${id}`)
     .then(res => {
         dispatch({type: FETCH_USER_INFO_SUCCESS, payload: res.data})
     })
