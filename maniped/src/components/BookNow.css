@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #ffffff;
 }
 
 .checkboxs {
@@ -78,4 +79,8 @@
 
 .conf {
     font-size: 3rem;
+}
+
+.serviceList {
+    margin-top: 0px;
 }
