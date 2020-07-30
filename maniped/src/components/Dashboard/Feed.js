@@ -19,13 +19,18 @@ class Feed extends React.Component {
     render() {
         return (
             <div className='feed'>
-                Your Upcoming Services:
-                {/* {this.props.bookings && this.props.bookings.map(b => {
+                <h1 className='feedtitle'>Your Upcoming Services:</h1>
+                {this.props.bookings && this.props.bookings.map(b => {
                   return (
-                      <p className='service'>{b.se}</p>
-                      <p className='service'></p>
+                      <div className="mappeddiv">
+                        <h1>Service with {b.provider_name}</h1>
+                        <p className='service'>Service type: {b.services_and_pricing}</p>
+                        <p className='service'>Service date:{b.booking_date.slice(0,10)}</p>
+                        <p className='service'>Service time:{b.booking_time.slice(0,5)}{parseInt(b.booking_time.slice(0,2), 10) < 12 ? 'AM' : ''}</p>
+                        <p className='service'>{b.confirmed === true ? 'Service has been confirmed by the provider' : 'Service has not yet been confirmed by the provider'}</p>
+                      </div>
                   )
-                })}  */}
+                })} 
             </div>
         )
         
