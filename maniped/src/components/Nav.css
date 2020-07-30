@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #ff006f;
+    background-color:  #CC1559;
 }  
 
 #sticky {
@@ -12,6 +12,7 @@
     width: 100%; 
     z-index: 1;
     height: 109px;
+    background-color:  #CC1559;
 }
 .frontFlex  {
     display: flex;
@@ -79,5 +80,11 @@
 .x {
     text-decoration: none;
     font-size: 2rem;
-    color: teal;
+    color: #96B3D3;
+    font-family: cursive;
+}
+
+.p2 {
+    font-size: 2rem;    
+    font-family: fantasy;
 }

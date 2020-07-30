@@ -19,9 +19,9 @@ class DashSubHeader extends React.Component {
     render() {
         return (
             <div className='serviceList'>
-                {this.props.availableServices && this.props.availableServices.map(s => {
-                  return  <p className='service'>{s.type}</p>
-                })}
+                <p>Profile</p>
+                <p>Future bookings</p>
+                <p>Tentative bookings</p>   
             </div>
         )
         

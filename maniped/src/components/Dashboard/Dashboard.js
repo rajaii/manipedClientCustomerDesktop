@@ -13,10 +13,13 @@ class DashBoard extends React.Component {
 
     render() {
         return (
-            <div className='dash'>
-                <DashHeader />
-                <DashSubHeader />
-                <Feed/>            
+            <div>
+                <div className='dash'>
+                    <DashHeader />
+                    <DashSubHeader />           
+                </div>
+
+                <Feed/> 
             </div>
         )
         

@@ -14,7 +14,8 @@ class DashHeader extends React.Component {
         }
     }
     componentDidMount() {
-        this.props.fetchUserInfo();
+        let userId = localStorage.getItem('uID')
+        this.props.fetchUserInfo(userId);
     }
 
     handleLogout = e => {
@@ -40,7 +41,7 @@ class DashHeader extends React.Component {
             </div>
                 
             <div className='midFlex'>
-                <p className='p2'>Welcome {this.props.userInfo && this.props.userInfo[0].username}</p>
+                <p className='p2'>Welcome {this.props.userInfo && this.props.userInfo.username}</p>
                 <Link className='x' to='/providersearch'>Book an appointment now</Link>
             </div>
         

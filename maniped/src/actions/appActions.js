@@ -19,9 +19,9 @@ export const FETCH_USER_INFO_START = 'FETCH_USER_INFO_START';
 export const FETCH_USER_INFO_SUCCESS = 'FETCH_USER_INFO_SUCCESS';
 export const FETCH_USER_INFO_FAILURE = 'FETCH_USER_INFO_FAILURE';
 
-export const fetchUserInfo = () => dispatch => {
+export const fetchUserInfo = (id) => dispatch => {
     dispatch({type: FETCH_USER_INFO_START});
-    return axiosWithAuth().get('http://localhost:4000/api/users')
+    return axiosWithAuth().get(`http://localhost:4000/api/users/${id}`)
     .then(res => {
         dispatch({type: FETCH_USER_INFO_SUCCESS, payload: res.data})
     })
@@ -33,9 +33,9 @@ export const FETCH_BOOKINGS_START = 'FETCH_BOOKINGS_START';
 export const FETCH_BOOKINGS_SUCCESS = 'FETCH_BOOKINGS_SUCCESS';
 export const FETCH_BOOKINGS_FAILURE = 'FETCH_BOOKINGS_FAILURE';
 
-export const fetchBookings = () => dispatch => {
+export const fetchBookings = (userId) => dispatch => {
     dispatch({type: FETCH_BOOKINGS_START});
-    return axiosWithAuth().get('http://localhost:4000/api/future_bookings')
+    return axiosWithAuth().get(`http://localhost:4000/api/future_bookings/user/${userId}`)
     .then(res => {
         dispatch({type: FETCH_BOOKINGS_SUCCESS, payload: res.data})
     })

@@ -10,6 +10,7 @@ export const login = creds => dispatch => {
     .then(res => {
         localStorage.setItem('token', res.data.jwt_token);
         localStorage.setItem('uID', res.data.id);
+        localStorage.setItem('uName', res.data.name);
         dispatch({type: LOGIN_SUCCESS, payload: res.data});
     })
     .catch(err => dispatch({type: LOGIN_FAILURE, payload: err.response}))

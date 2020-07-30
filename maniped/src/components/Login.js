@@ -49,7 +49,7 @@ class Login extends React.Component {
                 password: ''
             })
             }
-            this.props.history.push(<DashBoard/>)
+            this.props.history.push('/dashboard')
         })
         .catch(err => {
              console.log(err)
