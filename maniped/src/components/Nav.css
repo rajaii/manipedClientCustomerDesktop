@@ -84,6 +84,12 @@
     font-family: cursive;
 }
 
+.x:hover {
+    cursor: pointer;
+    color: #FFFFFF;
+    font-family: fantasy;
+}
+
 .p2 {
     font-size: 2rem;    
     font-family: fantasy;

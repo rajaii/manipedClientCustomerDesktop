@@ -25,14 +25,17 @@ CURRENT =>=>=>:
 
             
         When on Provider DASH          
- =========> go in feed and make the call to the users bookings and render them in a  map on the feed and lightly style feed then V
+ =========>
+                [
+            plan settings and what will put in there will need to add a db table for user_settings and provider_settings too prob
 
-            in dash make a tab for future bookings displaying only those confirmed,
+            make it so they can message their provider in feed too.
 
-            in feed make a tab for profile that will go to an interface to edit profile
-
-            in feed feed future appointments and favorites (highest completeds)
-
+            if click on profile conditionally render profile component under the feedsub and allow to edit, if click on past services 
+            render a past services component which will conditionally render another component for that, and for wishlist the same in this component 
+            they can message the upcoming provider to notify them or remind them to confirm.
+            
+                ]
 
             3)programmatically send reminders 24 hours and 1 hour before the meerting to both. TWILIO for this and for messaging  Fire up gps on provider and user within hour, have provider
             tap button to indicate on the way and then show on user app how far they are.
