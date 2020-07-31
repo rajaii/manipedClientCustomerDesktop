@@ -37,7 +37,7 @@ class FeedSub extends React.Component {
     render() {
         return (
             <div className='feedSubWrapper'>
-
+                {/* fix this to be sticky and then add another div udner and style to scroll indepedantly */}
                     <div className='serviceList' id="needed">
                         <p onClick={this.handleProfileClick} className='each'>Profile</p>
                         <p onClick={this.handlePastServicesClick} className='each'>Past Services</p>
@@ -47,11 +47,11 @@ class FeedSub extends React.Component {
 
                     {this.props.completedServices && this.props.completedServices.map(s => {
                         return (
-                            <div>
-                                <h1>Type of service: {s.type_of_service}</h1>
-                                <p>Amount billed: {s.amount_billed}</p>
-                                <p>Provider name: {s.provider_name}</p>
-                                <p>Completed at: {s.created_at}</p>
+                            <div className='serviceWrapper'>
+                                <h1 className='serviceTitle'>Type of service: {s.type_of_service}</h1>
+                                <p className='serviceCat'>Amount billed: {s.amount_billed}</p>
+                                <p className='serviceCat'>Provider name: {s.provider_name}</p>
+                                <p className='serviceCat'>Completed at: {s.created_at}</p>
                             </div>
                         )
                     })}
