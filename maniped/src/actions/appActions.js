@@ -57,6 +57,15 @@ export const fetchCompletedServices = (userId) => dispatch => {
 
 }
 
+export const CLEAR_NEW_BOOKING = 'CLEAR_NEW_BOOKING';
+
+export const clearNewBooking = () => {
+    return {
+        type: CLEAR_NEW_BOOKING,
+        payload: false
+    }
+}
+
 export const POST_BOOKINGS_START = 'POST_BOOKINGS_START';
 export const POST_BOOKINGS_SUCCESS = 'POST_BOOKINGS_SUCCESS';
 export const POST_BOOKINGS_FAILURE = 'POST_BOOKINGS_FAILURE';

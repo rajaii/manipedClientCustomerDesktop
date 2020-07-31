@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { postBooking, fetchUsersInfo, fetchProviderInfo, fetchAvailableServices } from '../actions/appActions.js';
+import { postBooking, fetchUsersInfo, fetchProviderInfo, fetchAvailableServices, clearNewBooking } from '../actions/appActions.js';
 import './BookNow.css';
 
 
@@ -47,13 +47,12 @@ class BookNow extends React.Component {
             user_name: ''
         })
         //somehow refresh out so user can book someone else here as is is buggy will keep on same state info
-        this.props.history.push('/dashboard');
+        
     }
     }
 
     dismiss = e => {
-        e.preventDefault();
-        //somehow destroy state taht makes this happen possibly providerSearch
+        this.props.clearNewBooking();
         this.props.history.push('/dashboard');
 
     }
@@ -169,4 +168,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, { fetchUsersInfo, postBooking, fetchProviderInfo, fetchProviderInfo, fetchAvailableServices })(BookNow);
+export default connect(mapStateToProps, { fetchUsersInfo, postBooking, fetchProviderInfo, fetchProviderInfo, fetchAvailableServices, clearNewBooking })(BookNow);
