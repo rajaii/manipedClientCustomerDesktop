@@ -21,6 +21,7 @@ class DashHeader extends React.Component {
     handleLogout = e => {
         e.preventDefault();
         this.props.logout();
+        
     }
 
     render() {
@@ -48,7 +49,7 @@ class DashHeader extends React.Component {
             <div className='newNavFlex'>
 
                 
-                <p onClick={this.handleLogout} className='logout'>Logout</p>
+                <p to='/login' onClick={this.handleLogout} className='logout'>Logout</p>
                 
 
             </div>

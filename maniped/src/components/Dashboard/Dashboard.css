@@ -14,7 +14,7 @@
     align-items: center;
     color: #FFFFFF;
     margin-top: 100px;
-    width: 60%;
+    width: 213%;
 }
 
 .each:hover {
@@ -64,4 +64,9 @@
     background-color: white;
     cursor: pointer;
     
+}
+
+.feedSubWrapped {
+    display: flex;
+    flex-direction: column;
 }

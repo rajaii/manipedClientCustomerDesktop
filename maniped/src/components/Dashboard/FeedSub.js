@@ -14,8 +14,10 @@ class FeedSub extends React.Component {
         }
     }
 
-    handlePastServicesClick = () => {
-
+    handlePastServicesClick = (e) => {
+        let userId = localStorage.getItem('uID');
+        e.preventDefault();
+        this.props.fetchCompletedServices(userId);
     }
 
     handleProfileClick = () => {
@@ -34,12 +36,28 @@ class FeedSub extends React.Component {
 
     render() {
         return (
-            <div className='serviceList' id="needed">
-                <p onClick={this.handleProfileClick} className='each'>Profile</p>
-                <p onClick={this.handlePastServicesClick} className='each'>Past Services</p>
-                <p onClick={this.handleWishListClick} className='each'>WishList</p>   
-                <img onClick={this.handleSettingsClick} className='settings' src={icon}/>
+            <div className='feedSubWrapper'>
+
+                    <div className='serviceList' id="needed">
+                        <p onClick={this.handleProfileClick} className='each'>Profile</p>
+                        <p onClick={this.handlePastServicesClick} className='each'>Past Services</p>
+                        <p onClick={this.handleWishListClick} className='each'>WishList</p>   
+                        <img onClick={this.handleSettingsClick} className='settings' src={icon}/>
+                    </div>
+
+                    {this.props.completedServices && this.props.completedServices.map(s => {
+                        return (
+                            <div>
+                                <h1>Type of service: {s.type_of_service}</h1>
+                                <p>Amount billed: {s.amount_billed}</p>
+                                <p>Provider name: {s.provider_name}</p>
+                                <p>Completed at: {s.created_at}</p>
+                            </div>
+                        )
+                    })}
+
             </div>
+
         )
         
     }
@@ -47,7 +65,7 @@ class FeedSub extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        availableServices: state.availableServicesReducer.availableServices
+        completedServices: state.completedServicesReducer.completedServices,
     }
 }
 

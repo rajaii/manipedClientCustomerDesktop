@@ -28,6 +28,8 @@ CURRENT =>=>=>:
 
 
  =========>
+            working on handlePastServices style the stuff 
+
             populate handleclicks on feedSub.js to call the respective actions,
 
             make the respective components (populate settings last just make it bones intially) and have them conditionally render on ^

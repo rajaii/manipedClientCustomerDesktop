@@ -75,6 +75,8 @@
 
 .logout:hover {
     cursor: pointer;
+    font-family: fantasy;
+    color: white;
 }
 
 .x {

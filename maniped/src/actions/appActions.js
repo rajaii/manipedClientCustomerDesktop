@@ -49,7 +49,7 @@ export const FETCH_COMPLETEDSERVICES_FAILURE = 'FETCH_COMPLETEDSERVICES_FAILURE'
 
 export const fetchCompletedServices = (userId) => dispatch => {
     dispatch({type: FETCH_COMPLETEDSERVICES_START});
-    return axiosWithAuth().get(`http://localhost:4000/api/future_bookings/user/${userId}`)
+    return axiosWithAuth().get(`http://localhost:4000/api/services/user/${userId}`)
     .then(res => {
         dispatch({type: FETCH_COMPLETEDSERVICES_SUCCESS, payload: res.data})
     })

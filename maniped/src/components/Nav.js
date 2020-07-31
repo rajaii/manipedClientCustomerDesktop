@@ -11,6 +11,7 @@ function Nav (props) {
     function handleLogout(e)  {
         e.preventDefault();
         props.logout();
+        
     }
 
     return (
