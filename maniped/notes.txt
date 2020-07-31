@@ -24,8 +24,16 @@ CURRENT =>=>=>:
  
 
             
-        When on Provider DASH          
+        When on Provider DASH        
+
+
  =========>
+            populate handleclicks on feedSub.js to call the respective actions,
+
+            make the respective components (populate settings last just make it bones intially) and have them conditionally render on ^
+
+            make settings component and move on to V
+
                 [
             plan settings and what will put in there will need to add a db table for user_settings and provider_settings too prob
 

@@ -2,7 +2,8 @@ import { FETCH_AVAILABLE_SERVICES_START, FETCH_AVAILABLE_SERVICES_SUCCESS, FETCH
 FETCH_USER_INFO_SUCCESS, FETCH_USER_INFO_FAILURE, FETCH_BOOKINGS_START, FETCH_BOOKINGS_SUCCESS, FETCH_BOOKINGS_FAILURE, POST_BOOKINGS_START, 
 POST_BOOKINGS_SUCCESS, POST_BOOKINGS_FAILURE, FETCH_PROVIDERS_INFO_START, FETCH_PROVIDERS_INFO_SUCCESS, FETCH_PROVIDERS_INFO_FAILURE, 
 FETCH_PROVIDER_INFO_START, FETCH_PROVIDER_INFO_SUCCESS, FETCH_PROVIDER_INFO_FAILURE, FETCH_LOCAL_PROVIDERS_START, FETCH_LOCAL_PROVIDERS_SUCCESS, 
-FETCH_LOCAL_PROVIDERS_FAILURE, FETCH_USERS_INFO_START, FETCH_USERS_INFO_SUCCESS, FETCH_USERS_INFO_FAILURE } from '../actions/appActions.js';
+FETCH_LOCAL_PROVIDERS_FAILURE, FETCH_USERS_INFO_START, FETCH_USERS_INFO_SUCCESS, FETCH_USERS_INFO_FAILURE, FETCH_COMPLETEDSERVICES_START, 
+FETCH_COMPLETEDSERVICES_SUCCESS, FETCH_COMPLETEDSERVICES_FAILURE } from '../actions/appActions.js';
 
 const availableServicesInitialState = {
     fetching: false,
@@ -41,6 +42,12 @@ const providerInitialState = {
 const localProviderInitialState = {
     fetchingLocalProviders: false,
     localProviders: null,
+    error: null
+}
+
+const completedServicesInitialState = {
+    fetchingCompletedServices: false,
+    completedServices: null,
     error: null
 }
 
@@ -228,6 +235,33 @@ export function localProviderReducer(state=localProviderInitialState, action) {
             return {
                 ...state,
                 fetchingLocalProviders: false,
+                error: action.payload
+            }
+        default:
+            return state
+    }
+    
+}
+
+export function completedServicesReducer(state=completedServicesInitialState, action) {
+    
+    switch(action.type) {
+        case FETCH_COMPLETEDSERVICES_START:
+            return {
+                ...state,
+                fetchingCompletedServices: true,
+
+            }
+        case FETCH_COMPLETEDSERVICES_SUCCESS:
+            return {
+                ...state,
+                completedServices: action.payload,
+                fetchingCompletedServices: false
+            }
+        case FETCH_COMPLETEDSERVICES_FAILURE:
+            return {
+                ...state,
+                fetchingCompletedServices: false,
                 error: action.payload
             }
         default:
