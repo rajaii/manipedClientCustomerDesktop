@@ -10,22 +10,39 @@ class FeedSub extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            fetchedCompletedServices: false,
+            fetchedUserInfo: false,
+            fetchedBookings: false
         }
     }
     //to render these individaully will need to set reducer state for each one ie pastservicesShowingDAsh ==true then set to false on others
     //when calling the other to render so conditionals show only one at a time
     handlePastServicesClick = () => {
+        this.setState({
+            fetchedUserInfo: false,
+            fetchedBookings: false,
+            fetchedCompletedServices: true,
+        })
         let userId = localStorage.getItem('uID');
         this.props.fetchCompletedServices(userId);
     }
 
     handleProfileClick = () => {
+        this.setState({
+            fetchedUserInfo: true,
+            fetchedBookings: false,
+            fetchedCompletedServices: false,
+        })
         const userId = localStorage.getItem('uID');
         this.props.fetchUserInfo(userId);
     }
 
     handleWishListClick = () => {
+        this.setState({
+            fetchedUserInfo: false,
+            fetchedBookings: true,
+            fetchedCompletedServices: false,
+        })
         const userId = localStorage.getItem('uID');
         this.props.fetchBookings(userId);
     }
@@ -47,7 +64,7 @@ class FeedSub extends React.Component {
                         <img onClick={this.handleSettingsClick} className='settings' src={icon}/>
                     </div>
 
-                    {this.props.completedServices && this.props.completedServices.map(s => {
+                    {this.state.fetchedCompletedServices && this.props.completedServices && this.props.completedServices.map(s => {
                         return (
                             <div className='serviceWrapper'>
                                 <h1 className='serviceTitle'>Type of service: {s.type_of_service}</h1>
@@ -58,7 +75,7 @@ class FeedSub extends React.Component {
                         )
                     })}
 
-                    {this.props.userInfo && (
+                    {this.state.fetchedUserInfo && this.props.userInfo && (
                         
                             <div className='serviceWrapper'>
                                 <h1 className='serviceTitle'>Name: {this.props.userInfo.first_name} {this.props.userInfo.last_name}</h1>
@@ -70,7 +87,7 @@ class FeedSub extends React.Component {
                         )
                     }
 
-                    {this.props.bookings && this.props.bookings.map(b => {
+                    {this.state.fetchedBookings && this.props.bookings && this.props.bookings.map(b => {
                         if (b.confirmed === false) {
                         return (
                             <div className='serviceWrapper'>
