@@ -14,8 +14,17 @@
     align-items: center;
     color: #FFFFFF;
     margin-top: 100px;
-    width: 60%;
+    width: 100%;
 }
+
+/* #sticky {
+    position: fixed;
+    top: 0;
+    width: 100%; 
+    z-index: 1;
+    height: 109px;
+    background-color:  #CC1559;
+} */
 
 .each:hover {
     cursor: pointer;
@@ -34,6 +43,11 @@
     display: flex;
     flex-direction: column;
     width: 40%;
+    overflow: auto;
+    height: auto;
+    padding: .5rem;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
 }
 
 .feedtitle {
@@ -58,10 +72,52 @@
 
 .feedWrap {
     display: flex;
+    overflow: hidden;
+    height: 100vh;
+    margin-top: -100px;
+    padding-top: 100px;
+    position: relative;
+    width: 100%;
+    backface-visibility: hidden;
+    will-change: overflow;
 }
 
 .settings:hover {
     background-color: white;
     cursor: pointer;
     
+}
+
+.feedSubWrapper {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    height: auto;
+    padding: .5rem;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    width: 60%;
+    
+}
+
+.feed::-webkit-scrollbar,
+.feedSubWrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.serviceTitle {
+    font-size: 2.5rem;
+    color: white;
+    font-family: fantasy;
+}
+
+.serviceCat {
+    font-size: 1.5rem;
+    color: white;
+    font-family: cursive;
+}
+
+.serviceWrapper {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

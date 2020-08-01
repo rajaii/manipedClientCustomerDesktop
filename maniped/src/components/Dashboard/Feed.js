@@ -21,7 +21,10 @@ class Feed extends React.Component {
         return (
             <div className='feedWrap'>
                 <div className='feed'>
-                    <h1 className='feedtitle'>Your Upcoming Confirmed Services:</h1>
+                {/* fix this in place add div and style to be sitcky add another div under and style to scroll indepedantly from left */}
+                   
+                        <h1 className='feedtitle'>Your Upcoming Confirmed Services:</h1>
+
                     {this.props.bookings && this.props.bookings.map(b => {
                     if (b.confirmed === true) {
                     return (

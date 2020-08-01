@@ -43,6 +43,29 @@ export const fetchBookings = (userId) => dispatch => {
 
 }
 
+export const FETCH_COMPLETEDSERVICES_START = 'FETCH_COMPLETEDSERVICES_START';
+export const FETCH_COMPLETEDSERVICES_SUCCESS = 'FETCH_COMPLETEDSERVICES_SUCCESS';
+export const FETCH_COMPLETEDSERVICES_FAILURE = 'FETCH_COMPLETEDSERVICES_FAILURE';
+
+export const fetchCompletedServices = (userId) => dispatch => {
+    dispatch({type: FETCH_COMPLETEDSERVICES_START});
+    return axiosWithAuth().get(`http://localhost:4000/api/services/user/${userId}`)
+    .then(res => {
+        dispatch({type: FETCH_COMPLETEDSERVICES_SUCCESS, payload: res.data})
+    })
+    .catch(err => dispatch({type: FETCH_COMPLETEDSERVICES_FAILURE, payload: err.response}))
+
+}
+
+export const CLEAR_NEW_BOOKING = 'CLEAR_NEW_BOOKING';
+
+export const clearNewBooking = () => {
+    return {
+        type: CLEAR_NEW_BOOKING,
+        payload: false
+    }
+}
+
 export const POST_BOOKINGS_START = 'POST_BOOKINGS_START';
 export const POST_BOOKINGS_SUCCESS = 'POST_BOOKINGS_SUCCESS';
 export const POST_BOOKINGS_FAILURE = 'POST_BOOKINGS_FAILURE';
