@@ -28,11 +28,15 @@ CURRENT =>=>=>:
 
 
  =========>
-            working on handlePastServices style the stuff 
+            
 
-            send emails when completed directly from services router int he post
+            populate handleclicks on feedSub.js to call the respective actions,  
 
-            populate handleclicks on feedSub.js to call the respective actions,
+            set more db colums for userInfo for profile, header, things I like etc.
+
+            make db for settings plan and set logic
+
+            set the state properties mentioned on comment found on feedSub line 16 and 17
 
             make the respective components (populate settings last just make it bones intially) and have them conditionally render on ^
 

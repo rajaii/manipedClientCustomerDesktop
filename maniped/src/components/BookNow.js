@@ -140,7 +140,7 @@ than once///////////////////////////////////////////////////////////////////////
                             <p className='successP'>Booking date: {`${this.props.newBooking.booking[0].booking_date.slice(0,10)}`}</p>
                             <p className='successP'>Booking time: {`${this.props.newBooking.booking[0].booking_time.slice(0,5)} ${parseInt(this.props.newBooking.booking[0].booking_time.slice(0,2), 10) < 12 ? 'AM' : ''}`}</p>
                             <p className='successP'>Appointment type: {`${this.props.newBooking.booking[0].services_and_pricing}`}</p>
-                            <p className='successP'>You will receive a confirmation email once {`${provider}`} has confirmed</p>
+                            <p className='successP'>You will receive a confirmation email once {`${provider}`} has confirmed, until then this appointment will be on your wishlist.</p>
                             <button className='bookButton d' onClick={this.dismiss}>Dismiss</button>
                         </div>
 

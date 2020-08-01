@@ -13,19 +13,21 @@ class FeedSub extends React.Component {
 
         }
     }
-
-    handlePastServicesClick = (e) => {
+    //to render these individaully will need to set reducer state for each one ie pastservicesShowingDAsh ==true then set to false on others
+    //when calling the other to render so conditionals show only one at a time
+    handlePastServicesClick = () => {
         let userId = localStorage.getItem('uID');
-        e.preventDefault();
         this.props.fetchCompletedServices(userId);
     }
 
     handleProfileClick = () => {
-
+        const userId = localStorage.getItem('uID');
+        this.props.fetchUserInfo(userId);
     }
 
     handleWishListClick = () => {
-
+        const userId = localStorage.getItem('uID');
+        this.props.fetchBookings(userId);
     }
 
     handleSettingsClick = () => {
@@ -56,6 +58,31 @@ class FeedSub extends React.Component {
                         )
                     })}
 
+                    {this.props.userInfo && (
+                        
+                            <div className='serviceWrapper'>
+                                <h1 className='serviceTitle'>Name: {this.props.userInfo.first_name} {this.props.userInfo.last_name}</h1>
+                                <p className='serviceCat'>Username: {this.props.userInfo.username}</p>
+                                <p className='serviceCat'>Email: {this.props.userInfo.email}</p>
+                                <p className='serviceCat'>Phone number: {this.props.userInfo.phone_number}</p>
+                                <p className='serviceCat'>Zipcode: {this.props.userInfo.zipcode}</p>
+                            </div>
+                        )
+                    }
+
+                    {this.props.bookings && this.props.bookings.map(b => {
+                        if (b.confirmed === false) {
+                        return (
+                            <div className='serviceWrapper'>
+                                <h1 className='serviceTitle'>Booking date: {b.booking_date}</h1>
+                                <p className='serviceCat'>Booking time: {b.booking_time}</p>
+                                <p className='serviceCat'>Services and pricing: {b.services_and_pricing}</p>
+                                <p className='serviceCat'>Provider name: {b.provider_name}</p>
+                            </div>
+                        )
+                        }
+                    })} 
+
             </div>
 
         )
@@ -66,6 +93,8 @@ class FeedSub extends React.Component {
 const mapStateToProps = state => {
     return {
         completedServices: state.completedServicesReducer.completedServices,
+        userInfo: state.userInfoReducer.userInfo,
+        bookings: state.bookingsReducer.bookings
     }
 }
 
