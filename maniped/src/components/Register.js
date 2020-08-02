@@ -72,6 +72,7 @@ async handleSubmit (e) {
             verifyPassword: '',
         })
         } 
+        this.props.history.push('/login');
     })
     .catch(err => {
         console.log(err)

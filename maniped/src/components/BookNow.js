@@ -14,6 +14,7 @@ class BookNow extends React.Component {
             booking_date: '',
             booking_time: '',
             services_and_pricing: '',
+            service_address: '',
             user_id: userId,
             user_name: user_name,
             provider_id: providerId,
@@ -41,6 +42,7 @@ class BookNow extends React.Component {
             booking_date: '',
             booking_time: '',
             services_and_pricing: '',
+            service_address: '',
             user_id: '',
             provider_id: '',
             provider_name: '',
@@ -118,6 +120,16 @@ class BookNow extends React.Component {
                                     )
                             })}
                         </div>
+
+                        <label className='block title'>Enter the address where you will want to receive the service:</label>
+                        <input 
+                        type='text'
+                        onChange={this.handleChange}
+                        value={this.state.service_address}
+                        name='service_address'
+                        placeholder='Enter Service Address'
+                        /><br></br>
+
                     
                         <button className='bookButton' onClick={this.handleBooking}>Book</button>
                         {this.props.postingBooking === true ? <div className='lds-hourglass'>Booking...</div> : null}

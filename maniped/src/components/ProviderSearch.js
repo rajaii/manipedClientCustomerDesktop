@@ -113,7 +113,7 @@ class ProviderSearch extends React.Component {
                                     <p>Provider: {p.first_name} {p.last_name[0]}</p>
                                     <p>Provider's zip code: {p.zipcode}</p>
                                     <p>Availability: {p.availability}</p>
-                                    <p className='aboveLink'>Services and pricing: {p.services_and_pricing_1}, {p.services_and_pricing_2}, {p.services_and_pricing_3}</p>
+                                    <p className='aboveLink'>Services and pricing: {p.nails_services_and_pricing}, {p.hair_services_and_pricing}, {p.massage_services_and_pricing}</p>
                                     <Link className='bookLink' to={{pathname: '/booknow', state: {providerId: p.id, userId: userId, provider_name: `${p.first_name} ${p.last_name[0]}`, user_name: usersName}}}>Click here to book this provider</Link>
                                 </div>
                             )
