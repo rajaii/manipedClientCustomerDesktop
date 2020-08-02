@@ -30,21 +30,31 @@ CURRENT =>=>=>:
  =========>
             
 
-            populate handleclicks on feedSub.js to call the respective actions,  
+            populate settings handleclick
 
-            set more db colums for userInfo for profile, header, things I like etc.
+            make db for settings plan and set logic:
 
-            make db for settings plan and set logic
+                migrations have 2 new tables: user_settings, and provider_settings 
+                in migrations tbl. ... =>privacy (boolean) for geolocation on/off, addresses (string), sms (boolean),
+
+                user_settings display set up now: privacy, addresses => separate table linked with id to user and providers and bookings, (added programmatically after bookings posted in post),
+                account linked to puts on user/:id and cn edit profile from settings, become a manipedologist lined to a route that will send applications somehow(do later),  sms notfications (on/off)    
 
             set the state properties mentioned on comment found on feedSub line 16 and 17
 
             make the respective components (populate settings last just make it bones intially) and have them conditionally render on ^
 
-            make settings component and move on to V
+            make settings component 
+            
+
+            implement photos with cloud for profiels, and move on to V
+
+            implement socket.io or twilio for mesaging and reminders
+
+            implement google maps api for geolocation when 1 hr to apt
 
                 [
-            plan settings and what will put in there will need to add a db table for user_settings and provider_settings too prob
-
+        
             make it so they can message their provider in feed too.
 
             if click on profile conditionally render profile component under the feedsub and allow to edit, if click on past services 

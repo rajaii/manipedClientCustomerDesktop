@@ -12,7 +12,8 @@ class FeedSub extends React.Component {
         this.state = {
             fetchedCompletedServices: false,
             fetchedUserInfo: false,
-            fetchedBookings: false
+            fetchedBookings: false,
+            fetchedSettings: false
         }
     }
     //to render these individaully will need to set reducer state for each one ie pastservicesShowingDAsh ==true then set to false on others
@@ -70,7 +71,7 @@ class FeedSub extends React.Component {
                                 <h1 className='serviceTitle'>Type of service: {s.type_of_service}</h1>
                                 <p className='serviceCat'>Amount billed: {s.amount_billed}</p>
                                 <p className='serviceCat'>Provider name: {s.provider_name}</p>
-                                <p className='serviceCat'>Completed at: {s.created_at}</p>
+                        <p className='serviceCat'>Completed at: Date: {`${s.created_at.slice(0, 10)}`} Time: {`${s.created_at.slice(11, 16)}`}{`${parseInt(s.created_at.slice(11, 13), 10) < 12 ? 'AM' : '' }`}</p>
                             </div>
                         )
                     })}
@@ -91,8 +92,8 @@ class FeedSub extends React.Component {
                         if (b.confirmed === false) {
                         return (
                             <div className='serviceWrapper'>
-                                <h1 className='serviceTitle'>Booking date: {b.booking_date}</h1>
-                                <p className='serviceCat'>Booking time: {b.booking_time}</p>
+                                <h1 className='serviceTitle'>Booking date: {b.booking_date.slice(0,10)}</h1>
+                                <p className='serviceCat'>Booking time: {`${b.booking_time.slice(0,5)} ${parseInt(b.booking_time.slice(0,2), 10) < 12 ? 'AM' : ''}`}</p>
                                 <p className='serviceCat'>Services and pricing: {b.services_and_pricing}</p>
                                 <p className='serviceCat'>Provider name: {b.provider_name}</p>
                             </div>
