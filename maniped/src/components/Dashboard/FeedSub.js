@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import icon from '../../assets/icons8-settings-48.png';
-import { fetchUserInfo, fetchCompletedServices, fetchBookings } from '../../actions/appActions.js';
+import { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses } from '../../actions/appActions.js';
 import './Dashboard.css';
 
 
@@ -12,7 +12,8 @@ class FeedSub extends React.Component {
         this.state = {
             fetchedCompletedServices: false,
             fetchedUserInfo: false,
-            fetchedBookings: false
+            fetchedBookings: false,
+            fetchedSettings: false
         }
     }
     //to render these individaully will need to set reducer state for each one ie pastservicesShowingDAsh ==true then set to false on others
@@ -48,7 +49,16 @@ class FeedSub extends React.Component {
     }
 
     handleSettingsClick = () => {
-
+        this.setState({
+            fetchedUserInfo: false,
+            fetchedBookings: false,
+            fetchedCompletedServices: false,
+            fetchedSettings: true
+        })
+        const userId = localStorage.getItem('uID');
+        this.props.fetchUserInfo(userId);
+        this.props.fetchSettings(userId);
+        // this.props.fetchAddresses(userId);
     }
 
 
@@ -70,7 +80,7 @@ class FeedSub extends React.Component {
                                 <h1 className='serviceTitle'>Type of service: {s.type_of_service}</h1>
                                 <p className='serviceCat'>Amount billed: {s.amount_billed}</p>
                                 <p className='serviceCat'>Provider name: {s.provider_name}</p>
-                                <p className='serviceCat'>Completed at: {s.created_at}</p>
+                        <p className='serviceCat'>Completed at: Date: {`${s.created_at.slice(0, 10)}`} Time: {`${s.created_at.slice(11, 16)}`}{`${parseInt(s.created_at.slice(11, 13), 10) < 12 ? 'AM' : '' }`}</p>
                             </div>
                         )
                     })}
@@ -91,8 +101,8 @@ class FeedSub extends React.Component {
                         if (b.confirmed === false) {
                         return (
                             <div className='serviceWrapper'>
-                                <h1 className='serviceTitle'>Booking date: {b.booking_date}</h1>
-                                <p className='serviceCat'>Booking time: {b.booking_time}</p>
+                                <h1 className='serviceTitle'>Booking date: {b.booking_date.slice(0,10)}</h1>
+                                <p className='serviceCat'>Booking time: {`${b.booking_time.slice(0,5)} ${parseInt(b.booking_time.slice(0,2), 10) < 12 ? 'AM' : ''}`}</p>
                                 <p className='serviceCat'>Services and pricing: {b.services_and_pricing}</p>
                                 <p className='serviceCat'>Provider name: {b.provider_name}</p>
                             </div>
@@ -111,8 +121,10 @@ const mapStateToProps = state => {
     return {
         completedServices: state.completedServicesReducer.completedServices,
         userInfo: state.userInfoReducer.userInfo,
-        bookings: state.bookingsReducer.bookings
+        bookings: state.bookingsReducer.bookings,
+        settings: state.settingsReducer.settings,
+        addresses: state.addressesReducer.addresses
     }
 }
 
-export default connect(mapStateToProps, { fetchUserInfo, fetchCompletedServices, fetchBookings })(FeedSub);
+export default connect(mapStateToProps, { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses })(FeedSub);

@@ -137,3 +137,30 @@ export const fetchUsersInfo = (id) => dispatch => {
 
 }
 
+export const FETCH_SETTINGS_START = 'FETCH_SETTINGS_START';
+export const FETCH_SETTINGS_SUCCESS = 'FETCH_SETTINGS_SUCCESS';
+export const FETCH_SETTINGS_FAILURE = 'FETCH_SETTINGS_FAILURE';
+
+export const fetchSettings = (userId) => dispatch => {
+    dispatch({type: FETCH_SETTINGS_START});
+    return axiosWithAuth().get(`http://localhost:4000/api/user_settings/${userId}`)
+    .then(res => {
+        dispatch({type: FETCH_SETTINGS_SUCCESS, payload: res.data})
+    })
+    .catch(err => dispatch({type: FETCH_SETTINGS_FAILURE, payload: err.response}))
+
+}
+
+export const FETCH_ADDRESSES_START = 'FETCH_ADDRESSES_START';
+export const FETCH_ADDRESSES_SUCCESS = 'FETCH_ADDRESSES_SUCCESS';
+export const FETCH_ADDRESSES_FAILURE = 'FETCH_ADDRESSES_FAILURE';
+
+export const fetchAddresses = (userId) => dispatch => {
+    dispatch({type: FETCH_ADDRESSES_START});
+    return axiosWithAuth().get(`http://localhost:4000/api/addesses/user/${userId}`)
+    .then(res => {
+        dispatch({type: FETCH_ADDRESSES_SUCCESS, payload: res.data})
+    })
+    .catch(err => dispatch({type: FETCH_ADDRESSES_FAILURE, payload: err.response}))
+
+}

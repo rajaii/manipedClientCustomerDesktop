@@ -1,7 +1,8 @@
 import { combineReducers } from "redux";
 
 import { loginReducer, regsiterReducer } from './authReducer.js';
-import { availableServicesReducer, userInfoReducer, providerReducer, localProviderReducer, bookingsReducer, completedServicesReducer } from './appReducer.js';
+import { availableServicesReducer, userInfoReducer, providerReducer, localProviderReducer, bookingsReducer, completedServicesReducer, 
+    addressesReducer, settingsReducer } from './appReducer.js';
 
 
 const rootReducer = combineReducers({
@@ -12,7 +13,9 @@ const rootReducer = combineReducers({
     providerReducer,
     localProviderReducer,
     bookingsReducer,
-    completedServicesReducer
+    completedServicesReducer,
+    settingsReducer,
+    addressesReducer
 });
 
 export default rootReducer;
