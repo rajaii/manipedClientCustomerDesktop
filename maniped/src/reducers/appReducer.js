@@ -3,7 +3,8 @@ FETCH_USER_INFO_SUCCESS, FETCH_USER_INFO_FAILURE, FETCH_BOOKINGS_START, FETCH_BO
 POST_BOOKINGS_SUCCESS, POST_BOOKINGS_FAILURE, FETCH_PROVIDERS_INFO_START, FETCH_PROVIDERS_INFO_SUCCESS, FETCH_PROVIDERS_INFO_FAILURE, 
 FETCH_PROVIDER_INFO_START, FETCH_PROVIDER_INFO_SUCCESS, FETCH_PROVIDER_INFO_FAILURE, FETCH_LOCAL_PROVIDERS_START, FETCH_LOCAL_PROVIDERS_SUCCESS, 
 FETCH_LOCAL_PROVIDERS_FAILURE, FETCH_USERS_INFO_START, FETCH_USERS_INFO_SUCCESS, FETCH_USERS_INFO_FAILURE, FETCH_COMPLETEDSERVICES_START, 
-FETCH_COMPLETEDSERVICES_SUCCESS, FETCH_COMPLETEDSERVICES_FAILURE, CLEAR_NEW_BOOKING } from '../actions/appActions.js';
+FETCH_COMPLETEDSERVICES_SUCCESS, FETCH_COMPLETEDSERVICES_FAILURE, CLEAR_NEW_BOOKING, FETCH_SETTINGS_START, FETCH_SETTINGS_SUCCESS,
+FETCH_SETTINGS_FAILURE, FETCH_ADDRESSES_START, FETCH_ADDRESSES_SUCCESS, FETCH_ADDRESSES_FAILURE } from '../actions/appActions.js';
 
 const availableServicesInitialState = {
     fetching: false,
@@ -48,6 +49,18 @@ const localProviderInitialState = {
 const completedServicesInitialState = {
     fetchingCompletedServices: false,
     completedServices: null,
+    error: null
+}
+
+const settingsInitialState = {
+    fetchingSettings: false,
+    settings: null,
+    error: null
+}
+
+const addressesInitialState = {
+    fetchingAddresses: false,
+    addresses: null,
     error: null
 }
 
@@ -267,6 +280,60 @@ export function completedServicesReducer(state=completedServicesInitialState, ac
             return {
                 ...state,
                 fetchingCompletedServices: false,
+                error: action.payload
+            }
+        default:
+            return state
+    }
+    
+}
+
+export function settingsReducer(state=settingsInitialState, action) {
+    
+    switch(action.type) {
+        case FETCH_SETTINGS_START:
+            return {
+                ...state,
+                fetchingSettings: true,
+
+            }
+        case FETCH_SETTINGS_SUCCESS:
+            return {
+                ...state,
+                settings: action.payload,
+                fetchingSettings: false
+            }
+        case FETCH_SETTINGS_FAILURE:
+            return {
+                ...state,
+                fetchingSettings: false,
+                error: action.payload
+            }
+        default:
+            return state
+    }
+    
+}
+
+export function addressesReducer(state=addressesInitialState, action) {
+    
+    switch(action.type) {
+        case FETCH_ADDRESSES_START:
+            return {
+                ...state,
+                fetchingAddresses: true,
+
+            }
+        case FETCH_ADDRESSES_SUCCESS:
+            return {
+                ...state,
+                addresses: action.payload,
+                fetchingAddresses: false
+            }
+        case FETCH_ADDRESSES_FAILURE:
+            return {
+                ...state,
+                fetchingAddresses: false,
                 error: action.payload
             }
         default:
