@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import icon from '../../assets/icons8-settings-48.png';
-import { fetchUserInfo, fetchCompletedServices, fetchBookings } from '../../actions/appActions.js';
+import { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses } from '../../actions/appActions.js';
 import './Dashboard.css';
 
 
@@ -49,7 +49,16 @@ class FeedSub extends React.Component {
     }
 
     handleSettingsClick = () => {
-
+        this.setState({
+            fetchedUserInfo: false,
+            fetchedBookings: false,
+            fetchedCompletedServices: false,
+            fetchedSettings: true
+        })
+        const userId = localStorage.getItem('uID');
+        this.props.fetchUserInfo(userId);
+        this.props.fetchSettings(userId);
+        // this.props.fetchAddresses(userId);
     }
 
 
@@ -112,8 +121,10 @@ const mapStateToProps = state => {
     return {
         completedServices: state.completedServicesReducer.completedServices,
         userInfo: state.userInfoReducer.userInfo,
-        bookings: state.bookingsReducer.bookings
+        bookings: state.bookingsReducer.bookings,
+        settings: state.settingsReducer.settings,
+        addresses: state.addressesReducer.addresses
     }
 }
 
-export default connect(mapStateToProps, { fetchUserInfo, fetchCompletedServices, fetchBookings })(FeedSub);
+export default connect(mapStateToProps, { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses })(FeedSub);
