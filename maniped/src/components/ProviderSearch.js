@@ -77,15 +77,17 @@ class ProviderSearch extends React.Component {
                             {this.state.validationError && this.state.validationError.inner.filter(i => i.message === "Zipcode is required").length > 0 ?  <div className="Error">ZIPCODE IS REQUIRED RE-ENTER AND CLICK SEARCH</div> : null}
                             {this.state.validationError && this.state.validationError.inner.filter(i => i.message === "Must be valid zip code").length > 0 ?  <div className="Error">MUST BE A VALID ZIPCODE RE-ENTER AND CLICK SEARCH</div> : null}
 
-                            <h1 className="searchLabel">Enter your zipcode here to find providers near you:</h1>
-                            <label>Zipcode:</label><br></br>
-                            <input 
-                            type='text'
-                            name='zipCode'
-                            value={this.state.zipCode}
-                            placeholder='zipcode'
-                            onChange={this.handleChange}
-                            />
+                            
+                                <h1 className="searchLabel">Enter your zipcode here to find providers near you:</h1>
+                                <label>Zipcode:</label><br></br>
+                                <input 
+                                type='text'
+                                name='zipCode'
+                                value={this.state.zipCode}
+                                placeholder='zipcode'
+                                onChange={this.handleChange}
+                                />
+                            
 
                             <h1 className='searchLabel'>Enter the distance of how close you want the list of providers to be from your zipcode</h1><br></br>
 
