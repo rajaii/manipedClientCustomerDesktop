@@ -16,6 +16,9 @@ CURRENT =>=>=>: d
 
  =========>
 
+            style settings and profile edit and make and wire through actions to put settings, and put profile, and corresponding reducers, add addresses in 
+            in settings and ability to edit it in that section
+
             make rating component, and actions and reducer, and request logic 
 
             Add in past_services on subfeed: rate this provider 

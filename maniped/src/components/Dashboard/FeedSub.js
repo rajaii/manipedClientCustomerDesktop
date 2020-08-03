@@ -48,6 +48,8 @@ class FeedSub extends React.Component {
             fetchedUserInfo: false,
             fetchedBookings: true,
             fetchedCompletedServices: false,
+            editingProfile: false, 
+            fetchedSettings: false,
         })
         const userId = localStorage.getItem('uID');
         this.props.fetchBookings(userId);
@@ -58,11 +60,13 @@ class FeedSub extends React.Component {
             fetchedUserInfo: false,
             fetchedBookings: false,
             fetchedCompletedServices: false,
+            editingProfile: false,
             fetchedSettings: true
         })
         const userId = localStorage.getItem('uID');
         this.props.fetchUserInfo(userId);
         this.props.fetchSettings(userId);
+        this.props.fetchAddresses(userId);
         //this.props.fetchAddresses(userId);
     }
 
@@ -125,16 +129,20 @@ class FeedSub extends React.Component {
                         }
                     })} 
 
-                    {this.state.fetchedSettings && this.props.settings && (
+                    {this.state.fetchedSettings && this.props.settings && this.props.addresses && (
                         <div>   
                             <h1>Settings</h1>
                             <p>Privacy: click to block geolocation services when not in the service time window</p>
                             <p>SMS: click to block SMS notifications</p>
                             <p onClick={this.handleEdit}>Edit Profile:</p>
+                            <p>Service address/es:</p>
+                            {this.props.addresses ? this.props.addresses.length > 1 && this.props.addresses.map((a, i) => {
+                                return <p>Address {i + 1}: {a.address}</p>
+                            }) || <p>{this.props.addresses.address}</p> : <p>There are no addresses at this time</p>}
                             {this.state.editingProfile && (
                                 <div>
-                                    <p>{this.props.userInfo.first_name} {this.props.userInfo.last_name}</p>
-                                    <p>{this.props.userInfo.username}</p>
+                                    <p>Name:{this.props.userInfo.first_name} {this.props.userInfo.last_name}</p>
+                                    <p>User name:{this.props.userInfo.username}</p>
                                     <p>{this.props.userInfo.phone_number}</p>
                                     <p>{this.props.userInfo.zipcode}</p>
                                 </div>

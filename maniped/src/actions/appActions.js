@@ -157,7 +157,7 @@ export const FETCH_ADDRESSES_FAILURE = 'FETCH_ADDRESSES_FAILURE';
 
 export const fetchAddresses = (userId) => dispatch => {
     dispatch({type: FETCH_ADDRESSES_START});
-    return axiosWithAuth().get(`http://localhost:4000/api/addesses/user/${userId}`)
+    return axiosWithAuth().get(`http://localhost:4000/api/userserviceaddresses/${userId}`)
     .then(res => {
         dispatch({type: FETCH_ADDRESSES_SUCCESS, payload: res.data})
     })
