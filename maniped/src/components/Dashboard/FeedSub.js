@@ -13,7 +13,8 @@ class FeedSub extends React.Component {
             fetchedCompletedServices: false,
             fetchedUserInfo: false,
             fetchedBookings: false,
-            fetchedSettings: false
+            fetchedSettings: false,
+            editingProfile: false
         }
     }
     //to render these individaully will need to set reducer state for each one ie pastservicesShowingDAsh ==true then set to false on others
@@ -22,6 +23,8 @@ class FeedSub extends React.Component {
         this.setState({
             fetchedUserInfo: false,
             fetchedBookings: false,
+            fetchedSettings: false,
+            editingProfile: false,
             fetchedCompletedServices: true,
         })
         let userId = localStorage.getItem('uID');
@@ -32,6 +35,8 @@ class FeedSub extends React.Component {
         this.setState({
             fetchedUserInfo: true,
             fetchedBookings: false,
+            fetchedSettings: false,
+            editingProfile: false,
             fetchedCompletedServices: false,
         })
         const userId = localStorage.getItem('uID');
@@ -58,7 +63,17 @@ class FeedSub extends React.Component {
         const userId = localStorage.getItem('uID');
         this.props.fetchUserInfo(userId);
         this.props.fetchSettings(userId);
-        // this.props.fetchAddresses(userId);
+        //this.props.fetchAddresses(userId);
+    }
+
+    handleEdit = () => {
+        const userId = localStorage.getItem('uID');
+        this.props.fetchUserInfo(userId)
+        this.setState({
+            editingProfile: true
+        })
+        
+        
     }
 
 
@@ -109,6 +124,23 @@ class FeedSub extends React.Component {
                         )
                         }
                     })} 
+
+                    {this.state.fetchedSettings && this.props.settings && (
+                        <div>   
+                            <h1>Settings</h1>
+                            <p>Privacy: click to block geolocation services when not in the service time window</p>
+                            <p>SMS: click to block SMS notifications</p>
+                            <p onClick={this.handleEdit}>Edit Profile:</p>
+                            {this.state.editingProfile && (
+                                <div>
+                                    <p>{this.props.userInfo.first_name} {this.props.userInfo.last_name}</p>
+                                    <p>{this.props.userInfo.username}</p>
+                                    <p>{this.props.userInfo.phone_number}</p>
+                                    <p>{this.props.userInfo.zipcode}</p>
+                                </div>
+                            )}
+                        </div>
+                    )}
 
             </div>
 

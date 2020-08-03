@@ -60,7 +60,7 @@ class BookNow extends React.Component {
     }
 
     render() {
-        const { provider } = this.props.location.state;
+        const { provider_name } = this.props.location.state;
 
         let today = new Date(),
         day = today.getDate(),
@@ -83,29 +83,34 @@ class BookNow extends React.Component {
                         </div>
 
                     <div className="form" id='book'>
-                            <h1 className='title'>Booking services with {provider}:</h1>
-                        
+                            <h1 className='title h1tit'>Booking services with {provider_name}:</h1>
                             <form type='submit' onSubmit={this.handleBooking}>
-                            <label className='ml mbmt title'>Booking Date:</label>
-                            <input 
-                            className='block m0a mbmt'
-                            type='date'
-                            onChange={this.handleChange}
-                            value={this.state.booking_date}
-                            name='booking_date'
-                            min={today}
-                            />
-                            <label className='ml mbmt title'>Booking Time:</label>
-                            <input
-                            className='block m0a mbmt'
-                            type='time'
-                            onChange={this.handleChange}
-                            value={this.state.booking_time}
-                            name='booking_time'
-                            min='05:00'
-                            max='23:00'
-                            required
-                            />
+
+                            <div className="formFlexDiv">
+                                <label className='mbmt title'>Booking Date:</label>
+                                <input 
+                                className='block m0a mbmt'
+                                type='date'
+                                onChange={this.handleChange}
+                                value={this.state.booking_date}
+                                name='booking_date'
+                                min={today}
+                                />
+                            </div>
+
+                            <div className="formFlexDiv">
+                                <label className='mbmt title'>Booking Time:</label>
+                                <input
+                                className='block m0a mbmt'
+                                type='time'
+                                onChange={this.handleChange}
+                                value={this.state.booking_time}
+                                name='booking_time'
+                                min='05:00'
+                                max='23:00'
+                                required
+                                />
+                            </div>
                         
                         <small className='block mbmt'>Booking from 5:00 AM local time to 11:00 PM</small>
                         <label className='block title'>Check The Service/s You Want:</label>
@@ -120,18 +125,22 @@ class BookNow extends React.Component {
                                     )
                             })}
                         </div>
+                        
+                        <div className="formFlexDiv">
+                            <label className='block title'>Enter the address where you will want to receive the service:</label>
+                            <input 
+                            type='text'
+                            onChange={this.handleChange}
+                            value={this.state.service_address}
+                            name='service_address'
+                            placeholder='Enter Service Address'
+                            /><br></br>
+                        </div>
 
-                        <label className='block title'>Enter the address where you will want to receive the service:</label>
-                        <input 
-                        type='text'
-                        onChange={this.handleChange}
-                        value={this.state.service_address}
-                        name='service_address'
-                        placeholder='Enter Service Address'
-                        /><br></br>
+                        <div className="formFlexDiv">
+                            <button className='bookButton' onClick={this.handleBooking}>Book</button>
+                        </div>
 
-                    
-                        <button className='bookButton' onClick={this.handleBooking}>Book</button>
                         {this.props.postingBooking === true ? <div className='lds-hourglass'>Booking...</div> : null}
                         </form>
 
@@ -149,10 +158,11 @@ than once///////////////////////////////////////////////////////////////////////
                         <div className='success'>
                             <h1 className='conf'>Confirmation message:</h1>
                             <p className='successP'>Congratulations, you have just completed your booking with {`${this.props.newBooking.booking[0].provider_name}`}.</p>
+                            <p className='successP'>Booking Address: {`${this.props.newBooking.booking[0].service_address}`}</p>
                             <p className='successP'>Booking date: {`${this.props.newBooking.booking[0].booking_date.slice(0,10)}`}</p>
                             <p className='successP'>Booking time: {`${this.props.newBooking.booking[0].booking_time.slice(0,5)} ${parseInt(this.props.newBooking.booking[0].booking_time.slice(0,2), 10) < 12 ? 'AM' : ''}`}</p>
                             <p className='successP'>Appointment type: {`${this.props.newBooking.booking[0].services_and_pricing}`}</p>
-                            <p className='successP'>You will receive a confirmation email once {`${provider}`} has confirmed, until then this appointment will be on your wishlist.</p>
+                            <p className='successP'>You will receive a confirmation email once {`${provider_name}`} has confirmed, until then this appointment will be on your wishlist.</p>
                             <button className='bookButton d' onClick={this.dismiss}>Dismiss</button>
                         </div>
 
