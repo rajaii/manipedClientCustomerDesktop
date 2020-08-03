@@ -15,6 +15,7 @@ manigod reg and pre-admin access, and admin interface
 CURRENT =>=>=>: d
 
  =========>
+            toggle switch w3schools had good one
 
             style settings and profile edit and make and wire through actions to put settings, and put profile, and corresponding reducers, add addresses in 
             in settings and ability to edit it in that section

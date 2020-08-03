@@ -134,11 +134,11 @@ class FeedSub extends React.Component {
                             <h1>Settings</h1>
                             <p>Privacy: click to block geolocation services when not in the service time window</p>
                             <p>SMS: click to block SMS notifications</p>
-                            <p onClick={this.handleEdit}>Edit Profile:</p>
                             <p>Service address/es:</p>
                             {this.props.addresses ? this.props.addresses.length > 1 && this.props.addresses.map((a, i) => {
                                 return <p>Address {i + 1}: {a.address}</p>
                             }) || <p>{this.props.addresses.address}</p> : <p>There are no addresses at this time</p>}
+                            <p onClick={this.handleEdit}>Edit Profile:</p>
                             {this.state.editingProfile && (
                                 <div>
                                     <p>Name:{this.props.userInfo.first_name} {this.props.userInfo.last_name}</p>
