@@ -153,3 +153,7 @@
     cursor: pointer;
     color: #FF5EAA;
 }
+
+.settingsP, .editProfile {
+    width: fit-content;
+}
