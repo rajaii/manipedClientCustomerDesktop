@@ -164,3 +164,18 @@ export const fetchAddresses = (userId) => dispatch => {
     .catch(err => dispatch({type: FETCH_ADDRESSES_FAILURE, payload: err.response}))
 
 }
+
+
+export const PUT_SETTINGS_START = 'PUT_SETTINGS_START';
+export const PUT_SETTINGS_SUCCESS = 'PUT_SETTINGS_SUCCESS';
+export const PUT_SETTINGS_FAILURE = 'PUT_SETTINGS_FAILURE';
+
+export const putSettings = (userId, body) => dispatch => {
+    dispatch({type: PUT_SETTINGS_START});
+    return axiosWithAuth().put(`http://localhost:4000/api/user_settings/${userId}`, body)
+    .then(res => {
+        dispatch({type: PUT_SETTINGS_SUCCESS, payload: res.data})
+    })
+    .catch(err => dispatch({type: PUT_SETTINGS_FAILURE, payload: err.response}))
+
+}

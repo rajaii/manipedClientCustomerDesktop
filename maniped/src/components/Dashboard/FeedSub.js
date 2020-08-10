@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import icon from '../../assets/icons8-settings-48.png';
-import { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses } from '../../actions/appActions.js';
+import { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses, putSettings } from '../../actions/appActions.js';
 import './Dashboard.css';
 
 
@@ -14,9 +14,26 @@ class FeedSub extends React.Component {
             fetchedUserInfo: false,
             fetchedBookings: false,
             fetchedSettings: false,
-            editingProfile: false
-        }
+            editingProfile: false,
+            sms: null,
+            privacy: null
     }
+    this.handleSettingsClick = this.handleSettingsClick.bind(this);
+    }
+///////////////////////////////////////////////////
+   async componentDidMount() {
+        let userId = localStorage.getItem('uID');
+        let settings = await this.props.fetchSettings(userId);
+        if (settings) {
+        this.setState({
+            sms: this.props.settings[0].sms,
+            privacy: this.props.settings[0].privacy
+        })
+    }
+    }
+
+    ///////////////////////////////////////////////////////////
+
     //to render these individaully will need to set reducer state for each one ie pastservicesShowingDAsh ==true then set to false on others
     //when calling the other to render so conditionals show only one at a time
     handlePastServicesClick = () => {
@@ -55,7 +72,7 @@ class FeedSub extends React.Component {
         this.props.fetchBookings(userId);
     }
 
-    handleSettingsClick = () => {
+    async handleSettingsClick () {
         this.setState({
             fetchedUserInfo: false,
             fetchedBookings: false,
@@ -65,7 +82,13 @@ class FeedSub extends React.Component {
         })
         const userId = localStorage.getItem('uID');
         this.props.fetchUserInfo(userId);
-        this.props.fetchSettings(userId);
+        let settings = await this.props.fetchSettings(userId);
+        if (settings) {
+        this.setState({
+            sms: this.props.settings[0].sms,
+            privacy: this.props.settings[0].privacy
+        })
+    }
         this.props.fetchAddresses(userId);
         //this.props.fetchAddresses(userId);
     }
@@ -79,6 +102,35 @@ class FeedSub extends React.Component {
         
         
     }
+
+    closeEdit = () => {
+        this.setState({
+            editingProfile: false
+        })
+    }
+
+  
+
+    handleSettingsToggleClick = (e) => {
+        const userId = localStorage.getItem('uID');
+        let body = {}
+        if (this.props.settings[0][e.target.name] === false) {
+            body[e.target.name] = true
+        } else if (this.props.settings[0][e.target.name] === true) {
+            body[e.target.name] = false
+        }
+       
+        this.props.putSettings(userId, body);
+        this.props.fetchSettings(userId);
+    }
+/////////////////////////////////////////
+    handleToggleChange = e => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+////////////////////////////////////////////
+
 
 
 
@@ -99,7 +151,8 @@ class FeedSub extends React.Component {
                                 <h1 className='serviceTitle'>Type of service: {s.type_of_service}</h1>
                                 <p className='serviceCat'>Amount billed: {s.amount_billed}</p>
                                 <p className='serviceCat'>Provider name: {s.provider_name}</p>
-                        <p className='serviceCat'>Completed at: Date: {`${s.created_at.slice(0, 10)}`} Time: {`${s.created_at.slice(11, 16)}`}{`${parseInt(s.created_at.slice(11, 13), 10) < 12 ? 'AM' : '' }`}</p>
+                                <p className='serviceCat'>Completed at: Date: {`${s.created_at.slice(0, 10)}`} Time: {`${s.created_at.slice(11, 16)}`}{`${parseInt(s.created_at.slice(11, 13), 10) < 12 ? 'AM' : '' }`}</p>
+                                <p className="serviceRate">Rate this Service</p>
                             </div>
                         )
                     })}
@@ -130,21 +183,34 @@ class FeedSub extends React.Component {
                     })} 
 
                     {this.state.fetchedSettings && this.props.settings && this.props.addresses && (
-                        <div>   
-                            <h1>Settings</h1>
-                            <p>Privacy: click to block geolocation services when not in the service time window</p>
-                            <p>SMS: click to block SMS notifications</p>
-                            <p>Service address/es:</p>
+                        <div className="settingsWrap">   
+                            <h1 className="settingsTit">Settings</h1>
+                            <div className="checkWrappper">
+                                <p className="settingsP">Privacy:</p><p className="settingsdes">click to block geolocation services when not in the service time window</p> 
+                                <label className="switch">
+                                    <input type="checkbox" checked={this.state.privacy} name='privacy' value={this.state.privacy} onClick={this.handleSettingsToggleClick} onChange={this.handleToggleChange}/>
+                                    <span className="slider round"></span>
+                                </label>
+                            </div>
+                            <div className="checkWrappper">
+                                <p className="settingsP">SMS:</p><p className="settingsdes">click to block SMS notifications</p>
+                                <label className="switch">
+                                    <input type="checkbox" checked={this.state.sms} name="sms" value={this.state.sms} onClick={this.handleSettingsToggleClick} onChange={this.handleToggleChange}/>
+                                    <span className="slider round"></span>
+                                </label>
+                            </div>
+                            <p className="settingsP">Service address/es:</p>
                             {this.props.addresses ? this.props.addresses.length > 1 && this.props.addresses.map((a, i) => {
                                 return <p>Address {i + 1}: {a.address}</p>
-                            }) || <p>{this.props.addresses.address}</p> : <p>There are no addresses at this time</p>}
-                            <p onClick={this.handleEdit}>Edit Profile:</p>
+                            }) || <p className="addressP">{this.props.addresses.address}</p> : <p className="addressP">There are no addresses at this time</p>}
+                            <p className="settingsP" onClick={this.state.editingProfile === false ? this.handleEdit : this.closeEdit}>Edit Profile:</p>
                             {this.state.editingProfile && (
-                                <div>
-                                    <p>Name:{this.props.userInfo.first_name} {this.props.userInfo.last_name}</p>
-                                    <p>User name:{this.props.userInfo.username}</p>
-                                    <p>{this.props.userInfo.phone_number}</p>
-                                    <p>{this.props.userInfo.zipcode}</p>
+                                <div className="editProfileWrapper">
+                                    <p className="editProfile">Name: {this.props.userInfo.first_name} {this.props.userInfo.last_name}</p>
+                                    <p className="editProfile">User name: {this.props.userInfo.username}: click to edit/change</p>
+                                    <p className="editProfile">Phone number: {this.props.userInfo.phone_number}: click to edit/change</p>
+                                    <p className="editProfile">Zipcode: {this.props.userInfo.zipcode}: click to edit/change</p>
+                                    <p className="editProfile">Primary address: {this.props.userInfo.address ? `${this.props.userInfo.address}` : 'Not entered: click here to enter primary address'}: click to edit/change</p>
                                 </div>
                             )}
                         </div>
@@ -167,4 +233,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses })(FeedSub);
+export default connect(mapStateToProps, { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses, putSettings })(FeedSub);
