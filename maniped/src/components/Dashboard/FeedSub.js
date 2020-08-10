@@ -14,7 +14,9 @@ class FeedSub extends React.Component {
             fetchedUserInfo: false,
             fetchedBookings: false,
             fetchedSettings: false,
-            editingProfile: false
+            editingProfile: false,
+            sms: null,
+            privacy: null
         }
     }
     //to render these individaully will need to set reducer state for each one ie pastservicesShowingDAsh ==true then set to false on others
@@ -66,6 +68,10 @@ class FeedSub extends React.Component {
         const userId = localStorage.getItem('uID');
         this.props.fetchUserInfo(userId);
         this.props.fetchSettings(userId);
+        this.setState({
+            sms: this.props.settings[0].sms,
+            privacy: this.props.settings[0].privacy
+        })
         this.props.fetchAddresses(userId);
         //this.props.fetchAddresses(userId);
     }
@@ -141,8 +147,16 @@ class FeedSub extends React.Component {
                     {this.state.fetchedSettings && this.props.settings && this.props.addresses && (
                         <div className="settingsWrap">   
                             <h1 className="settingsTit">Settings</h1>
-                            <p className="settingsP">Privacy:</p><p className="settingsdes">click to block geolocation services when not in the service time window</p>
+                            <p className="settingsP">Privacy:</p><p className="settingsdes">click to block geolocation services when not in the service time window</p> 
+                            <label className="switch">
+                                <input type="checkbox"/>
+                                <span className="slider round"></span>
+                            </label>
                             <p className="settingsP">SMS:</p><p className="settingsdes">click to block SMS notifications</p>
+                            <label className="switch">
+                                <input type="checkbox" checked={this.props.settings.sms} />
+                                <span className="slider round"></span>
+                            </label>
                             <p className="settingsP">Service address/es:</p>
                             {this.props.addresses ? this.props.addresses.length > 1 && this.props.addresses.map((a, i) => {
                                 return <p>Address {i + 1}: {a.address}</p>
