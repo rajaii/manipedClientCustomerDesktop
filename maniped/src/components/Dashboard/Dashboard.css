@@ -121,3 +121,35 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+.settingsWrap {
+    background-color: #585858;
+    height: 100%;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+
+}
+.settingsTit {
+    font-size: 3rem;
+    text-align: center;
+}
+
+.settingsP {
+    font-size: 1.5rem;
+}
+
+.editProfileWrapper {
+    background-color: #FFFFFF;
+    color: black;
+}
+
+.editProfile:hover {
+    cursor: pointer;
+    color: #CC1559;
+}
+
+.settingsP:hover {
+    cursor: pointer;
+    color: #FF5EAA;
+}

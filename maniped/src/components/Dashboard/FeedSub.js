@@ -80,6 +80,14 @@ class FeedSub extends React.Component {
         
     }
 
+    closeEdit = () => {
+        this.setState({
+            editingProfile: false
+        })
+    }
+
+
+
 
 
     render() {
@@ -99,7 +107,8 @@ class FeedSub extends React.Component {
                                 <h1 className='serviceTitle'>Type of service: {s.type_of_service}</h1>
                                 <p className='serviceCat'>Amount billed: {s.amount_billed}</p>
                                 <p className='serviceCat'>Provider name: {s.provider_name}</p>
-                        <p className='serviceCat'>Completed at: Date: {`${s.created_at.slice(0, 10)}`} Time: {`${s.created_at.slice(11, 16)}`}{`${parseInt(s.created_at.slice(11, 13), 10) < 12 ? 'AM' : '' }`}</p>
+                                <p className='serviceCat'>Completed at: Date: {`${s.created_at.slice(0, 10)}`} Time: {`${s.created_at.slice(11, 16)}`}{`${parseInt(s.created_at.slice(11, 13), 10) < 12 ? 'AM' : '' }`}</p>
+                                <p className="serviceRate">Rate this Service</p>
                             </div>
                         )
                     })}
@@ -130,21 +139,22 @@ class FeedSub extends React.Component {
                     })} 
 
                     {this.state.fetchedSettings && this.props.settings && this.props.addresses && (
-                        <div>   
-                            <h1>Settings</h1>
-                            <p>Privacy: click to block geolocation services when not in the service time window</p>
-                            <p>SMS: click to block SMS notifications</p>
-                            <p>Service address/es:</p>
+                        <div className="settingsWrap">   
+                            <h1 className="settingsTit">Settings</h1>
+                            <p className="settingsP">Privacy:</p><p className="settingsdes">click to block geolocation services when not in the service time window</p>
+                            <p className="settingsP">SMS:</p><p className="settingsdes">click to block SMS notifications</p>
+                            <p className="settingsP">Service address/es:</p>
                             {this.props.addresses ? this.props.addresses.length > 1 && this.props.addresses.map((a, i) => {
                                 return <p>Address {i + 1}: {a.address}</p>
-                            }) || <p>{this.props.addresses.address}</p> : <p>There are no addresses at this time</p>}
-                            <p onClick={this.handleEdit}>Edit Profile:</p>
+                            }) || <p className="addressP">{this.props.addresses.address}</p> : <p className="addressP">There are no addresses at this time</p>}
+                            <p className="settingsP" onClick={this.state.editingProfile === false ? this.handleEdit : this.closeEdit}>Edit Profile:</p>
                             {this.state.editingProfile && (
-                                <div>
-                                    <p>Name:{this.props.userInfo.first_name} {this.props.userInfo.last_name}</p>
-                                    <p>User name:{this.props.userInfo.username}</p>
-                                    <p>{this.props.userInfo.phone_number}</p>
-                                    <p>{this.props.userInfo.zipcode}</p>
+                                <div className="editProfileWrapper">
+                                    <p className="editProfile">Name: {this.props.userInfo.first_name} {this.props.userInfo.last_name}</p>
+                                    <p className="editProfile">User name: {this.props.userInfo.username}: click to edit/change</p>
+                                    <p className="editProfile">Phone number: {this.props.userInfo.phone_number}: click to edit/change</p>
+                                    <p className="editProfile">Zipcode: {this.props.userInfo.zipcode}: click to edit/change</p>
+                                    <p className="editProfile">Primary address: {this.props.userInfo.address ? `${this.props.userInfo.address}` : 'Not entered: click here to enter primary address'}: click to edit/change</p>
                                 </div>
                             )}
                         </div>
