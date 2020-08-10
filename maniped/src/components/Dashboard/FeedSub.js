@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import icon from '../../assets/icons8-settings-48.png';
-import { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses } from '../../actions/appActions.js';
+import { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses, putSettings } from '../../actions/appActions.js';
 import './Dashboard.css';
 
 
@@ -18,6 +18,7 @@ class FeedSub extends React.Component {
             sms: null,
             privacy: null
         }
+        this.handleSettingsClick = this.handleSettingsClick.bind(this);
     }
     //to render these individaully will need to set reducer state for each one ie pastservicesShowingDAsh ==true then set to false on others
     //when calling the other to render so conditionals show only one at a time
@@ -57,7 +58,7 @@ class FeedSub extends React.Component {
         this.props.fetchBookings(userId);
     }
 
-    handleSettingsClick = () => {
+   async handleSettingsClick () {
         this.setState({
             fetchedUserInfo: false,
             fetchedBookings: false,
@@ -67,11 +68,13 @@ class FeedSub extends React.Component {
         })
         const userId = localStorage.getItem('uID');
         this.props.fetchUserInfo(userId);
-        this.props.fetchSettings(userId);
+        let settings = await this.props.fetchSettings(userId);
+        if (settings) {
         this.setState({
             sms: this.props.settings[0].sms,
             privacy: this.props.settings[0].privacy
         })
+    }
         this.props.fetchAddresses(userId);
         //this.props.fetchAddresses(userId);
     }
@@ -90,6 +93,30 @@ class FeedSub extends React.Component {
         this.setState({
             editingProfile: false
         })
+    }
+
+    // handleSmsClick = () => {
+    //     const userId = localStorage.getItem('uID');
+    //     let body = {}
+    //     if (this.props.settings.sms === false) {
+    //         body.sms = true
+    //     } else if (this.props.settings.sms === true) {
+    //         body.sms = false
+    //     }
+    //     this.props.putSms(userId, body);
+    // }
+
+    handleSettingsToggleClick = (e) => {
+        const userId = localStorage.getItem('uID');
+        let body = {}
+        if (this.props.settings[0][e.target.name] === false) {
+            body[e.target.name] = true
+        } else if (this.props.settings[0][e.target.name] === true) {
+            body[e.target.name] = false
+        }
+       
+        this.props.putSettings(userId, body);
+        this.props.fetchSettings(userId);
     }
 
 
@@ -147,16 +174,20 @@ class FeedSub extends React.Component {
                     {this.state.fetchedSettings && this.props.settings && this.props.addresses && (
                         <div className="settingsWrap">   
                             <h1 className="settingsTit">Settings</h1>
-                            <p className="settingsP">Privacy:</p><p className="settingsdes">click to block geolocation services when not in the service time window</p> 
-                            <label className="switch">
-                                <input type="checkbox"/>
-                                <span className="slider round"></span>
-                            </label>
-                            <p className="settingsP">SMS:</p><p className="settingsdes">click to block SMS notifications</p>
-                            <label className="switch">
-                                <input type="checkbox" checked={this.props.settings.sms} />
-                                <span className="slider round"></span>
-                            </label>
+                            <div className="checkWrappper">
+                                <p className="settingsP">Privacy:</p><p className="settingsdes">click to block geolocation services when not in the service time window</p> 
+                                <label className="switch">
+                                    <input type="checkbox" checked={this.props.settings[0].privacy} name='privacy' onClick={this.handleSettingsToggleClick}/>
+                                    <span className="slider round"></span>
+                                </label>
+                            </div>
+                            <div className="checkWrappper">
+                                <p className="settingsP">SMS:</p><p className="settingsdes">click to block SMS notifications</p>
+                                <label className="switch">
+                                    <input type="checkbox" checked={this.props.settings[0].sms} name="sms" onClick={this.handleSettingsToggleClick}/>
+                                    <span className="slider round"></span>
+                                </label>
+                            </div>
                             <p className="settingsP">Service address/es:</p>
                             {this.props.addresses ? this.props.addresses.length > 1 && this.props.addresses.map((a, i) => {
                                 return <p>Address {i + 1}: {a.address}</p>
@@ -191,4 +222,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses })(FeedSub);
+export default connect(mapStateToProps, { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses, putSettings })(FeedSub);

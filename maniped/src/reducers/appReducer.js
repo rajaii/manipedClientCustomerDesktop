@@ -4,7 +4,8 @@ POST_BOOKINGS_SUCCESS, POST_BOOKINGS_FAILURE, FETCH_PROVIDERS_INFO_START, FETCH_
 FETCH_PROVIDER_INFO_START, FETCH_PROVIDER_INFO_SUCCESS, FETCH_PROVIDER_INFO_FAILURE, FETCH_LOCAL_PROVIDERS_START, FETCH_LOCAL_PROVIDERS_SUCCESS, 
 FETCH_LOCAL_PROVIDERS_FAILURE, FETCH_USERS_INFO_START, FETCH_USERS_INFO_SUCCESS, FETCH_USERS_INFO_FAILURE, FETCH_COMPLETEDSERVICES_START, 
 FETCH_COMPLETEDSERVICES_SUCCESS, FETCH_COMPLETEDSERVICES_FAILURE, CLEAR_NEW_BOOKING, FETCH_SETTINGS_START, FETCH_SETTINGS_SUCCESS,
-FETCH_SETTINGS_FAILURE, FETCH_ADDRESSES_START, FETCH_ADDRESSES_SUCCESS, FETCH_ADDRESSES_FAILURE } from '../actions/appActions.js';
+FETCH_SETTINGS_FAILURE, FETCH_ADDRESSES_START, FETCH_ADDRESSES_SUCCESS, FETCH_ADDRESSES_FAILURE, PUT_SETTINGS_START, PUT_SETTINGS_SUCCESS,
+PUT_SETTINGS_FAILURE } from '../actions/appActions.js';
 
 const availableServicesInitialState = {
     fetching: false,
@@ -54,6 +55,7 @@ const completedServicesInitialState = {
 
 const settingsInitialState = {
     fetchingSettings: false,
+    updatingSettings: false,
     settings: null,
     error: null
 }
@@ -307,6 +309,23 @@ export function settingsReducer(state=settingsInitialState, action) {
             return {
                 ...state,
                 fetchingSettings: false,
+                error: action.payload
+            }
+        case PUT_SETTINGS_START:
+            return {
+                ...state,
+                updatingSettings: true
+            }
+        case PUT_SETTINGS_SUCCESS:
+            return {
+                ...state,
+                updatingSettings: false,
+                settings: action.payload
+            }
+        case PUT_SETTINGS_FAILURE:
+            return {
+                ...state,
+                updatingSettings: false,
                 error: action.payload
             }
         default:

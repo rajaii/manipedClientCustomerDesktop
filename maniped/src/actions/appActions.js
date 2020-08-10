@@ -164,3 +164,45 @@ export const fetchAddresses = (userId) => dispatch => {
     .catch(err => dispatch({type: FETCH_ADDRESSES_FAILURE, payload: err.response}))
 
 }
+
+// export const PUT_SMS_START = 'PUT_SMS_START';
+// export const PUT_SMS_SUCCESS = 'PUT_SMS_SUCCESS';
+// export const PUT_SMS_FAILURE = 'PUT_SMS_FAILURE';
+
+// export const putSms = (userId, body) => dispatch => {
+//     dispatch({type: PUT_SMS_START});
+//     return axiosWithAuth().put(`http://localhost:4000/api/user_settings/${userId}`, body)
+//     .then(res => {
+//         dispatch({type: PUT_SMS_SUCCESS, payload: res.data})
+//     })
+//     .catch(err => dispatch({type: PUT_SMS_FAILURE, payload: err.response}))
+
+// }
+
+// export const PUT_PRIVACY_START = 'PUT_PRIVACY_START';
+// export const PUT_PRIVACY_SUCCESS = 'PUT_PRIVACY_SUCCESS';
+// export const PUT_PRIVACY_FAILURE = 'PUT_PRIVACY_FAILURE';
+
+// export const putPrivacy = (userId, body) => dispatch => {
+//     dispatch({type: PUT_PRIVACY_START});
+//     return axiosWithAuth().put(`http://localhost:4000/api/user_settings/${userId}`, body)
+//     .then(res => {
+//         dispatch({type: PUT_PRIVACY_SUCCESS, payload: res.data})
+//     })
+//     .catch(err => dispatch({type: PUT_PRIVACY_FAILURE, payload: err.response}))
+
+// }
+
+export const PUT_SETTINGS_START = 'PUT_SETTINGS_START';
+export const PUT_SETTINGS_SUCCESS = 'PUT_SETTINGS_SUCCESS';
+export const PUT_SETTINGS_FAILURE = 'PUT_SETTINGS_FAILURE';
+
+export const putSettings = (userId, body) => dispatch => {
+    dispatch({type: PUT_SETTINGS_START});
+    return axiosWithAuth().put(`http://localhost:4000/api/user_settings/${userId}`, body)
+    .then(res => {
+        dispatch({type: PUT_SETTINGS_SUCCESS, payload: res.data})
+    })
+    .catch(err => dispatch({type: PUT_SETTINGS_FAILURE, payload: err.response}))
+
+}
