@@ -320,7 +320,7 @@ export function settingsReducer(state=settingsInitialState, action) {
             return {
                 ...state,
                 updatingSettings: false,
-                // settings: action.payload
+                
             }
         case PUT_SETTINGS_FAILURE:
             return {

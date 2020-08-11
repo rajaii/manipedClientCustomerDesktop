@@ -104,7 +104,7 @@ class FeedSub extends React.Component {
   handleSettingsToggleClick (e) {
         const userId = localStorage.getItem('uID');
         let body = {}
-        console.log('3 NIGGA', JSON.stringify(this.props.settings))
+        
         if (this.props.settings[0][e.target.name] === false) {
             body[e.target.name] = true
         } else if (this.props.settings[0][e.target.name] === true) {
@@ -113,9 +113,9 @@ class FeedSub extends React.Component {
        
         this.props.putSettings(userId, body);
         
-        console.log(JSON.stringify(this.props.settings))
+        
         this.props.fetchSettings(userId);
-        console.log('2 NIGGA', JSON.stringify(this.props.settings))
+        
         this.setState({
             ...this.state,
             [e.target.name]: this.props.settings[e.target.value]
