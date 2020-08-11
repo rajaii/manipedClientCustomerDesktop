@@ -149,7 +149,11 @@
     color: #CC1559;
 }
 
-.settingsP:hover {
+.E {
+    font-size: 1.5rem;
+}
+
+.E:hover {
     cursor: pointer;
     color: #FF5EAA;
 }
@@ -217,7 +221,12 @@
     transform: translateX(26px);
   }
 
-  .checkWrapper {
-      display: flex;
+  .checkedWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid white;
+    margin-top: 10px;
+    margin-bottom: 10px;
       
   }

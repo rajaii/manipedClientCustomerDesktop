@@ -15,27 +15,15 @@ class FeedSub extends React.Component {
             fetchedBookings: false,
             fetchedSettings: false,
             editingProfile: false,
-            sms: null,
-            privacy: null
     }
     this.handleSettingsClick = this.handleSettingsClick.bind(this);
     }
-///////////////////////////////////////////////////
-   async componentDidMount() {
-        let userId = localStorage.getItem('uID');
-        let settings = await this.props.fetchSettings(userId);
-        if (settings) {
-        this.setState({
-            sms: this.props.settings[0].sms,
-            privacy: this.props.settings[0].privacy
-        })
-    }
-    }
 
-    ///////////////////////////////////////////////////////////
+    
 
     //to render these individaully will need to set reducer state for each one ie pastservicesShowingDAsh ==true then set to false on others
     //when calling the other to render so conditionals show only one at a time
+   
     handlePastServicesClick = () => {
         this.setState({
             fetchedUserInfo: false,
@@ -111,9 +99,10 @@ class FeedSub extends React.Component {
 
   
 
-    handleSettingsToggleClick = (e) => {
+  handleSettingsToggleClick=  (e) => {
         const userId = localStorage.getItem('uID');
         let body = {}
+        
         if (this.props.settings[0][e.target.name] === false) {
             body[e.target.name] = true
         } else if (this.props.settings[0][e.target.name] === true) {
@@ -121,15 +110,11 @@ class FeedSub extends React.Component {
         }
        
         this.props.putSettings(userId, body);
+
         this.props.fetchSettings(userId);
+            
     }
-/////////////////////////////////////////
-    handleToggleChange = e => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-    }
-////////////////////////////////////////////
+   
 
 
 
@@ -185,17 +170,21 @@ class FeedSub extends React.Component {
                     {this.state.fetchedSettings && this.props.settings && this.props.addresses && (
                         <div className="settingsWrap">   
                             <h1 className="settingsTit">Settings</h1>
-                            <div className="checkWrappper">
-                                <p className="settingsP">Privacy:</p><p className="settingsdes">click to block geolocation services when not in the service time window</p> 
+                            <div className="checkedWrapper">
+                                <div>
+                                    <p className="settingsP">Privacy:</p><p className="settingsdes">click to block geolocation services when not in the service time window</p> 
+                                </div>
                                 <label className="switch">
-                                    <input type="checkbox" checked={this.state.privacy} name='privacy' value={this.state.privacy} onClick={this.handleSettingsToggleClick} onChange={this.handleToggleChange}/>
+                                    <input type="checkbox" checked={this.props.settings[0].privacy} name='privacy' value={this.state.privacy} onChange={this.handleSettingsToggleClick}/>
                                     <span className="slider round"></span>
                                 </label>
                             </div>
-                            <div className="checkWrappper">
-                                <p className="settingsP">SMS:</p><p className="settingsdes">click to block SMS notifications</p>
+                            <div className="checkedWrapper">
+                                <div>
+                                    <p className="settingsP">SMS:</p><p className="settingsdes">click to block SMS notifications</p>
+                                </div>
                                 <label className="switch">
-                                    <input type="checkbox" checked={this.state.sms} name="sms" value={this.state.sms} onClick={this.handleSettingsToggleClick} onChange={this.handleToggleChange}/>
+                                    <input type="checkbox" checked={this.props.settings[0].sms} name="sms" value={this.state.sms}  onChange={this.handleSettingsToggleClick}/>
                                     <span className="slider round"></span>
                                 </label>
                             </div>
@@ -203,7 +192,7 @@ class FeedSub extends React.Component {
                             {this.props.addresses ? this.props.addresses.length > 1 && this.props.addresses.map((a, i) => {
                                 return <p>Address {i + 1}: {a.address}</p>
                             }) || <p className="addressP">{this.props.addresses.address}</p> : <p className="addressP">There are no addresses at this time</p>}
-                            <p className="settingsP" onClick={this.state.editingProfile === false ? this.handleEdit : this.closeEdit}>Edit Profile:</p>
+                            <p className="E" onClick={this.state.editingProfile === false ? this.handleEdit : this.closeEdit}>Edit Profile:</p>
                             {this.state.editingProfile && (
                                 <div className="editProfileWrapper">
                                     <p className="editProfile">Name: {this.props.userInfo.first_name} {this.props.userInfo.last_name}</p>
