@@ -110,8 +110,7 @@ class FeedSub extends React.Component {
         }
        
         this.props.putSettings(userId, body);
-        
-        
+
         this.props.fetchSettings(userId);
             
     }
@@ -171,15 +170,19 @@ class FeedSub extends React.Component {
                     {this.state.fetchedSettings && this.props.settings && this.props.addresses && (
                         <div className="settingsWrap">   
                             <h1 className="settingsTit">Settings</h1>
-                            <div className="checkWrappper">
-                                <p className="settingsP">Privacy:</p><p className="settingsdes">click to block geolocation services when not in the service time window</p> 
+                            <div className="checkedWrapper">
+                                <div>
+                                    <p className="settingsP">Privacy:</p><p className="settingsdes">click to block geolocation services when not in the service time window</p> 
+                                </div>
                                 <label className="switch">
                                     <input type="checkbox" checked={this.props.settings[0].privacy} name='privacy' value={this.state.privacy} onChange={this.handleSettingsToggleClick}/>
                                     <span className="slider round"></span>
                                 </label>
                             </div>
-                            <div className="checkWrappper">
-                                <p className="settingsP">SMS:</p><p className="settingsdes">click to block SMS notifications</p>
+                            <div className="checkedWrapper">
+                                <div>
+                                    <p className="settingsP">SMS:</p><p className="settingsdes">click to block SMS notifications</p>
+                                </div>
                                 <label className="switch">
                                     <input type="checkbox" checked={this.props.settings[0].sms} name="sms" value={this.state.sms}  onChange={this.handleSettingsToggleClick}/>
                                     <span className="slider round"></span>
@@ -189,7 +192,7 @@ class FeedSub extends React.Component {
                             {this.props.addresses ? this.props.addresses.length > 1 && this.props.addresses.map((a, i) => {
                                 return <p>Address {i + 1}: {a.address}</p>
                             }) || <p className="addressP">{this.props.addresses.address}</p> : <p className="addressP">There are no addresses at this time</p>}
-                            <p className="settingsP" onClick={this.state.editingProfile === false ? this.handleEdit : this.closeEdit}>Edit Profile:</p>
+                            <p className="E" onClick={this.state.editingProfile === false ? this.handleEdit : this.closeEdit}>Edit Profile:</p>
                             {this.state.editingProfile && (
                                 <div className="editProfileWrapper">
                                     <p className="editProfile">Name: {this.props.userInfo.first_name} {this.props.userInfo.last_name}</p>
