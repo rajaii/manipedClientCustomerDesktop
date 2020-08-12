@@ -36,6 +36,8 @@ class Feed extends React.Component {
                             <p className='service'>{b.confirmed === true ? 'Service has been confirmed by the provider' : 'Service has not yet been confirmed by the provider'}</p>
                         </div>
                     )
+                    } else {
+                        return null
                     }
                     })} 
                 

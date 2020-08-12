@@ -230,3 +230,24 @@
     margin-bottom: 10px;
       
   }
+
+  .addressWrapper {
+    display: flex;
+    justify-content: space-between;
+    border: .5px solid white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+  
+
+  .deleteAddressButton {
+    height: 18px;
+    background-color: white;
+    border-radius: 25px;
+  }
+
+  .deleteAddressButton:hover {
+      cursor: pointer;
+      color: white;
+      background-color: red;
+  }
