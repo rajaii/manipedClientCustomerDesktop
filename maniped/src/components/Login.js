@@ -4,7 +4,6 @@ import * as yup from 'yup';
 import { connect } from 'react-redux';
 
 import { login } from '../actions/authActions.js';
-import DashBoard from './Dashboard/DashBoard.js';
 import './Login.css'; 
 
 let loginSchema = yup.object().shape({

@@ -191,7 +191,12 @@ class FeedSub extends React.Component {
                             <p className="settingsP">Service address/es:</p>
                             {this.props.addresses ? this.props.addresses.length > 1 && this.props.addresses.map((a, i) => {
                                 return <p>Address {i + 1}: {a.address}</p>
-                            }) || <p className="addressP">{this.props.addresses.address}</p> : <p className="addressP">There are no addresses at this time</p>}
+                            }) || ( 
+                            <div>
+                                <p className="addressP">{this.props.addresses.address}</p>
+                                <button>Delete This Address</button>
+                            </div>
+                             ) : <p className="addressP">There are no addresses at this time</p>}
                             <p className="E" onClick={this.state.editingProfile === false ? this.handleEdit : this.closeEdit}>Edit Profile:</p>
                             {this.state.editingProfile && (
                                 <div className="editProfileWrapper">
