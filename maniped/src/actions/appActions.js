@@ -127,7 +127,6 @@ export const FETCH_USERS_INFO_SUCCESS = 'FETCH_USERS_INFO_SUCCESS';
 export const FETCH_USERS_INFO_FAILURE = 'FETCH_USERS_INFO_FAILURE';
 
 export const fetchUsersInfo = (id) => dispatch => {
-    console.log(id)
     dispatch({type: FETCH_USERS_INFO_START});
     return axiosWithAuth().get(`http://localhost:4000/api/users/${id}`)
     .then(res => {
@@ -191,5 +190,19 @@ export const deleteAddress = (id) => dispatch => {
         dispatch({type: DELETE_ADDRESS_SUCCESS, payload: res.data})
     })
     .catch(err => dispatch({type: DELETE_ADDRESS_FAILURE, payload: err.response}))
+
+}
+
+export const EDIT_PROFILE_START = 'EDIT_PROFILE_START';
+export const EDIT_PROFILE_SUCCESS = 'EDIT_PROFILE_SUCCESS';
+export const EDIT_PROFILE_FAILURE = 'EDIT_PROFILE_FAILURE';
+
+export const editProfile = (id, body) => dispatch => {
+    dispatch({type: EDIT_PROFILE_START});
+    return axiosWithAuth().put(`http://localhost:4000/api/users/${id}`, body)
+    .then(res => {
+        dispatch({type: EDIT_PROFILE_SUCCESS, payload: res.data})
+    })
+    .catch(err => dispatch({type: EDIT_PROFILE_FAILURE, payload: err.response}))
 
 }

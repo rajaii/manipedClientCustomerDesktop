@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import EditProfileForm from './EditProfileForm.js';
 import icon from '../../assets/icons8-settings-48.png';
 import { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses, putSettings, deleteAddress } from '../../actions/appActions.js';
 import './Dashboard.css';
@@ -15,6 +16,11 @@ class FeedSub extends React.Component {
             fetchedBookings: false,
             fetchedSettings: false,
             editingProfile: false,
+            editingUsername: false,
+            editingEmail: false,
+            editingPhoneNumber: false,
+            editingPrimaryAddress: false,
+            editingZip: false,
     }
     this.handleSettingsClick = this.handleSettingsClick.bind(this);
     this.handlePastServicesClick = this.handlePastServicesClick.bind(this);
@@ -123,9 +129,19 @@ class FeedSub extends React.Component {
         this.props.fetchAddresses(userId);
     }
 
-    // and put profile, and corresponding reducers, so can edit profile from fe    
+    openForm = (e) => {
+        this.setState({
+            [e.target.name]: !e.target.value
+        })
+    }
+
+    // and put profile, and corresponding reducers, so can edit profile from fe   
+    //
     // onclick each opens a form (component, feedsub is getting meessy lol may need to refactor into sub components later on all else) 
+    //localstate editing... === false then when click becomes true and thus renders the component conditionally with the true
+    //yup validation in form again (see registerschema)
     // that can input the new info to local state and then dispatch action  put passing in id of user and state as body, to api and reducer 
+    //add logic in if error on put to alert the error to the user and have them retry
    
     //add action for put profile, add reducer
     //bring in to action EditProfileForm
@@ -161,10 +177,16 @@ class FeedSub extends React.Component {
                         
                             <div className='serviceWrapper'>
                                 <h1 className='serviceTitle'>Name: {this.props.userInfo.first_name} {this.props.userInfo.last_name}</h1>
-                                <p className='serviceCat'>Username: {this.props.userInfo.username}</p>
-                                <p className='serviceCat'>Email: {this.props.userInfo.email}</p>
-                                <p className='serviceCat'>Phone number: {this.props.userInfo.phone_number}</p>
-                                <p className='serviceCat'>Zipcode: {this.props.userInfo.zipcode}</p>
+                                <p onClick={this.openForm} name='editingUsername' value={this.state.editingUsername} className='serviceCat'>Username: {this.props.userInfo.username}</p>
+                                {this.openForm && <EditProfileForm name={this.props.userInfo.username}/>}
+                                <p onClick={this.openForm} name='editingEmail' value={this.state.editingEmail} className='serviceCat'>Email: {this.props.userInfo.email}</p>
+                                {this.openForm && <EditProfileForm name={this.props.userInfo.email}/>}
+                                <p onClick={this.openForm} name='editingPhoneNumber' value={this.state.editingPhoneNumber} className='serviceCat'>Phone number: {this.props.userInfo.phone_number}</p>
+                                {this.openForm && <EditProfileForm name={this.props.userInfo.phone_number}/>}
+                                <p onClick={this.openForm} name='editingPrimaryAddress' value={this.state.editingPrimaryAddress} className='serviceCat'>Primary address: {this.props.userInfo.address}</p>
+                                {this.openForm && <EditProfileForm name={this.props.userInfo.address}/>}
+                                <p onClick={this.openForm} name='editingZip' value={this.state.editingZip} className='serviceCat'>Primary zipcode: {this.props.userInfo.zipcode}</p>
+                                {this.openForm && <EditProfileForm name={this.props.userInfo.zipcode}/>}
                             </div>
                         )
                     }
