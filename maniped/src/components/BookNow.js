@@ -190,4 +190,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, { fetchUsersInfo, postBooking, fetchProviderInfo, fetchProviderInfo, fetchAvailableServices, clearNewBooking })(BookNow);
+export default connect(mapStateToProps, { fetchUsersInfo, postBooking, fetchProviderInfo, fetchAvailableServices, clearNewBooking })(BookNow);

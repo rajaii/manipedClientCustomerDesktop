@@ -17,6 +17,7 @@ class FeedSub extends React.Component {
             editingProfile: false,
     }
     this.handleSettingsClick = this.handleSettingsClick.bind(this);
+    this.handlePastServicesClick = this.handlePastServicesClick.bind(this);
     }
 
     
@@ -24,7 +25,7 @@ class FeedSub extends React.Component {
     //to render these individaully will need to set reducer state for each one ie pastservicesShowingDAsh ==true then set to false on others
     //when calling the other to render so conditionals show only one at a time
    
-    handlePastServicesClick = () => {
+    handlePastServicesClick () {
         this.setState({
             fetchedUserInfo: false,
             fetchedBookings: false,
@@ -127,7 +128,7 @@ class FeedSub extends React.Component {
                         <p onClick={this.handleProfileClick} className='each'>Profile</p>
                         <p onClick={this.handlePastServicesClick} className='each'>Past Services</p>
                         <p onClick={this.handleWishListClick} className='each'>WishList</p>   
-                        <img onClick={this.handleSettingsClick} className='settings' src={icon}/>
+                        <img alt='settings icon' onClick={this.handleSettingsClick} className='settings' src={icon}/>
                     </div>
 
                     {this.state.fetchedCompletedServices && this.props.completedServices && this.props.completedServices.map(s => {
@@ -164,7 +165,9 @@ class FeedSub extends React.Component {
                                 <p className='serviceCat'>Provider name: {b.provider_name}</p>
                             </div>
                         )
-                        }
+                        } else {
+                            return null;
+                        } 
                     })} 
 
                     {this.state.fetchedSettings && this.props.settings && this.props.addresses && (
@@ -189,14 +192,14 @@ class FeedSub extends React.Component {
                                 </label>
                             </div>
                             <p className="settingsP">Service address/es:</p>
-                            {this.props.addresses ? this.props.addresses.length > 1 && this.props.addresses.map((a, i) => {
-                                return <p>Address {i + 1}: {a.address}</p>
-                            }) || ( 
-                            <div>
-                                <p className="addressP">{this.props.addresses.address}</p>
-                                <button>Delete This Address</button>
-                            </div>
-                             ) : <p className="addressP">There are no addresses at this time</p>}
+                            {this.props.addresses ? this.props.addresses.map((a, i) => {
+                                return (
+                                    <div>
+                                        <p>Address {i + 1}: {a.address}</p>
+                                        <button>Delete This Address</button>
+                                    </div>
+                                )
+                            }) : <p className="addressP">There are no addresses at this time</p>}
                             <p className="E" onClick={this.state.editingProfile === false ? this.handleEdit : this.closeEdit}>Edit Profile:</p>
                             {this.state.editingProfile && (
                                 <div className="editProfileWrapper">
