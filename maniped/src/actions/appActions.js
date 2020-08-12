@@ -179,3 +179,17 @@ export const putSettings = (userId, body) => dispatch => {
     .catch(err => dispatch({type: PUT_SETTINGS_FAILURE, payload: err.response}))
 
 }
+
+export const DELETE_ADDRESS_START = 'DELETE_ADDRESS_START';
+export const DELETE_ADDRESS_SUCCESS = 'DELETE_ADDRESS_SUCCESS';
+export const DELETE_ADDRESS_FAILURE = 'DELETE_ADDRESS_FAILURE';
+
+export const deleteAddress = (id) => dispatch => {
+    dispatch({type: DELETE_ADDRESS_START});
+    return axiosWithAuth().delete(`http://localhost:4000/api/userserviceaddresses/${id}`)
+    .then(res => {
+        dispatch({type: DELETE_ADDRESS_SUCCESS, payload: res.data})
+    })
+    .catch(err => dispatch({type: DELETE_ADDRESS_FAILURE, payload: err.response}))
+
+}

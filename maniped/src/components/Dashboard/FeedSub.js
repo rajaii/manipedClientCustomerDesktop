@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import icon from '../../assets/icons8-settings-48.png';
-import { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses, putSettings } from '../../actions/appActions.js';
+import { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses, putSettings, deleteAddress } from '../../actions/appActions.js';
 import './Dashboard.css';
 
 
@@ -100,7 +100,7 @@ class FeedSub extends React.Component {
 
   
 
-  handleSettingsToggleClick=  (e) => {
+  handleSettingsToggleClick = e => {
         const userId = localStorage.getItem('uID');
         let body = {}
         
@@ -114,6 +114,11 @@ class FeedSub extends React.Component {
 
         this.props.fetchSettings(userId);
             
+    }
+
+    handleDeleteAddressClick = e => {
+        console.log(e.target.value)
+        this.props.deleteAddress(e.target.value)
     }
    
 
@@ -196,7 +201,7 @@ class FeedSub extends React.Component {
                                 return (
                                     <div className='addressWrapper'>
                                         <p>Address {i + 1}: {a.address}</p>
-                                        <button className='deleteAddressButton'>Delete Address</button>
+                                        <button onClick={this.handleDeleteAddressClick} value={a.id} className='deleteAddressButton'>Delete Address</button>
                                     </div>
                                 )
                             }) : <p className="addressP">There are no addresses at this time</p>}
@@ -230,4 +235,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses, putSettings })(FeedSub);
+export default connect(mapStateToProps, { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses, putSettings, deleteAddress })(FeedSub);

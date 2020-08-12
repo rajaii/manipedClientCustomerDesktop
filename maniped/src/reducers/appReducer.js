@@ -5,7 +5,7 @@ FETCH_PROVIDER_INFO_START, FETCH_PROVIDER_INFO_SUCCESS, FETCH_PROVIDER_INFO_FAIL
 FETCH_LOCAL_PROVIDERS_FAILURE, FETCH_USERS_INFO_START, FETCH_USERS_INFO_SUCCESS, FETCH_USERS_INFO_FAILURE, FETCH_COMPLETEDSERVICES_START, 
 FETCH_COMPLETEDSERVICES_SUCCESS, FETCH_COMPLETEDSERVICES_FAILURE, CLEAR_NEW_BOOKING, FETCH_SETTINGS_START, FETCH_SETTINGS_SUCCESS,
 FETCH_SETTINGS_FAILURE, FETCH_ADDRESSES_START, FETCH_ADDRESSES_SUCCESS, FETCH_ADDRESSES_FAILURE, PUT_SETTINGS_START, PUT_SETTINGS_SUCCESS,
-PUT_SETTINGS_FAILURE } from '../actions/appActions.js';
+PUT_SETTINGS_FAILURE, DELETE_ADDRESS_START, DELETE_ADDRESS_SUCCESS, DELETE_ADDRESS_FAILURE } from '../actions/appActions.js';
 
 const availableServicesInitialState = {
     fetching: false,
@@ -62,6 +62,7 @@ const settingsInitialState = {
 
 const addressesInitialState = {
     fetchingAddresses: false,
+    deletingAddress: false,
     addresses: null,
     error: null
 }
@@ -353,6 +354,23 @@ export function addressesReducer(state=addressesInitialState, action) {
             return {
                 ...state,
                 fetchingAddresses: false,
+                error: action.payload
+            }
+        case DELETE_ADDRESS_START:
+            return {
+                ...state,
+                deletingAddress: true,
+
+            }
+        case DELETE_ADDRESS_SUCCESS:
+            return {
+                ...state,
+                deletingAddress: false
+            }
+        case DELETE_ADDRESS_FAILURE:
+            return {
+                ...state,
+                deletingAddress: false,
                 error: action.payload
             }
         default:
