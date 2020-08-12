@@ -117,9 +117,10 @@ class FeedSub extends React.Component {
     }
 
     handleDeleteAddressClick = e => {
+        const userId = localStorage.getItem('uID');
         console.log(e.target.value)
         this.props.deleteAddress(e.target.value);
-        this.props.fetchAddresses();
+        this.props.fetchAddresses(userId);
     }
    
 
