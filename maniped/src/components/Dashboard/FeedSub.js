@@ -122,8 +122,15 @@ class FeedSub extends React.Component {
         this.props.deleteAddress(e.target.value);
         this.props.fetchAddresses(userId);
     }
-   
 
+    // and put profile, and corresponding reducers, so can edit profile from fe    
+    // onclick each opens a form (component, feedsub is getting meessy lol may need to refactor into sub components later on all else) 
+    // that can input the new info to local state and then dispatch action  put passing in id of user and state as body, to api and reducer 
+   
+    //add action for put profile, add reducer
+    //bring in to action EditProfileForm
+    //make a simple input form with button to trigger a handler to run the action in the form, and then refetch teh profile info
+    //conditionally render the form in feedsub under each profile section, and further style according to how it looks
 
 
 
