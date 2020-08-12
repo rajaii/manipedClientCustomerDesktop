@@ -194,9 +194,9 @@ class FeedSub extends React.Component {
                             <p className="settingsP">Service address/es:</p>
                             {this.props.addresses ? this.props.addresses.map((a, i) => {
                                 return (
-                                    <div>
+                                    <div className='addressWrapper'>
                                         <p>Address {i + 1}: {a.address}</p>
-                                        <button>Delete This Address</button>
+                                        <button className='deleteAddressButton'>Delete Address</button>
                                     </div>
                                 )
                             }) : <p className="addressP">There are no addresses at this time</p>}
