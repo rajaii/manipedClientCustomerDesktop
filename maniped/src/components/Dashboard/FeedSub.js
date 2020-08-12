@@ -135,18 +135,11 @@ class FeedSub extends React.Component {
         })
     }
 
-    // and put profile, and corresponding reducers, so can edit profile from fe   
-    //
-    // onclick each opens a form (component, feedsub is getting meessy lol may need to refactor into sub components later on all else) 
-    //localstate editing... === false then when click becomes true and thus renders the component conditionally with the true
-    //yup validation in form again (see registerschema)
-    // that can input the new info to local state and then dispatch action  put passing in id of user and state as body, to api and reducer 
+    
+     //=============> yup validation in form again (see registerschema)
     //add logic in if error on put to alert the error to the user and have them retry
-   
-    //add action for put profile, add reducer
-    //bring in to action EditProfileForm
-    //make a simple input form with button to trigger a handler to run the action in the form, and then refetch teh profile info
-    //conditionally render the form in feedsub under each profile section, and further style according to how it looks
+   //test to make sure runs
+    // further style according to how it looks
 
 
 
@@ -178,15 +171,15 @@ class FeedSub extends React.Component {
                             <div className='serviceWrapper'>
                                 <h1 className='serviceTitle'>Name: {this.props.userInfo.first_name} {this.props.userInfo.last_name}</h1>
                                 <p onClick={this.openForm} name='editingUsername' value={this.state.editingUsername} className='serviceCat'>Username: {this.props.userInfo.username}</p>
-                                {this.openForm && <EditProfileForm name={this.props.userInfo.username}/>}
+                                {this.openForm && <EditProfileForm thing='username' name='username'/>}
                                 <p onClick={this.openForm} name='editingEmail' value={this.state.editingEmail} className='serviceCat'>Email: {this.props.userInfo.email}</p>
-                                {this.openForm && <EditProfileForm name={this.props.userInfo.email}/>}
+                                {this.openForm && <EditProfileForm thing='email' name='email'/>}
                                 <p onClick={this.openForm} name='editingPhoneNumber' value={this.state.editingPhoneNumber} className='serviceCat'>Phone number: {this.props.userInfo.phone_number}</p>
-                                {this.openForm && <EditProfileForm name={this.props.userInfo.phone_number}/>}
+                                {this.openForm && <EditProfileForm thing='phone number' name='phone_number'/>}
                                 <p onClick={this.openForm} name='editingPrimaryAddress' value={this.state.editingPrimaryAddress} className='serviceCat'>Primary address: {this.props.userInfo.address}</p>
-                                {this.openForm && <EditProfileForm name={this.props.userInfo.address}/>}
+                                {this.openForm && <EditProfileForm thing='primary address' name='address'/>}
                                 <p onClick={this.openForm} name='editingZip' value={this.state.editingZip} className='serviceCat'>Primary zipcode: {this.props.userInfo.zipcode}</p>
-                                {this.openForm && <EditProfileForm name={this.props.userInfo.zipcode}/>}
+                                {this.openForm && <EditProfileForm thing='zipcode' name='zipcode'/>}
                             </div>
                         )
                     }
