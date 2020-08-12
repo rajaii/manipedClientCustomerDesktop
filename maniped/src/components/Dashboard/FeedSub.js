@@ -118,7 +118,8 @@ class FeedSub extends React.Component {
 
     handleDeleteAddressClick = e => {
         console.log(e.target.value)
-        this.props.deleteAddress(e.target.value)
+        this.props.deleteAddress(e.target.value);
+        this.props.fetchAddresses();
     }
    
 
@@ -197,7 +198,7 @@ class FeedSub extends React.Component {
                                 </label>
                             </div>
                             <p className="settingsP">Service address/es:</p>
-                            {this.props.addresses ? this.props.addresses.map((a, i) => {
+                            {this.props.addresses.length > 0 ? this.props.addresses.map((a, i) => {
                                 return (
                                     <div className='addressWrapper'>
                                         <p>Address {i + 1}: {a.address}</p>
