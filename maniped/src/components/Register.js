@@ -75,7 +75,6 @@ async handleSubmit (e) {
         this.props.history.push('/login');
     })
     .catch(err => {
-        console.log(err)
         this.setState({
             validationError: err
         })
