@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import EditProfileForm from './EditProfileForm.js';
+import EditProfile from './EditProfile.js';
 import icon from '../../assets/icons8-settings-48.png';
 import { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses, putSettings, deleteAddress } from '../../actions/appActions.js';
 import './Dashboard.css';
@@ -16,11 +16,7 @@ class FeedSub extends React.Component {
             fetchedBookings: false,
             fetchedSettings: false,
             editingProfile: false,
-            editingUsername: false,
-            editingEmail: false,
-            editingPhoneNumber: false,
-            editingPrimaryAddress: false,
-            editingZip: false,
+            
     }
     this.handleSettingsClick = this.handleSettingsClick.bind(this);
     this.handlePastServicesClick = this.handlePastServicesClick.bind(this);
@@ -129,13 +125,7 @@ class FeedSub extends React.Component {
         this.props.fetchAddresses(userId);
     }
 
-    openForm = (e) => {
-        this.setState({
-            [e.target.name]: !e.target.value
-        })
-    }
 
-    
      //=============> yup validation in form again (see registerschema)
     //add logic in if error on put to alert the error to the user and have them retry
    //test to make sure runs
@@ -167,22 +157,15 @@ class FeedSub extends React.Component {
                     })}
 
                     {this.state.fetchedUserInfo && this.props.userInfo && (
-                        
-                            <div className='serviceWrapper'>
-                                <h1 className='serviceTitle'>Name: {this.props.userInfo.first_name} {this.props.userInfo.last_name}</h1>
-                                <p onClick={this.openForm} name='editingUsername' value={this.state.editingUsername} className='serviceCat'>Username: {this.props.userInfo.username}</p>
-                                {this.openForm && <EditProfileForm thing='username' name='username'/>}
-                                <p onClick={this.openForm} name='editingEmail' value={this.state.editingEmail} className='serviceCat'>Email: {this.props.userInfo.email}</p>
-                                {this.openForm && <EditProfileForm thing='email' name='email'/>}
-                                <p onClick={this.openForm} name='editingPhoneNumber' value={this.state.editingPhoneNumber} className='serviceCat'>Phone number: {this.props.userInfo.phone_number}</p>
-                                {this.openForm && <EditProfileForm thing='phone number' name='phone_number'/>}
-                                <p onClick={this.openForm} name='editingPrimaryAddress' value={this.state.editingPrimaryAddress} className='serviceCat'>Primary address: {this.props.userInfo.address}</p>
-                                {this.openForm && <EditProfileForm thing='primary address' name='address'/>}
-                                <p onClick={this.openForm} name='editingZip' value={this.state.editingZip} className='serviceCat'>Primary zipcode: {this.props.userInfo.zipcode}</p>
-                                {this.openForm && <EditProfileForm thing='zipcode' name='zipcode'/>}
-                            </div>
-                        )
-                    }
+                    <div className="serviceWrapper">
+                        <h1 className="serviceTitle"></h1>
+                        <p className="serviceCat">Name: {this.props.userInfo.first_name} {this.props.userInfo.last_name}</p>
+                        <p className="serviceCat">User name: {this.props.userInfo.username}</p>
+                        <p className="serviceCat">Phone number: {this.props.userInfo.phone_number}</p>
+                        <p className="serviceCat">Zipcode: {this.props.userInfo.zipcode}</p>
+                        <p className="serviceCat">Primary address: {this.props.userInfo.address ? this.props.userInfo.address : 'No primary address entered; go to settings and edit profile to add one.'}</p>
+                    </div>
+                    )}
 
                     {this.state.fetchedBookings && this.props.bookings && this.props.bookings.map(b => {
                         if (b.confirmed === false) {
@@ -231,13 +214,10 @@ class FeedSub extends React.Component {
                             }) : <p className="addressP">There are no addresses at this time</p>}
                             <p className="E" onClick={this.state.editingProfile === false ? this.handleEdit : this.closeEdit}>Edit Profile:</p>
                             {this.state.editingProfile && (
-                                <div className="editProfileWrapper">
-                                    <p className="editProfile">Name: {this.props.userInfo.first_name} {this.props.userInfo.last_name}</p>
-                                    <p className="editProfile">User name: {this.props.userInfo.username}: click to edit/change</p>
-                                    <p className="editProfile">Phone number: {this.props.userInfo.phone_number}: click to edit/change</p>
-                                    <p className="editProfile">Zipcode: {this.props.userInfo.zipcode}: click to edit/change</p>
-                                    <p className="editProfile">Primary address: {this.props.userInfo.address ? `${this.props.userInfo.address}` : 'Not entered: click here to enter primary address'}: click to edit/change</p>
-                                </div>
+                                <EditProfile username={this.props.userInfo.username} email={this.props.userInfo.email}
+                                phone_number={this.props.userInfo.phone_number} address={this.props.userInfo.address} zipcode={this.props.userInfo.zipcode} first_name={this.props.userInfo.first_name}
+                                last_name={this.props.userInfo.last_name}
+                                />
                             )}
                         </div>
                     )}
