@@ -126,6 +126,8 @@ class FeedSub extends React.Component {
     }
 
 
+
+
      //=============> yup validation in form again (see registerschema)
     //add logic in if error on put to alert the error to the user and have them retry
    //test to make sure runs
@@ -214,7 +216,7 @@ class FeedSub extends React.Component {
                             }) : <p className="addressP">There are no addresses at this time</p>}
                             <p className="E" onClick={this.state.editingProfile === false ? this.handleEdit : this.closeEdit}>Edit Profile:</p>
                             {this.state.editingProfile && (
-                                <EditProfile username={this.props.userInfo.username} email={this.props.userInfo.email}
+                                <EditProfile closeEdit={this.closeEdit} username={this.props.userInfo.username} email={this.props.userInfo.email}
                                 phone_number={this.props.userInfo.phone_number} address={this.props.userInfo.address} zipcode={this.props.userInfo.zipcode} first_name={this.props.userInfo.first_name}
                                 last_name={this.props.userInfo.last_name}
                                 />
