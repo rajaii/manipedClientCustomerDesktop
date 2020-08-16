@@ -251,3 +251,15 @@
       color: white;
       background-color: red;
   }
+
+  .editProfileButton {
+    height: 25px;
+    background-color: #CC1559;
+    color: white;
+    
+  }
+
+  .formWrap {
+      display: flex;
+      align-items: center;
+  }

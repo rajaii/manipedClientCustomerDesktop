@@ -121,15 +121,16 @@ class EditProfileForm extends React.Component {
 
      return (
         <div>
-            <form type='submit' onSubmit={this.handleSubmit}>
+            <form className='formWrap' type='submit' onSubmit={this.handleSubmit}>
                 <input
+                className="editProfileInput"
                 type='text'
                 onChange={this.handleChange}
                 placeholder={`Edit ${this.props.thing}`}
                 value={this.state[this.props.name]}
                 name={this.props.name}
                 />
-                <button className='editProfileButton'>Edit {`${this.props.name}`}</button>
+                <button className='editProfileButton'>Edit {`${this.props.thing}`}</button>
             </form>
             {this.props.name === 'email' && this.state.validationError && (this.state.validationError.errors && this.state.validationError.errors[0] && this.state.validationError.errors[0] === "Email is required") || (this.state.validationError.inner && this.state.validationError.inner.filter(i => i.message === "Email is required").length > 0) ?  <div className="Error">EMAIL IS REQUIRED RE-ENTER AND CLICK SIGN UP</div> : null}
             {this.props.name === 'email' && this.state.validationError && (this.state.validationError.errors && this.state.validationError.errors[0] && this.state.validationError.errors[0] === "Please enter a valid email") || (this.state.validationError.inner && this.state.validationError.inner.filter(i => i.message === "Please enter a valid email").length > 0)  ?  <div className="Error">MUST BE A VALID EMAIL RE-ENTER AND CLICK SIGN UP</div> : null}
