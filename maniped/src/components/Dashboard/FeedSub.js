@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import RateService from './RateService.js';
 import EditProfile from './EditProfile.js';
 import icon from '../../assets/icons8-settings-48.png';
 import { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses, putSettings, deleteAddress } from '../../actions/appActions.js';
@@ -16,6 +17,7 @@ class FeedSub extends React.Component {
             fetchedBookings: false,
             fetchedSettings: false,
             editingProfile: false,
+            ratingService: false
             
     }
     this.handleSettingsClick = this.handleSettingsClick.bind(this);
@@ -125,7 +127,11 @@ class FeedSub extends React.Component {
         this.props.fetchAddresses(userId);
     }
 
-
+    rateService = e => {
+        this.setState({
+            ratingService: !this.state.ratingService
+        })
+    }
 
 
      //=============> yup validation in form again (see registerschema)
@@ -153,11 +159,12 @@ class FeedSub extends React.Component {
                                 <p className='serviceCat'>Amount billed: {s.amount_billed}</p>
                                 <p className='serviceCat'>Provider name: {s.provider_name}</p>
                                 <p className='serviceCat'>Completed at: Date: {`${s.created_at.slice(0, 10)}`} Time: {`${s.created_at.slice(11, 16)}`}{`${parseInt(s.created_at.slice(11, 13), 10) < 12 ? 'AM' : '' }`}</p>
-                                <p className="serviceRate">Rate this Service</p>
+                                <p onClick={this.rateService} className="serviceRate">Rate this Service</p>
+                                
                             </div>
                         )
                     })}
-
+                    {this.state.ratingService && <RateService />}
                     {this.state.fetchedUserInfo && this.props.userInfo && (
                     <div className="serviceWrapper">
                         <h1 className="serviceTitle"></h1>
