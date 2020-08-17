@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import './Dashboard.css';
 
@@ -19,4 +20,4 @@ class RateService extends React.Component {
     }
  }
 
- export default RateService;
+ export default connect(null, {})(RateService);
