@@ -26,6 +26,7 @@ class Feed extends React.Component {
                         <h1 className='feedtitle'>Your Upcoming Confirmed Services:</h1>
 
                     {this.props.bookings && this.props.bookings.map(b => {
+                        console.log(this.props.bookings)
                     if (b.confirmed === true) {
                     return (
                         <div className="mappeddiv">
