@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './Dashboard.css';
+
 class RateService extends React.Component {
     constructor(props) {
         super(props);
@@ -10,8 +12,8 @@ class RateService extends React.Component {
 
     render() {
         return (
-            <div>
-                rate here
+            <div className='ratewrap'>
+                <p>RATE HERE</p>
             </div>
         )
     }

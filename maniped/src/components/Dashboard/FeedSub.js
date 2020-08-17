@@ -160,11 +160,11 @@ class FeedSub extends React.Component {
                                 <p className='serviceCat'>Provider name: {s.provider_name}</p>
                                 <p className='serviceCat'>Completed at: Date: {`${s.created_at.slice(0, 10)}`} Time: {`${s.created_at.slice(11, 16)}`}{`${parseInt(s.created_at.slice(11, 13), 10) < 12 ? 'AM' : '' }`}</p>
                                 <p onClick={this.rateService} className="serviceRate">Rate this Service</p>
-                                {this.props.ratingService && <RateService />}
+                                
                             </div>
                         )
                     })}
-
+                    {this.state.ratingService && <RateService />}
                     {this.state.fetchedUserInfo && this.props.userInfo && (
                     <div className="serviceWrapper">
                         <h1 className="serviceTitle"></h1>

@@ -263,3 +263,19 @@
       display: flex;
       align-items: center;
   }
+
+  .serviceRate {
+    font-size: 1.5rem;
+    color: white;
+    font-family: cursive;
+  }
+
+  .serviceRate:hover {
+      color: black;
+      font-family: fantasy;
+      cursor: pointer;
+  }
+
+  .ratewrap {
+      background: white;
+  }
