@@ -19,7 +19,7 @@ class FeedSub extends React.Component {
             fetchedSettings: false,
             editingProfile: false,
             ratingService: false,
-            ratedServiceAlready: false
+            ratedServiceAlready: false,
             
     }
     this.handleSettingsClick = this.handleSettingsClick.bind(this);
@@ -131,8 +131,10 @@ class FeedSub extends React.Component {
     }
 
    async rateService(e) {
+        e.persist()
         const userId = localStorage.getItem('uID');
         await this.props.fetchUserRatings(userId);
+        console.log(e.target.id)
         if (this.props.userRatings > 0) {
             let rating = this.props.userRatings.filter(r => r.user_id === e.target.user_id && r.provider_id === e.target.provider_id && r.id === e.target.service_id)
             if (rating) {
@@ -141,12 +143,12 @@ class FeedSub extends React.Component {
             })
             } else {
             this.setState({
-                ratingService: !this.state.ratingService
+                ratingService: !this.state.ratingService,
             })
         }
         } else {
             this.setState({
-                ratingService: !this.state.ratingService
+                ratingService: !this.state.ratingService,
             })
 }
    }
@@ -176,9 +178,10 @@ class FeedSub extends React.Component {
                                 <p className='serviceCat'>Amount billed: {s.amount_billed}</p>
                                 <p className='serviceCat'>Provider name: {s.provider_name}</p>
                                 <p className='serviceCat'>Completed at: Date: {`${s.created_at.slice(0, 10)}`} Time: {`${s.created_at.slice(11, 16)}`}{`${parseInt(s.created_at.slice(11, 13), 10) < 12 ? 'AM' : '' }`}</p>
-                                <p service_id={s.id} provider_id={s.provider_id} user_id={s.user_id} onClick={this.rateService} className="serviceRate">Rate this Service</p>
+                                <p id={s.id} provider_id={s.provider_id} user_id={s.user_id} onClick={this.rateService} className="serviceRate">Rate this Service</p>
                                 
                             </div>
+                            
                         )
                     })}
                     {this.state.ratingService && <RateService />}
