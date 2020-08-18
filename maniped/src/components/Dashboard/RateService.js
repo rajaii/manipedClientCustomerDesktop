@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { putUserRatings } from '../../actions/appActions.js';
 import './Dashboard.css';
 
 class RateService extends React.Component {
@@ -20,4 +21,4 @@ class RateService extends React.Component {
     }
  }
 
- export default connect(null, {})(RateService);
+ export default connect(null, { putUserRatings })(RateService);

@@ -206,3 +206,32 @@ export const editProfile = (id, body) => dispatch => {
     .catch(err => dispatch({type: EDIT_PROFILE_FAILURE, payload: err.response}))
 
 }
+
+
+export const FETCH_USER_RATINGS_START = 'FETCH_USER_RATINGS_START';
+export const FETCH_USER_RATINGS_SUCCESS = 'FETCH_USER_RATINGS_SUCCESS';
+export const FETCH_USER_RATINGS_FAILURE = 'FETCH_USER_RATINGS_FAILURE';
+
+export const fetchUserRatings = (userId) => dispatch => {
+    dispatch({type: FETCH_USER_RATINGS_START});
+    return axiosWithAuth().get(`http://localhost:4000/api/user_ratings/user/${userId}`)
+    .then(res => {
+        dispatch({type: FETCH_USER_RATINGS_SUCCESS, payload: res.data})
+    })
+    .catch(err => dispatch({type: FETCH_USER_RATINGS_FAILURE, payload: err.response}))
+
+}
+
+export const PUT_USER_RATINGS_START = 'PUT_USER_RATINGS_START';
+export const PUT_USER_RATINGS_SUCCESS = 'PUT_USER_RATINGS_SUCCESS';
+export const PUT_USER_RATINGS_FAILURE = 'PUT_USER_RATINGS_FAILURE';
+
+export const putUserRatings = (userId, body) => dispatch => {
+    dispatch({type: PUT_USER_RATINGS_START});
+    return axiosWithAuth().put(`http://localhost:4000/api/user_ratings/user/${userId}`, body)
+    .then(res => {
+        dispatch({type: PUT_USER_RATINGS_SUCCESS, payload: res.data})
+    })
+    .catch(err => dispatch({type: PUT_USER_RATINGS_FAILURE, payload: err.response}))
+
+}

@@ -14,7 +14,7 @@ class ErrorComponent extends React.Component {
     render() {
         return (
             <div>
-                <p>Error HERE</p>
+                <p>{this.props.error}</p>
             </div>
         )
     }
