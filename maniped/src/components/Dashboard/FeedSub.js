@@ -6,6 +6,7 @@ import EditProfile from './EditProfile.js';
 import icon from '../../assets/icons8-settings-48.png';
 import { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses, putSettings, deleteAddress, fetchUserRatings } from '../../actions/appActions.js';
 import './Dashboard.css';
+import ErrorComponent from '../ErrorComponent.js';
 
 
 class FeedSub extends React.Component {
@@ -17,7 +18,8 @@ class FeedSub extends React.Component {
             fetchedBookings: false,
             fetchedSettings: false,
             editingProfile: false,
-            ratingService: false
+            ratingService: false,
+            ratedServiceAlready: false
             
     }
     this.handleSettingsClick = this.handleSettingsClick.bind(this);
@@ -128,9 +130,19 @@ class FeedSub extends React.Component {
     }
 
     rateService = e => {
+        const userId = localStorage.getItem('uID');
+        this.props.fetchUserRatings(userId);
+
+        let rating = this.props.userRatings.filter(r => r.user_id === e.target.user_id && r.provider_id === e.targe.provider_id)
+        if (rating) {
         this.setState({
             ratingService: !this.state.ratingService
         })
+    } else {
+        this.setState({
+            ratedServiceAlready: !this.state.ratedServiceAlready
+        })
+    }
     }
 
 
@@ -159,12 +171,14 @@ class FeedSub extends React.Component {
                                 <p className='serviceCat'>Amount billed: {s.amount_billed}</p>
                                 <p className='serviceCat'>Provider name: {s.provider_name}</p>
                                 <p className='serviceCat'>Completed at: Date: {`${s.created_at.slice(0, 10)}`} Time: {`${s.created_at.slice(11, 16)}`}{`${parseInt(s.created_at.slice(11, 13), 10) < 12 ? 'AM' : '' }`}</p>
-                                <p onClick={this.rateService} className="serviceRate">Rate this Service</p>
+                                <p provider_id={s.provider_id} user_id={s.user_id} onClick={this.rateService} className="serviceRate">Rate this Service</p>
                                 
                             </div>
                         )
                     })}
                     {this.state.ratingService && <RateService />}
+                    {this.state.ratedServiceAlready && <ErrorComponent error={`You have already rated this service...`}/>}
+
                     {this.state.fetchedUserInfo && this.props.userInfo && (
                     <div className="serviceWrapper">
                         <h1 className="serviceTitle"></h1>
@@ -244,7 +258,8 @@ const mapStateToProps = state => {
         userInfo: state.userInfoReducer.userInfo,
         bookings: state.bookingsReducer.bookings,
         settings: state.settingsReducer.settings,
-        addresses: state.addressesReducer.addresses
+        addresses: state.addressesReducer.addresses,
+        userRatings: state.userRatingsReducer.userRatings,
     }
 }
 
