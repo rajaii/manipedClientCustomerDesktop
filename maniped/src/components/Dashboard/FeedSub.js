@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import RateService from './RateService.js';
 import EditProfile from './EditProfile.js';
 import icon from '../../assets/icons8-settings-48.png';
-import { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses, putSettings, deleteAddress } from '../../actions/appActions.js';
+import { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses, putSettings, deleteAddress, fetchUserRatings } from '../../actions/appActions.js';
 import './Dashboard.css';
 
 
@@ -248,4 +248,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses, putSettings, deleteAddress })(FeedSub);
+export default connect(mapStateToProps, { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses, fetchUserRatings, putSettings, deleteAddress })(FeedSub);

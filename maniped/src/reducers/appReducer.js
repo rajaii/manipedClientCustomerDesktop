@@ -6,7 +6,8 @@ FETCH_LOCAL_PROVIDERS_FAILURE, FETCH_USERS_INFO_START, FETCH_USERS_INFO_SUCCESS,
 FETCH_COMPLETEDSERVICES_SUCCESS, FETCH_COMPLETEDSERVICES_FAILURE, CLEAR_NEW_BOOKING, FETCH_SETTINGS_START, FETCH_SETTINGS_SUCCESS,
 FETCH_SETTINGS_FAILURE, FETCH_ADDRESSES_START, FETCH_ADDRESSES_SUCCESS, FETCH_ADDRESSES_FAILURE, PUT_SETTINGS_START, PUT_SETTINGS_SUCCESS,
 PUT_SETTINGS_FAILURE, DELETE_ADDRESS_START, DELETE_ADDRESS_SUCCESS, DELETE_ADDRESS_FAILURE, EDIT_PROFILE_START, EDIT_PROFILE_SUCCESS, 
-EDIT_PROFILE_FAILURE } from '../actions/appActions.js';
+EDIT_PROFILE_FAILURE, FETCH_USER_RATINGS_START, FETCH_USER_RATINGS_SUCCESS, FETCH_USER_RATINGS_FAILURE, PUT_USER_RATINGS_START, PUT_USER_RATINGS_SUCCESS,
+PUT_USER_RATINGS_FAILURE } from '../actions/appActions.js';
 
 const availableServicesInitialState = {
     fetching: false,
@@ -14,7 +15,7 @@ const availableServicesInitialState = {
     error: null,
     
 }
-
+//later add multiple errors and and handle user/s info
 const userInfoInitialState = {
     fetchingUserInfo: false,
     fetchingUsersInfo: false,
@@ -31,10 +32,11 @@ const bookingsInitialState = {
     bookings: null,
     newBooking: null,
     newBookingDone: false,
-    error: null,
+    fetchingBookingsError: null,
+    postingBookingError: null
 
 }
-
+//later add multiple errors and handle the provider/s issue
 const providerInitialState = {
     fetchingProviders: false,
     fetchingProvider: false,
@@ -59,16 +61,26 @@ const settingsInitialState = {
     fetchingSettings: false,
     updatingSettings: false,
     settings: null,
-    error: null
+    fetchingSettingsError: null,
+    updatingSettingsError: null
 }
 
 const addressesInitialState = {
     fetchingAddresses: false,
     deletingAddress: false,
     addresses: null,
-    error: null
+    fetchingAddressesError: null,
+    deletingAddressesError: null
 }
 
+//ratings the user gave providers for services
+const userRatingsInitialState = {
+    fetchingUserRatings: false,
+    updatingUserRatings: false,
+    userRatings: null,
+    fetchingUserRatingsError: null,
+    updatingUserRatingsError: null
+}
 
 export function availableServicesReducer(state=availableServicesInitialState, action) {
     
@@ -178,7 +190,7 @@ export function bookingsReducer(state=bookingsInitialState, action) {
             return {
                 ...state,
                 fetchingBookings: false,
-                error: action.payload
+                fetchingBookingsError: action.payload
             }
         case POST_BOOKINGS_START:
             return {
@@ -196,7 +208,7 @@ export function bookingsReducer(state=bookingsInitialState, action) {
             return {
                 ...state,
                 postingBooking: false,
-                error: action.payload
+                postingBookingError: action.payload
             }
         case CLEAR_NEW_BOOKING:
             return {
@@ -329,7 +341,7 @@ export function settingsReducer(state=settingsInitialState, action) {
             return {
                 ...state,
                 fetchingSettings: false,
-                error: action.payload
+                fetchingSettingsError: action.payload
             }
         case PUT_SETTINGS_START:
             return {
@@ -346,7 +358,7 @@ export function settingsReducer(state=settingsInitialState, action) {
             return {
                 ...state,
                 updatingSettings: false,
-                error: action.payload
+                updatingSettingsError: action.payload
             }
         default:
             return state
@@ -373,7 +385,7 @@ export function addressesReducer(state=addressesInitialState, action) {
             return {
                 ...state,
                 fetchingAddresses: false,
-                error: action.payload
+                fetchingAddressesError: action.payload
             }
         case DELETE_ADDRESS_START:
             return {
@@ -390,7 +402,51 @@ export function addressesReducer(state=addressesInitialState, action) {
             return {
                 ...state,
                 deletingAddress: false,
-                error: action.payload
+                deletingAddressesError: action.payload
+            }
+        default:
+            return state
+    }
+    
+}
+
+export function userRatingsReducer(state=userRatingsInitialState, action) {
+    
+    switch(action.type) {
+        case FETCH_USER_RATINGS_START:
+            return {
+                ...state,
+                fetchingUserRatings: true,
+
+            }
+        case FETCH_USER_RATINGS_SUCCESS:
+            return {
+                ...state,
+                userRatings: action.payload,
+                fetchingUserRatings: false
+            }
+        case FETCH_USER_RATINGS_FAILURE:
+            return {
+                ...state,
+                fetchingUserRatings: false,
+                fetchingUserRatingsError: action.payload
+            }
+        case PUT_USER_RATINGS_START:
+            return {
+                ...state,
+                updatingUserRatings: true,
+
+            }
+        case PUT_USER_RATINGS_SUCCESS:
+            return {
+                ...state,
+                updatingUserRatings: false
+            }
+        case PUT_USER_RATINGS_FAILURE:
+            return {
+                ...state,
+                updatingUserRatings: false,
+                updatingUserRatingsError: action.payload
             }
         default:
             return state
