@@ -24,6 +24,7 @@ class FeedSub extends React.Component {
     }
     this.handleSettingsClick = this.handleSettingsClick.bind(this);
     this.handlePastServicesClick = this.handlePastServicesClick.bind(this);
+    this.rateService = this.rateService.bind(this);
     }
 
     
@@ -129,22 +130,26 @@ class FeedSub extends React.Component {
         this.props.fetchAddresses(userId);
     }
 
-    rateService = e => {
+   async rateService(e) {
         const userId = localStorage.getItem('uID');
-        this.props.fetchUserRatings(userId);
-
-        let rating = this.props.userRatings.filter(r => r.user_id === e.target.user_id && r.provider_id === e.targe.provider_id)
-        if (rating) {
-        this.setState({
-            ratingService: !this.state.ratingService
-        })
-    } else {
-        this.setState({
-            ratedServiceAlready: !this.state.ratedServiceAlready
-        })
-    }
-    }
-
+        await this.props.fetchUserRatings(userId);
+        if (this.props.userRatings > 0) {
+            let rating = this.props.userRatings.filter(r => r.user_id === e.target.user_id && r.provider_id === e.target.provider_id && r.id === e.target.service_id)
+            if (rating) {
+            this.setState({
+                ratedServiceAlready: !this.state.ratedServiceAlready
+            })
+            } else {
+            this.setState({
+                ratingService: !this.state.ratingService
+            })
+        }
+        } else {
+            this.setState({
+                ratingService: !this.state.ratingService
+            })
+}
+   }
 
      //=============> yup validation in form again (see registerschema)
     //add logic in if error on put to alert the error to the user and have them retry
@@ -171,7 +176,7 @@ class FeedSub extends React.Component {
                                 <p className='serviceCat'>Amount billed: {s.amount_billed}</p>
                                 <p className='serviceCat'>Provider name: {s.provider_name}</p>
                                 <p className='serviceCat'>Completed at: Date: {`${s.created_at.slice(0, 10)}`} Time: {`${s.created_at.slice(11, 16)}`}{`${parseInt(s.created_at.slice(11, 13), 10) < 12 ? 'AM' : '' }`}</p>
-                                <p provider_id={s.provider_id} user_id={s.user_id} onClick={this.rateService} className="serviceRate">Rate this Service</p>
+                                <p service_id={s.id} provider_id={s.provider_id} user_id={s.user_id} onClick={this.rateService} className="serviceRate">Rate this Service</p>
                                 
                             </div>
                         )
