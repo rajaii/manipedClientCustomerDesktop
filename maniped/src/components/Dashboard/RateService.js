@@ -14,7 +14,7 @@ class RateService extends React.Component {
 
     render() {
         return (
-            <div className='ratewrap'>
+            <div className={this.props.serviceToRateId != this.props.service.id ? 'hideRateComp' : null}>
                 <p>RATE HERE</p>
             </div>
         )

@@ -278,4 +278,8 @@
 
   .ratewrap {
       background: white;
-  }
+  } 
+  
+  .hideRateComp {
+    display: none;
+  }  
