@@ -131,29 +131,41 @@ class FeedSub extends React.Component {
         this.props.deleteAddress(e.target.value);
         this.props.fetchAddresses(userId);
     }
-
+  
    async rateService(e) {
-        e.persist();
+        e.persist()
+        e = {...e}
+        const user_id = e.target.attributes.user_id.nodeValue;
+        const provider_id = e.target.attributes.provider_id.nodeValue
+        const user_rating_id = e.target.attributes.user_rating_id.nodeValue
+        const service_id = e.target.attributes.user_rating_id.nodeValue
         const userId = localStorage.getItem('uID');
-        await this.props.fetchUserRatings(userId);
-        console.log(e.target.id)
-        if (this.props.userRatings > 0) {
-            let rating = this.props.userRatings.filter(r => r.user_id === e.target.user_id && r.provider_id === e.target.provider_id && r.id === e.target.id)
-            if (rating) {
+        await this.props.fetchUserRatings(userId)        
+    
+        if (this.props.userRatings.length > 0) {
+            console.log(provider_id, user_rating_id, service_id)
+            
+            let rating = this.props.userRatings.filter(r => { 
+               if (r.user_id === user_id && r.provider_id === provider_id && r.id === user_rating_id) {
+                   return true
+               }
+            })
+           console.log(rating)
+            if (rating.length > 0) {
             this.setState({
                 ratedServiceAlready: !this.state.ratedServiceAlready,
-                rateErrorId: e.target.id
+                rateErrorId: service_id
             })
             } else {
             this.setState({
                 ratingService: !this.state.ratingService,
-                serviceToRateId: e.target.id
+                serviceToRateId: service_id
             })
         }
         } else {
             this.setState({
                 ratingService: !this.state.ratingService,
-                serviceToRateId: e.target.id
+                serviceToRateId: service_id
             })
 }
    }
@@ -183,9 +195,9 @@ class FeedSub extends React.Component {
                                 <p className='serviceCat'>Amount billed: {s.amount_billed}</p>
                                 <p className='serviceCat'>Provider name: {s.provider_name}</p>
                                 <p className='serviceCat'>Completed at: Date: {`${s.created_at.slice(0, 10)}`} Time: {`${s.created_at.slice(11, 16)}`}{`${parseInt(s.created_at.slice(11, 13), 10) < 12 ? 'AM' : '' }`}</p>
-                                <p id={s.id} provider_id={s.provider_id} user_id={s.user_id} onClick={this.rateService} className="serviceRate">Rate this Service</p>
-                                {this.state.ratingService && <RateService serviceToRateId={this.state.serviceToRateId} service={s} />}
-                                {this.state.ratedServiceAlready && <ErrorComponent  error={`You have already rated this service...`}/>}
+                                <p service_id={s.id} user_rating_id={s.user_rating_id}  provider_id={s.provider_id} user_id={s.user_id} onClick={this.rateService} className="serviceRate">Rate this Service</p>
+                                {this.state.ratingService && this.state.serviceToRateId === s.id && <RateService serviceToRateId={this.state.serviceToRateId} service={s} />}
+                                {this.state.ratedServiceAlready && this.state.rateErrorId === s.id && <ErrorComponent serviceErrorId={this.state.serviceErrorId} service={s}  error={`You have already rated this service...`}/>}
                             </div>
                             
                         )

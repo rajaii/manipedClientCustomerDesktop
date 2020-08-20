@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../components/Dashboard/Dashboard.css';
 
 
 
@@ -13,7 +13,7 @@ class ErrorComponent extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className={this.props.serviceErrorId != this.props.service.id ? "hideRateComp": null}>
                 <p>{this.props.error}</p>
             </div>
         )
