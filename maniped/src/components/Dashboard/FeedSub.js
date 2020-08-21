@@ -144,13 +144,22 @@ class FeedSub extends React.Component {
     
         if (this.props.userRatings.length > 0) {
             console.log(provider_id, user_rating_id, service_id)
-            
-            let rating = this.props.userRatings.filter(r => { 
-               if (r.user_id === user_id && r.provider_id === provider_id && r.id === user_rating_id) {
-                   return true
-               }
-            })
-           console.log(rating)
+            //try looping and doing custom filter see if that works 
+            // let rating = this.props.userRatings.filter(r => { 
+            //    if (r.user_id === user_id) {
+            //        return true
+            //    }
+            // })
+            let rating;
+            let pur = this.props.userRatings
+            for (let i = 0; i < pur.length; i++) {
+                if (pur[i].user_id == user_id && pur[i].provider_id == provider_id && pur[i].id == user_rating_id) {
+                    rating = pur[i];
+                    console.log(rating)
+                }
+                
+            }
+           
             if (rating.length > 0) {
             this.setState({
                 ratedServiceAlready: !this.state.ratedServiceAlready,
