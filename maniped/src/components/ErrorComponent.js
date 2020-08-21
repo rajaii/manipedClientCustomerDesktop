@@ -13,7 +13,7 @@ class ErrorComponent extends React.Component {
 
     render() {
         return (
-            <div className={this.props.serviceErrorId != this.props.service.id ? "hideRateComp": null}>
+            <div >
                 <p>{this.props.error}</p>
             </div>
         )
@@ -21,3 +21,4 @@ class ErrorComponent extends React.Component {
  }
 //don't wire to redux, pass errors from moter components as props to here so can reuse this
  export default ErrorComponent;
+

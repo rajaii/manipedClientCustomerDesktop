@@ -143,24 +143,17 @@ class FeedSub extends React.Component {
         await this.props.fetchUserRatings(userId)        
     
         if (this.props.userRatings.length > 0) {
-            console.log(provider_id, user_rating_id, service_id)
-            //try looping and doing custom filter see if that works 
-            // let rating = this.props.userRatings.filter(r => { 
-            //    if (r.user_id === user_id) {
-            //        return true
-            //    }
-            // })
+    
             let rating;
             let pur = this.props.userRatings
             for (let i = 0; i < pur.length; i++) {
                 if (pur[i].user_id == user_id && pur[i].provider_id == provider_id && pur[i].id == user_rating_id) {
                     rating = pur[i];
-                    console.log(rating)
                 }
                 
             }
            
-            if (rating.length > 0) {
+            if (rating != undefined) {
             this.setState({
                 ratedServiceAlready: !this.state.ratedServiceAlready,
                 rateErrorId: service_id
@@ -205,8 +198,8 @@ class FeedSub extends React.Component {
                                 <p className='serviceCat'>Provider name: {s.provider_name}</p>
                                 <p className='serviceCat'>Completed at: Date: {`${s.created_at.slice(0, 10)}`} Time: {`${s.created_at.slice(11, 16)}`}{`${parseInt(s.created_at.slice(11, 13), 10) < 12 ? 'AM' : '' }`}</p>
                                 <p service_id={s.id} user_rating_id={s.user_rating_id}  provider_id={s.provider_id} user_id={s.user_id} onClick={this.rateService} className="serviceRate">Rate this Service</p>
-                                {this.state.ratingService && this.state.serviceToRateId === s.id && <RateService serviceToRateId={this.state.serviceToRateId} service={s} />}
-                                {this.state.ratedServiceAlready && this.state.rateErrorId === s.id && <ErrorComponent serviceErrorId={this.state.serviceErrorId} service={s}  error={`You have already rated this service...`}/>}
+                                {this.state.ratingService && this.state.serviceToRateId == s.id && <RateService serviceToRateId={this.state.serviceToRateId} service={s} />}
+                                {this.state.ratedServiceAlready && this.state.rateErrorId == s.id && <ErrorComponent serviceErrorId={this.state.serviceErrorId} service={s}  error={`You have already rated this service...`}/>}
                             </div>
                             
                         )
