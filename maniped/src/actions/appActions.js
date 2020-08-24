@@ -235,3 +235,17 @@ export const putUserRatings = (userId, body) => dispatch => {
     .catch(err => dispatch({type: PUT_USER_RATINGS_FAILURE, payload: err.response}))
 
 }
+
+export const POST_USER_RATINGS_START = 'POST_USER_RATINGS_START';
+export const POST_USER_RATINGS_SUCCESS = 'POST_USER_RATINGS_SUCCESS';
+export const POST_USER_RATINGS_FAILURE = 'POST_USER_RATINGS_FAILURE';
+
+export const pOSTUserRatings = (userId, body) => dispatch => {
+    dispatch({type: POST_USER_RATINGS_START});
+    return axiosWithAuth().post(`http://localhost:4000/api/user_ratings/`, body)
+    .then(res => {
+        dispatch({type: POST_USER_RATINGS_SUCCESS, payload: res.data})
+    })
+    .catch(err => dispatch({type: POST_USER_RATINGS_FAILURE, payload: err.response}))
+
+}

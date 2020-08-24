@@ -7,7 +7,7 @@ FETCH_COMPLETEDSERVICES_SUCCESS, FETCH_COMPLETEDSERVICES_FAILURE, CLEAR_NEW_BOOK
 FETCH_SETTINGS_FAILURE, FETCH_ADDRESSES_START, FETCH_ADDRESSES_SUCCESS, FETCH_ADDRESSES_FAILURE, PUT_SETTINGS_START, PUT_SETTINGS_SUCCESS,
 PUT_SETTINGS_FAILURE, DELETE_ADDRESS_START, DELETE_ADDRESS_SUCCESS, DELETE_ADDRESS_FAILURE, EDIT_PROFILE_START, EDIT_PROFILE_SUCCESS, 
 EDIT_PROFILE_FAILURE, FETCH_USER_RATINGS_START, FETCH_USER_RATINGS_SUCCESS, FETCH_USER_RATINGS_FAILURE, PUT_USER_RATINGS_START, PUT_USER_RATINGS_SUCCESS,
-PUT_USER_RATINGS_FAILURE } from '../actions/appActions.js';
+PUT_USER_RATINGS_FAILURE, POST_USER_RATINGS_START, POST_USER_RATINGS_SUCCESS, POST_USER_RATINGS_FAILURE } from '../actions/appActions.js';
 
 const availableServicesInitialState = {
     fetching: false,
@@ -77,9 +77,11 @@ const addressesInitialState = {
 const userRatingsInitialState = {
     fetchingUserRatings: false,
     updatingUserRatings: false,
+    postingUserRatings: false,
     userRatings: null,
     fetchingUserRatingsError: null,
-    updatingUserRatingsError: null
+    updatingUserRatingsError: null,
+    postingUserRatingsError: null
 }
 
 export function availableServicesReducer(state=availableServicesInitialState, action) {
@@ -448,6 +450,23 @@ export function userRatingsReducer(state=userRatingsInitialState, action) {
                 updatingUserRatings: false,
                 updatingUserRatingsError: action.payload
             }
+            case POST_USER_RATINGS_START:
+                return {
+                    ...state,
+                    postingUserRatings: true,
+    
+                }
+            case POST_USER_RATINGS_SUCCESS:
+                return {
+                    ...state,
+                    postingUserRatings: false
+                }
+            case POST_USER_RATINGS_FAILURE:
+                return {
+                    ...state,
+                    postingUserRatings: false,
+                    postingUserRatingsError: action.payload
+                }
         default:
             return state
     }
