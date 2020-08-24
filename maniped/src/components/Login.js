@@ -40,16 +40,17 @@ class Login extends React.Component {
         }
         e.preventDefault();
         loginSchema.validate(this.state, {abortEarly: false})
-        .then(d => {
+        .then(async d => {
             if (d) {
-            this.props.login(body)
-            this.setState({
+            let loggedIn = this.props.login(body)
+            if (loggedIn) { this.setState({
                 username: '',
                 password: ''
             })
             }
+        
             this.props.history.push('/dashboard')
-        })
+        }})
         .catch(err => {
              console.log(err)
              this.setState({
