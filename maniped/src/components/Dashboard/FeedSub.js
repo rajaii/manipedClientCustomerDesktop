@@ -137,8 +137,8 @@ class FeedSub extends React.Component {
         e = {...e}
         const user_id = e.target.attributes.user_id.nodeValue;
         const provider_id = e.target.attributes.provider_id.nodeValue
-        const user_rating_id = e.target.attributes.user_rating_id.nodeValue != undefined ? e.target.attributes.user_rating_id.nodeValue: null;
-        const service_id = e.target.attributes.user_rating_id.nodeValue
+        const user_rating_id = e.target.attributes.user_rating_id != undefined ? e.target.attributes.user_rating_id.nodeValue: null;
+        const service_id = e.target.attributes.service_id.nodeValue
         const userId = localStorage.getItem('uID');
         await this.props.fetchUserRatings(userId)        
     
