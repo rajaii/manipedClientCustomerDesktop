@@ -149,6 +149,8 @@ class FeedSub extends React.Component {
             for (let i = 0; i < pur.length; i++) {
                 if (pur[i].user_id == user_id && pur[i].provider_id == provider_id && pur[i].id == user_rating_id) {
                     rating = pur[i];
+                    console.log(`typof pur: ${typeof pur[i].user_id} ${typeof pur[i].provider_id} ${typeof pur[i].id}`)
+                    console.log(`typof e.targets: ${typeof user_id} ${typeof provider_id} ${typeof user_rating_id}`)
                 }
                 
             }
