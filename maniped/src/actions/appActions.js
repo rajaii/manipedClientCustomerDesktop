@@ -240,7 +240,7 @@ export const POST_USER_RATINGS_START = 'POST_USER_RATINGS_START';
 export const POST_USER_RATINGS_SUCCESS = 'POST_USER_RATINGS_SUCCESS';
 export const POST_USER_RATINGS_FAILURE = 'POST_USER_RATINGS_FAILURE';
 
-export const pOSTUserRatings = (userId, body) => dispatch => {
+export const postUserRatings = (body) => dispatch => {
     dispatch({type: POST_USER_RATINGS_START});
     return axiosWithAuth().post(`http://localhost:4000/api/user_ratings/`, body)
     .then(res => {
