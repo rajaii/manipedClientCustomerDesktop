@@ -172,17 +172,9 @@ class FeedSub extends React.Component {
 }
    }
 
-   closeRateBox = e => {
-       this.setState({
-           fetchCompletedServices: true
-       })
+   cancelBooking = e => {
+       
    }
-
-     //=============> yup validation in form again (see registerschema)
-    //add logic in if error on put to alert the error to the user and have them retry
-   //test to make sure runs
-    // further style according to how it looks
-
 
 
     render() {
@@ -232,6 +224,7 @@ class FeedSub extends React.Component {
                                 <p className='serviceCat'>Booking time: {`${b.booking_time.slice(0,5)} ${parseInt(b.booking_time.slice(0,2), 10) < 12 ? 'AM' : ''}`}</p>
                                 <p className='serviceCat'>Services and pricing: {b.services_and_pricing}</p>
                                 <p className='serviceCat'>Provider name: {b.provider_name}</p>
+                                <button className='deleteBookingButton' onClick={this.cancelBooking}>Cancel this booking</button>
                             </div>
                         )
                         } else {

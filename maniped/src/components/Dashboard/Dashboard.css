@@ -389,3 +389,10 @@
   font-family: monospace;
 
   }
+
+  .deleteBookingButton {
+    height: 25px;
+    border-radius: 37%;
+    background-color: darkred;
+    color: white;
+  }

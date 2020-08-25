@@ -7,7 +7,8 @@ FETCH_COMPLETEDSERVICES_SUCCESS, FETCH_COMPLETEDSERVICES_FAILURE, CLEAR_NEW_BOOK
 FETCH_SETTINGS_FAILURE, FETCH_ADDRESSES_START, FETCH_ADDRESSES_SUCCESS, FETCH_ADDRESSES_FAILURE, PUT_SETTINGS_START, PUT_SETTINGS_SUCCESS,
 PUT_SETTINGS_FAILURE, DELETE_ADDRESS_START, DELETE_ADDRESS_SUCCESS, DELETE_ADDRESS_FAILURE, EDIT_PROFILE_START, EDIT_PROFILE_SUCCESS, 
 EDIT_PROFILE_FAILURE, FETCH_USER_RATINGS_START, FETCH_USER_RATINGS_SUCCESS, FETCH_USER_RATINGS_FAILURE, PUT_USER_RATINGS_START, PUT_USER_RATINGS_SUCCESS,
-PUT_USER_RATINGS_FAILURE, POST_USER_RATINGS_START, POST_USER_RATINGS_SUCCESS, POST_USER_RATINGS_FAILURE } from '../actions/appActions.js';
+PUT_USER_RATINGS_FAILURE, POST_USER_RATINGS_START, POST_USER_RATINGS_SUCCESS, POST_USER_RATINGS_FAILURE, DELETE_BOOKINGS_START,
+DELETE_BOOKINGS_SUCCESS, DELETE_BOOKINGS_FAILURE } from '../actions/appActions.js';
 
 const availableServicesInitialState = {
     fetching: false,
@@ -29,11 +30,13 @@ const userInfoInitialState = {
 const bookingsInitialState = {
     fetchingBookings: false,
     postingBooking: false,
+    deletingBooking: false,
     bookings: null,
     newBooking: null,
     newBookingDone: false,
     fetchingBookingsError: null,
-    postingBookingError: null
+    postingBookingError: null,
+    deletingBookingError: null
 
 }
 //later add multiple errors and handle the provider/s issue
@@ -216,6 +219,22 @@ export function bookingsReducer(state=bookingsInitialState, action) {
             return {
                 ...state,
                 newBookingDone: action.payload,
+            }
+        case DELETE_BOOKINGS_START:
+            return {
+                ...state,
+                deletingBooking: true
+            }
+        case DELETE_BOOKINGS_SUCCESS:
+            return {
+                ...state,
+                deletingBooking: false
+            }
+        case DELETE_BOOKINGS_FAILURE:
+            return {
+                ...state,
+                deletingBooking: false,
+                deletingBookingError: action.payload
             }
         default:
             return state
