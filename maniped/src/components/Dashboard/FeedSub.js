@@ -199,7 +199,7 @@ class FeedSub extends React.Component {
                                 <p className='serviceCat'>Completed at: Date: {`${s.created_at.slice(0, 10)}`} Time: {`${s.created_at.slice(11, 16)}`}{`${parseInt(s.created_at.slice(11, 13), 10) < 12 ? 'AM' : '' }`}</p>
                                 <p service_id={s.id} user_rating_id={s.user_rating_id}  provider_id={s.provider_id} user_id={s.user_id} onClick={this.rateService} className="serviceRate">Rate this Service</p>
                                 {this.state.ratingService && this.state.serviceToRateId == s.id && <RateService serviceToRateId={this.state.serviceToRateId} service={s} />}
-                                {this.state.ratedServiceAlready && this.state.rateErrorId == s.id && <ErrorComponent serviceErrorId={this.state.serviceErrorId} service={s}  error={`You have already rated this service...`}/>}
+                                {this.state.ratedServiceAlready && this.state.rateErrorId == s.id && <ErrorComponent serviceErrorId={this.state.serviceErrorId} service={s}  error={`You have already rated this service.  Click above again to clear this message...`}/>}
                             </div>
                             
                         )
