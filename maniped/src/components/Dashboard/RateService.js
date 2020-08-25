@@ -80,7 +80,7 @@ class RateService extends React.Component {
                     </form>
                     <button className='rateButton' onClick={this.handleSubmit}>Submit Rating</button>
                 </div>
-                {this.state.ratingPosted ? <div>Thank you for rating your service! Click above on "Rate this service" to dismantle this message...</div> : null}
+                {this.state.ratingPosted ? <div className="rateDone">Thank you for rating your service! Click above on "Rate this service" to dismantle this message...</div> : null}
             </div>
         )
     }
