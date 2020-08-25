@@ -4,12 +4,6 @@ import { connect } from 'react-redux';
 import { postUserRatings } from '../../actions/appActions.js';
 import './Dashboard.css';
 
-//Post needs to take these in the body so can both post rating and backend will in that put to the services and add the user_rating_id in
-//services to be the services using the service ID as the one to update in the table
-//!rating || !provider_id || !user_id || !service_id
-
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-//911911911 DO NOT FORGET THIS^^^^^
 
 
 
@@ -24,7 +18,6 @@ class RateService extends React.Component {
             user_id: this.props.service.user_id,
             service_id: this.props.service.id
         }
-
        
     }
 
@@ -34,18 +27,20 @@ class RateService extends React.Component {
         })
     }
 
-    handleSubmit = e => {
+   handleSubmit = (e) => {
+        const userId = localStorage.getItem('uID')
         const body = {
             rating: this.state.rating,
             provider_id: this.state.provider_id,
             user_id: this.state.user_id,
             service_id: this.state.service_id
         }
+
         this.props.postUserRatings(body);
         this.setState({
             ratingPosted: true
         })
-    }
+}
 
     render() {
         return (
@@ -85,7 +80,7 @@ class RateService extends React.Component {
                     </form>
                     <button className='rateButton' onClick={this.handleSubmit}>Submit Rating</button>
                 </div>
-                {this.state.ratingPosted ? <div>Thank you for rating your service!</div> : null}
+                {this.state.ratingPosted ? <div>Thank you for rating your service! Click above on "Rate this service" to dismantle this message...</div> : null}
             </div>
         )
     }
