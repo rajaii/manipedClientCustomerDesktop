@@ -172,11 +172,9 @@ class FeedSub extends React.Component {
 }
    }
 
-     //=============> yup validation in form again (see registerschema)
-    //add logic in if error on put to alert the error to the user and have them retry
-   //test to make sure runs
-    // further style according to how it looks
-
+   cancelBooking = e => {
+       
+   }
 
 
     render() {
@@ -198,8 +196,8 @@ class FeedSub extends React.Component {
                                 <p className='serviceCat'>Provider name: {s.provider_name}</p>
                                 <p className='serviceCat'>Completed at: Date: {`${s.created_at.slice(0, 10)}`} Time: {`${s.created_at.slice(11, 16)}`}{`${parseInt(s.created_at.slice(11, 13), 10) < 12 ? 'AM' : '' }`}</p>
                                 <p service_id={s.id} user_rating_id={s.user_rating_id}  provider_id={s.provider_id} user_id={s.user_id} onClick={this.rateService} className="serviceRate">Rate this Service</p>
-                                {this.state.ratingService && this.state.serviceToRateId == s.id && <RateService serviceToRateId={this.state.serviceToRateId} service={s} />}
-                                {this.state.ratedServiceAlready && this.state.rateErrorId == s.id && <ErrorComponent serviceErrorId={this.state.serviceErrorId} service={s}  error={`You have already rated this service...`}/>}
+                                {this.state.ratingService && this.state.serviceToRateId == s.id && <RateService closeRateBox={this.closeRateBox} serviceToRateId={this.state.serviceToRateId} service={s} />}
+                                {this.state.ratedServiceAlready && this.state.rateErrorId == s.id && <ErrorComponent serviceErrorId={this.state.serviceErrorId} service={s}  error={`You have already rated this service.  Click above again to clear this message...`}/>}
                             </div>
                             
                         )
@@ -226,6 +224,7 @@ class FeedSub extends React.Component {
                                 <p className='serviceCat'>Booking time: {`${b.booking_time.slice(0,5)} ${parseInt(b.booking_time.slice(0,2), 10) < 12 ? 'AM' : ''}`}</p>
                                 <p className='serviceCat'>Services and pricing: {b.services_and_pricing}</p>
                                 <p className='serviceCat'>Provider name: {b.provider_name}</p>
+                                <button className='deleteBookingButton' onClick={this.cancelBooking}>Cancel this booking</button>
                             </div>
                         )
                         } else {

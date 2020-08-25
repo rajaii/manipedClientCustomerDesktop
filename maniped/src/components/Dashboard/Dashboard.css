@@ -300,7 +300,9 @@
   }
 
 
-
+.serviceRate {
+  width: fit-content;
+}
 
 
 
@@ -377,4 +379,20 @@
   .rating label input:focus:not(:checked) ~ .icon:last-child {
     color: #000;
     text-shadow: 0 0 5px #09f;
+  }
+
+  .rateDone {
+  background-color: white;
+  color: green;
+  height: 50px;
+  font-size: 1.5rem;
+  font-family: monospace;
+
+  }
+
+  .deleteBookingButton {
+    height: 25px;
+    border-radius: 37%;
+    background-color: darkred;
+    color: white;
   }

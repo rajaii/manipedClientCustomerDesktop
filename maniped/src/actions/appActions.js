@@ -249,3 +249,17 @@ export const postUserRatings = (body) => dispatch => {
     .catch(err => dispatch({type: POST_USER_RATINGS_FAILURE, payload: err.response}))
 
 }
+
+export const DELETE_BOOKINGS_START = 'DELETE_BOOKINGS_START';
+export const DELETE_BOOKINGS_SUCCESS = 'DELETE_BOOKINGS_SUCCESS';
+export const DELETE_BOOKINGS_FAILURE = 'DELETE_BOOKINGS_FAILURE';
+
+export const deleteBooking = (id) => dispatch => {
+    dispatch({type: DELETE_BOOKINGS_START});
+    return axiosWithAuth().delete(`http://localhost:4000/api/future_bookings/${id}`)
+    .then(res => {
+        dispatch({type: DELETE_BOOKINGS_SUCCESS, payload: res.data})
+    })
+    .catch(err => dispatch({type: DELETE_BOOKINGS_FAILURE, payload: err.response}))
+
+}

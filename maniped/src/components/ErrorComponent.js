@@ -1,7 +1,7 @@
 import React from 'react';
 import '../components/Dashboard/Dashboard.css';
 
-
+import '../App.css';
 
 class ErrorComponent extends React.Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class ErrorComponent extends React.Component {
 
     render() {
         return (
-            <div >
+            <div className="errorWrap">
                 <p>{this.props.error}</p>
             </div>
         )

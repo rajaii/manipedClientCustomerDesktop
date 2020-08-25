@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.errorWrap {
+  background-color: white;
+  color: red;
+  height: 50px;
+  font-size: 1.5rem;
+  font-family: monospace;
+}
