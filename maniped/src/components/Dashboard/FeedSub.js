@@ -210,7 +210,7 @@ class FeedSub extends React.Component {
                                 <p className='serviceCat'>Amount billed: {s.amount_billed}</p>
                                 <div className='providerWrap'>
                                 <p className='serviceCat'>Provider name: {s.provider_name}</p>
-                                <Link className='bookLink' to={{pathname: '/booknow', state: {providerId: s.provider_id, userId: s.user_id, provider_name: s.provider_name, user_name: s.user_name}}}>Book this provider again</Link>
+                                <Link className='serviceCat Book' to={{pathname: '/booknow', state: {providerId: s.provider_id, userId: s.user_id, provider_name: s.provider_name, user_name: s.user_name}}}>Book this provider again</Link>
                                 </div>
                                 <p className='serviceCat'>Completed at: Date: {`${s.created_at.slice(0, 10)}`} Time: {`${s.created_at.slice(11, 16)}`}{`${parseInt(s.created_at.slice(11, 13), 10) < 12 ? 'AM' : '' }`}</p>
                                 <p service_id={s.id} user_rating_id={s.user_rating_id}  provider_id={s.provider_id} user_id={s.user_id} onClick={this.rateService} className="serviceRate">Rate this Service</p>
