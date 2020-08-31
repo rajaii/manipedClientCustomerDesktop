@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import FeedSub from './FeedSub.js';
-import { fetchBookings } from '../../actions/appActions.js';
+import { fetchBookings, deleteBooking } from '../../actions/appActions.js';
 import './Dashboard.css';
 
 
@@ -18,7 +18,7 @@ class Feed extends React.Component {
     }
 
     cancelBooking = e => {
-        
+
     }
 
     render() {
@@ -39,7 +39,7 @@ class Feed extends React.Component {
                             <p className='service'>Service date:{b.booking_date.slice(0,10)}</p>
                             <p className='service'>Service time:{b.booking_time.slice(0,5)}{parseInt(b.booking_time.slice(0,2), 10) < 12 ? 'AM' : ''}</p>
                             <p className='service'>{b.confirmed === true ? 'Service has been confirmed by the provider' : 'Service has not yet been confirmed by the provider'}</p>
-                            <button className='deleteBookingButton' onClick={this.cancelBooking}>Cancel this booking</button>
+                            <button booking_id={b.id} className='deleteBookingButton' onClick={this.cancelBooking}>Cancel this booking</button>
                         </div>
                     )
                     } else {
@@ -62,4 +62,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { fetchBookings })(Feed);
+export default connect(mapStateToProps, { fetchBookings, deleteBooking })(Feed);

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import RateService from './RateService.js';
 import EditProfile from './EditProfile.js';
 import icon from '../../assets/icons8-settings-48.png';
-import { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses, putSettings, deleteAddress, fetchUserRatings } from '../../actions/appActions.js';
+import { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses, putSettings, deleteAddress, fetchUserRatings, deleteBooking } from '../../actions/appActions.js';
 import './Dashboard.css';
 import ErrorComponent from '../ErrorComponent.js';
 
@@ -173,7 +173,7 @@ class FeedSub extends React.Component {
    }
 
    cancelBooking = e => {
-       
+
    }
 
 
@@ -224,7 +224,7 @@ class FeedSub extends React.Component {
                                 <p className='serviceCat'>Booking time: {`${b.booking_time.slice(0,5)} ${parseInt(b.booking_time.slice(0,2), 10) < 12 ? 'AM' : ''}`}</p>
                                 <p className='serviceCat'>Services and pricing: {b.services_and_pricing}</p>
                                 <p className='serviceCat'>Provider name: {b.provider_name}</p>
-                                <button className='deleteBookingButton' onClick={this.cancelBooking}>Cancel this booking</button>
+                                <button booking_id={b.id} className='deleteBookingButton' onClick={this.cancelBooking}>Cancel this booking</button>
                             </div>
                         )
                         } else {
@@ -290,4 +290,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses, fetchUserRatings, putSettings, deleteAddress })(FeedSub);
+export default connect(mapStateToProps, { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses, fetchUserRatings, putSettings, deleteAddress, deleteBooking })(FeedSub);

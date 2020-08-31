@@ -396,3 +396,8 @@
     background-color: darkred;
     color: white;
   }
+
+  .deleteBookingButton:hover {
+    background-color: red;
+    cursor: pointer;
+  }
