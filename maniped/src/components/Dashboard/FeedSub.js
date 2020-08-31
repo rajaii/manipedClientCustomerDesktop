@@ -27,6 +27,7 @@ class FeedSub extends React.Component {
     this.handleSettingsClick = this.handleSettingsClick.bind(this);
     this.handlePastServicesClick = this.handlePastServicesClick.bind(this);
     this.rateService = this.rateService.bind(this);
+    this.cancelBooking = this.cancelBooking.bind(this);
     }
 
     
@@ -172,9 +173,15 @@ class FeedSub extends React.Component {
 }
    }
 
-   cancelBooking = e => {
-
-   }
+    async cancelBooking (e) {
+        e.persist();
+        const userId = localStorage.getItem('uID');
+        const bookingId = e.target.attributes.booking_id.nodeValue;
+        await this.props.deleteBooking(bookingId);
+        this.props.fetchBookings(userId);
+        
+    }
+   
 
 
     render() {

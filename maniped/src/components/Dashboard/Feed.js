@@ -12,13 +12,19 @@ class Feed extends React.Component {
         this.state = {
 
         }
+        this.cancelBooking = this.cancelBooking.bind(this);
     }
     componentDidMount() {
         this.props.fetchBookings(localStorage.getItem('uID'))
     }
 
-    cancelBooking = e => {
-
+     async cancelBooking (e) {
+        e.persist();
+        const userId = localStorage.getItem('uID');
+        const bookingId = e.target.attributes.booking_id.nodeValue;
+        await this.props.deleteBooking(bookingId);
+        this.props.fetchBookings(userId);
+        
     }
 
     render() {
@@ -30,7 +36,6 @@ class Feed extends React.Component {
                         <h1 className='feedtitle'>Your Upcoming Confirmed Services:</h1>
 
                     {this.props.bookings && this.props.bookings.map(b => {
-                        console.log(this.props.bookings)
                     if (b.confirmed === true) {
                     return (
                         <div className="mappeddiv">
