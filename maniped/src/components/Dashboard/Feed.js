@@ -18,12 +18,20 @@ class Feed extends React.Component {
         this.props.fetchBookings(localStorage.getItem('uID'))
     }
 
-     async cancelBooking (e) {
+    
+    async cancelBooking (e) {
         e.persist();
-        const userId = localStorage.getItem('uID');
-        const bookingId = e.target.attributes.booking_id.nodeValue;
-        await this.props.deleteBooking(bookingId);
-        this.props.fetchBookings(userId);
+        const services_and_pricing = e.target.attributes.services_and_pricing.nodeValue;
+        const provider = e.target.attributes.provider.nodeValue;
+        const date = e.target.attributes.date.nodeValue;
+        if (window.confirm(`You are about to cancel the appontment on ${date} for ${services_and_pricing} with ${provider}`)) {
+            const userId = localStorage.getItem('uID');
+            const bookingId = e.target.attributes.booking_id.nodeValue;
+            await this.props.deleteBooking(bookingId);
+            this.props.fetchBookings(userId);
+            } else {
+                return
+            }
         
     }
 
@@ -44,7 +52,7 @@ class Feed extends React.Component {
                             <p className='service'>Service date:{b.booking_date.slice(0,10)}</p>
                             <p className='service'>Service time:{b.booking_time.slice(0,5)}{parseInt(b.booking_time.slice(0,2), 10) < 12 ? 'AM' : ''}</p>
                             <p className='service'>{b.confirmed === true ? 'Service has been confirmed by the provider' : 'Service has not yet been confirmed by the provider'}</p>
-                            <button booking_id={b.id} className='deleteBookingButton' onClick={this.cancelBooking}>Cancel this booking</button>
+                            <button provider={b.provider_name} booking_id={b.id} date={b.booking_date.slice(0,10)} services_and_pricing={b.services_and_pricing} className='deleteBookingButton' onClick={this.cancelBooking}>Cancel this booking</button>
                         </div>
                     )
                     } else {

@@ -175,10 +175,17 @@ class FeedSub extends React.Component {
 
     async cancelBooking (e) {
         e.persist();
-        const userId = localStorage.getItem('uID');
-        const bookingId = e.target.attributes.booking_id.nodeValue;
-        await this.props.deleteBooking(bookingId);
-        this.props.fetchBookings(userId);
+        const services_and_pricing = e.target.attributes.services_and_pricing.nodeValue;
+        const provider = e.target.attributes.provider.nodeValue;
+        const date = e.target.attributes.date.nodeValue;
+        if (window.confirm(`You are about to cancel the appontment on ${date} for ${services_and_pricing} with ${provider}`)) {
+            const userId = localStorage.getItem('uID');
+            const bookingId = e.target.attributes.booking_id.nodeValue;
+            await this.props.deleteBooking(bookingId);
+            this.props.fetchBookings(userId);
+            } else {
+                return
+            }
         
     }
    
@@ -231,7 +238,7 @@ class FeedSub extends React.Component {
                                 <p className='serviceCat'>Booking time: {`${b.booking_time.slice(0,5)} ${parseInt(b.booking_time.slice(0,2), 10) < 12 ? 'AM' : ''}`}</p>
                                 <p className='serviceCat'>Services and pricing: {b.services_and_pricing}</p>
                                 <p className='serviceCat'>Provider name: {b.provider_name}</p>
-                                <button booking_id={b.id} className='deleteBookingButton' onClick={this.cancelBooking}>Cancel this booking</button>
+                                <button booking_id={b.id} provider={b.provider_name} date={b.booking_date.slice(0,10)} services_and_pricing={b.services_and_pricing} className='deleteBookingButton' onClick={this.cancelBooking}>Cancel this booking</button>
                             </div>
                         )
                         } else {
