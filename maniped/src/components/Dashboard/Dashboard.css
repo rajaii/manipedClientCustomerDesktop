@@ -401,3 +401,8 @@
     background-color: red;
     cursor: pointer;
   }
+
+ .providerWrap {
+   display: flex;
+   flex-direction: column;
+ }
