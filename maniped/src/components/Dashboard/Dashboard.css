@@ -391,7 +391,7 @@
   }
 
   .deleteBookingButton {
-    height: 25px;
+    height: 20%;
     border-radius: 37%;
     background-color: darkred;
     color: white;
