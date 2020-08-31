@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import RateService from './RateService.js';
 import EditProfile from './EditProfile.js';
 import icon from '../../assets/icons8-settings-48.png';
-import { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses, putSettings, deleteAddress, fetchUserRatings } from '../../actions/appActions.js';
+import { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses, putSettings, deleteAddress, fetchUserRatings, deleteBooking } from '../../actions/appActions.js';
 import './Dashboard.css';
 import ErrorComponent from '../ErrorComponent.js';
 
@@ -27,6 +28,7 @@ class FeedSub extends React.Component {
     this.handleSettingsClick = this.handleSettingsClick.bind(this);
     this.handlePastServicesClick = this.handlePastServicesClick.bind(this);
     this.rateService = this.rateService.bind(this);
+    this.cancelBooking = this.cancelBooking.bind(this);
     }
 
     
@@ -172,9 +174,22 @@ class FeedSub extends React.Component {
 }
    }
 
-   cancelBooking = e => {
-       
-   }
+    async cancelBooking (e) {
+        e.persist();
+        const services_and_pricing = e.target.attributes.services_and_pricing.nodeValue;
+        const provider = e.target.attributes.provider.nodeValue;
+        const date = e.target.attributes.date.nodeValue;
+        if (window.confirm(`You are about to cancel the appontment on ${date} for ${services_and_pricing} with ${provider}`)) {
+            const userId = localStorage.getItem('uID');
+            const bookingId = e.target.attributes.booking_id.nodeValue;
+            await this.props.deleteBooking(bookingId);
+            this.props.fetchBookings(userId);
+            } else {
+                return
+            }
+        
+    }
+   
 
 
     render() {
@@ -193,7 +208,10 @@ class FeedSub extends React.Component {
                             <div className='serviceWrapper'>
                                 <h1 className='serviceTitle'>Type of service: {s.type_of_service}</h1>
                                 <p className='serviceCat'>Amount billed: {s.amount_billed}</p>
+                                <div className='providerWrap'>
                                 <p className='serviceCat'>Provider name: {s.provider_name}</p>
+                                <Link className='serviceCat Book' to={{pathname: '/booknow', state: {providerId: s.provider_id, userId: s.user_id, provider_name: s.provider_name, user_name: s.user_name}}}>Book this provider again</Link>
+                                </div>
                                 <p className='serviceCat'>Completed at: Date: {`${s.created_at.slice(0, 10)}`} Time: {`${s.created_at.slice(11, 16)}`}{`${parseInt(s.created_at.slice(11, 13), 10) < 12 ? 'AM' : '' }`}</p>
                                 <p service_id={s.id} user_rating_id={s.user_rating_id}  provider_id={s.provider_id} user_id={s.user_id} onClick={this.rateService} className="serviceRate">Rate this Service</p>
                                 {this.state.ratingService && this.state.serviceToRateId == s.id && <RateService closeRateBox={this.closeRateBox} serviceToRateId={this.state.serviceToRateId} service={s} />}
@@ -224,7 +242,7 @@ class FeedSub extends React.Component {
                                 <p className='serviceCat'>Booking time: {`${b.booking_time.slice(0,5)} ${parseInt(b.booking_time.slice(0,2), 10) < 12 ? 'AM' : ''}`}</p>
                                 <p className='serviceCat'>Services and pricing: {b.services_and_pricing}</p>
                                 <p className='serviceCat'>Provider name: {b.provider_name}</p>
-                                <button className='deleteBookingButton' onClick={this.cancelBooking}>Cancel this booking</button>
+                                <button booking_id={b.id} provider={b.provider_name} date={b.booking_date.slice(0,10)} services_and_pricing={b.services_and_pricing} className='deleteBookingButton' onClick={this.cancelBooking}>Cancel this booking</button>
                             </div>
                         )
                         } else {
@@ -290,4 +308,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses, fetchUserRatings, putSettings, deleteAddress })(FeedSub);
+export default connect(mapStateToProps, { fetchUserInfo, fetchCompletedServices, fetchBookings, fetchSettings, fetchAddresses, fetchUserRatings, putSettings, deleteAddress, deleteBooking })(FeedSub);
