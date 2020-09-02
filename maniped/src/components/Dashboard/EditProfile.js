@@ -34,7 +34,8 @@ class EditProfile extends React.Component {
     render() {
         const widget = window.cloudinary.createUploadWidget({
             cloudName: 'maniped', 
-            uploadPreset: 'maniped_preset'}, (error, result) => { 
+            uploadPreset: 'maniped_preset',
+            cropping: true}, (error, result) => { 
               if (!error && result && result.event === "success") { 
                 console.log('Done! Here is the image info: ', result.info); 
                 console.log(result.info.secure_url)
