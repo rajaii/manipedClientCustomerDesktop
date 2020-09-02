@@ -1,7 +1,9 @@
 import React from 'react';
 
+
 import EditProfileForm from './EditProfileForm.js';
 import './Dashboard.css';
+
 
 
 class EditProfile extends React.Component {
@@ -14,6 +16,7 @@ class EditProfile extends React.Component {
             editingPrimaryAddress: false,
             editingZip: false,
         }
+        this.buttonRef = React.createRef();
     }
      
 
@@ -23,11 +26,25 @@ class EditProfile extends React.Component {
             [e.target.getAttribute('name')]: !currentState
         })
     }
+
+    showWidget = widget => {
+        widget.open()
+    }
+
     render() {
+        const widget = window.cloudinary.createUploadWidget({
+            cloudName: 'maniped', 
+            uploadPreset: 'maniped_preset'}, (error, result) => { 
+              if (!error && result && result.event === "success") { 
+                console.log('Done! Here is the image info: ', result.info); 
+              }
+            }
+          )
     return (
+
     <div className='editProfileWrapper'>
         <p>Photo:</p>
-        <button id="upload_widget" className="cloudinary-button">Upload Photo</button>
+        <button onClick={() => this.showWidget(widget)} className="cloudinary-button">Upload Photo</button>
         <p onClick={this.openForm} name='editingUsername' value={this.state.editingUsername} className='editProfile'>Username: {this.props.username}</p>
         {this.state.editingUsername && <EditProfileForm closeEdit={this.props.closeEdit} thing='username' name='username'/>}
         <p onClick={this.openForm} name='editingEmail' value={this.state.editingEmail} className='editProfile'>Email: {this.props.email}</p>
