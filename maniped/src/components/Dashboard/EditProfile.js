@@ -37,6 +37,10 @@ class EditProfile extends React.Component {
             uploadPreset: 'maniped_preset'}, (error, result) => { 
               if (!error && result && result.event === "success") { 
                 console.log('Done! Here is the image info: ', result.info); 
+                console.log(result.info.secure_url)
+                //make a routes and table.string to accept this and others for other uploads
+                //make a db call here with axios to post the ^ into the particular string entry
+                //make a place to show the pic and make actions and reducer to get the pic and show it in profile
               }
             }
           )
