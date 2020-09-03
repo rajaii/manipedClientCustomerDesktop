@@ -50,8 +50,13 @@ class EditProfile extends React.Component {
     return (
 
     <div className='editProfileWrapper'>
-        <p>Photo:</p>
-        <button onClick={() => this.showWidget(widget)} className="cloudinary-button">Upload Photo</button>
+        <div className='photoWrap'>
+            <div>
+                <p>Photo:</p>
+                <button onClick={() => this.showWidget(widget)} className="cloudinary-button">Upload Photo</button>
+            </div>
+            <img className='editProfileImg' src={`${this.props.profile_img_url}`} />
+        </div>
         <p onClick={this.openForm} name='editingUsername' value={this.state.editingUsername} className='editProfile'>Username: {this.props.username}</p>
         {this.state.editingUsername && <EditProfileForm closeEdit={this.props.closeEdit} thing='username' name='username'/>}
         <p onClick={this.openForm} name='editingEmail' value={this.state.editingEmail} className='editProfile'>Email: {this.props.email}</p>
