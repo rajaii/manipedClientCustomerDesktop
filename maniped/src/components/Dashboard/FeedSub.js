@@ -226,6 +226,7 @@ class FeedSub extends React.Component {
                     {this.state.fetchedUserInfo && this.props.userInfo && (
                     <div className="serviceWrapper">
                         <h1 className="serviceTitle"></h1>
+                        <img className='profileImg' src={`${this.props.userInfo.profile_img_url}`} />
                         <p className="serviceCat">Name: {this.props.userInfo.first_name} {this.props.userInfo.last_name}</p>
                         <p className="serviceCat">User name: {this.props.userInfo.username}</p>
                         <p className="serviceCat">Phone number: {this.props.userInfo.phone_number}</p>
@@ -284,7 +285,7 @@ class FeedSub extends React.Component {
                             {this.state.editingProfile && (
                                 <EditProfile closeEdit={this.closeEdit} username={this.props.userInfo.username} email={this.props.userInfo.email}
                                 phone_number={this.props.userInfo.phone_number} address={this.props.userInfo.address} zipcode={this.props.userInfo.zipcode} first_name={this.props.userInfo.first_name}
-                                last_name={this.props.userInfo.last_name}
+                                last_name={this.props.userInfo.last_name} profile_img_url={this.props.userInfo.profile_img_url}
                                 />
                             )}
                         </div>

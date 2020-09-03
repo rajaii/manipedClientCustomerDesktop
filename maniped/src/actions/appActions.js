@@ -263,3 +263,4 @@ export const deleteBooking = (id) => dispatch => {
     .catch(err => dispatch({type: DELETE_BOOKINGS_FAILURE, payload: err.response}))
 
 }
+

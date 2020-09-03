@@ -419,3 +419,17 @@
   background-color: white;
   border: 2px solid green;
  }
+
+ .profileImg {
+   width: 50%;
+ }
+
+ .editProfileImg {
+   width: 18%;
+ }
+
+ .photoWrap {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+ }

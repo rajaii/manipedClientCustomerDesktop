@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 
+import { editProfile } from '../../actions/appActions.js';
 import EditProfileForm from './EditProfileForm.js';
 import './Dashboard.css';
 
@@ -32,6 +34,7 @@ class EditProfile extends React.Component {
     }
 
     render() {
+        const userId = localStorage.getItem('uID');
         const widget = window.cloudinary.createUploadWidget({
             cloudName: 'maniped', 
             uploadPreset: 'maniped_preset',
@@ -39,17 +42,21 @@ class EditProfile extends React.Component {
               if (!error && result && result.event === "success") { 
                 console.log('Done! Here is the image info: ', result.info); 
                 console.log(result.info.secure_url)
-                //make a routes and table.string to accept this and others for other uploads
-                //make a db call here with axios to post the ^ into the particular string entry
-                //make a place to show the pic and make actions and reducer to get the pic and show it in profile
+                const body = {profile_img_url: result.info.secure_url}
+                this.props.editProfile(userId, body);
               }
             }
           )
     return (
 
     <div className='editProfileWrapper'>
-        <p>Photo:</p>
-        <button onClick={() => this.showWidget(widget)} className="cloudinary-button">Upload Photo</button>
+        <div className='photoWrap'>
+            <div>
+                <p>Photo:</p>
+                <button onClick={() => this.showWidget(widget)} className="cloudinary-button">Upload Photo</button>
+            </div>
+            <img className='editProfileImg' src={`${this.props.profile_img_url}`} />
+        </div>
         <p onClick={this.openForm} name='editingUsername' value={this.state.editingUsername} className='editProfile'>Username: {this.props.username}</p>
         {this.state.editingUsername && <EditProfileForm closeEdit={this.props.closeEdit} thing='username' name='username'/>}
         <p onClick={this.openForm} name='editingEmail' value={this.state.editingEmail} className='editProfile'>Email: {this.props.email}</p>
@@ -65,4 +72,4 @@ class EditProfile extends React.Component {
     }
 }
 
-export default EditProfile;
+export default connect(null, { editProfile })(EditProfile);
