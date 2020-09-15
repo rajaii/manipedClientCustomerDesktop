@@ -319,6 +319,7 @@ class FeedSub extends React.Component {
                     )}
                     
                     <button onClick={() => this.handleAddPayment(stripe)} id="checkout-button">Add Payment Method</button>
+                    
             </div>
 
         )

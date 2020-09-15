@@ -10,6 +10,7 @@ import DashBoard from './components/Dashboard/DashBoard.js';
 import BookNow from './components/BookNow.js';
 import ProviderSearch from './components/ProviderSearch.js';
 import PrivateRoute from './components/PrivateRoute.js';
+import CardSetupForm from './components/Payments/CardSetupForm.js';
 import './App.css';
 
 class App extends React.Component {
@@ -26,6 +27,8 @@ class App extends React.Component {
             <Route exact path='/dashboard' render={(props) => <DashBoard {...props} />} ></Route>
             <Route exact path='/booknow' render={(props) => <BookNow {...props} />}></Route>
             <Route exact path='/providersearch' render={(props) => <ProviderSearch {...props} />}></Route>
+            <Route exact path='/cardsetupform' render={(props) => <CardSetupForm {...props} />}></Route>
+            {/* <CardSetupForm /> */}
         
           
       
