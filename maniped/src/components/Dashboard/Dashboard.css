@@ -433,3 +433,11 @@
    flex-direction: row;
    justify-content: space-between;
  }
+
+ .checkout-button {
+  border: 1px solid black;
+  width: fit-content;
+  font-size: 2rem;
+  background-color: white;
+  color: black
+ }
