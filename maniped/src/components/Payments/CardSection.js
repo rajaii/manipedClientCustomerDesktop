@@ -26,6 +26,7 @@ function CardSection() {
     <label>
       Card details
       <CardElement options={CARD_ELEMENT_OPTIONS} />
+      <p>I authorise Maniped to send instructions to the financial institution that issued my card to take payments from my card account upon completion of provider services.</p>
     </label>
   );
 };

@@ -190,35 +190,10 @@ class FeedSub extends React.Component {
         
     }
    
-    handleAddPayment = (stripe) => {
-            // Create a new Checkout Session using the server-side endpoint you
-            // created in step 3.
-            fetch('http://localhost:4000/create-checkout-session', {
-              method: 'POST',
-            })
-            .then(function(response) {
-              return response.json();
-            })
-            .then(function(session) {
-              return stripe.redirectToCheckout({ sessionId: session.id });
-            })
-            .then(function(result) {
-              // If `redirectToCheckout` fails due to a browser or network
-              // error, you should display the localized error message to your
-              // customer using `error.message`.
-              if (result.error) {
-                alert(result.error.message);
-              }
-            })
-            .catch(function(error) {
-              console.error('Error:', error);
-            });
-          
-    }
 
 
     render() {
-        const stripe = window.Stripe('pk_test_51HPaoQFSPGPUh8ixB4uWwv7sokfnQTRZ2bXeJhrtre0msDJOo1YpOYgtnT0U5D6q2SipDKOuVrP1PINLIBuYXKJj00pdiCiZpS')
+        
         return (
             <div className='feedSubWrapper'>
                 {/* fix this to be sticky and then add another div udner and style to scroll indepedantly */}
@@ -318,7 +293,7 @@ class FeedSub extends React.Component {
                         </div>
                     )}
                     
-                    <button onClick={() => this.handleAddPayment(stripe)} id="checkout-button">Add Payment Method</button>
+                    <Link to='/cardsetupform' className="checkout-button">Add Payment Method</Link>
                     
             </div>
 
