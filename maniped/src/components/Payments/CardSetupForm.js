@@ -18,17 +18,16 @@ export default function CardSetupForm() {
       // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
-    const userId = localStorage.getItem('uID');
-    console.log(userId)
-   axios.get(`http://localhost:4000/card-wallet`)
+   const userId = localStorage.getItem('uID');
+
+   axios.get(`http://localhost:4000/api/stripepayments/${userId}/card-wallet`)
     .then( async res => {
-      console.log(res)
       let secret = res.data.client_secret;
       const result = await stripe.confirmCardSetup(secret, {
         payment_method: {
           card: elements.getElement(CardElement),
           billing_details: {
-              //get name in V
+              //get name from redux for V
             name: 'Ali',
           },
         }
