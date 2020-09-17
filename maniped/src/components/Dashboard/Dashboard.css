@@ -441,3 +441,8 @@
   background-color: white;
   color: black
  }
+
+ .linkwrap {
+   display: flex;
+   flex-direction: column;
+ }

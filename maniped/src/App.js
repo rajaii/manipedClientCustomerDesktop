@@ -28,9 +28,7 @@ class App extends React.Component {
             <Route exact path='/booknow' render={(props) => <BookNow {...props} />}></Route>
             <Route exact path='/providersearch' render={(props) => <ProviderSearch {...props} />}></Route>
             <Route exact path='/cardsetupform' render={(props) => <CardSetupForm {...props} />}></Route>
-            {/* <CardSetupForm /> */}
-        
-          
+            
       
       </div>
    )

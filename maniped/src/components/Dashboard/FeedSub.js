@@ -195,6 +195,7 @@ class FeedSub extends React.Component {
     render() {
         
         return (
+   
             <div className='feedSubWrapper'>
                 {/* fix this to be sticky and then add another div udner and style to scroll indepedantly */}
                     <div className='serviceList' id="needed">
@@ -292,11 +293,11 @@ class FeedSub extends React.Component {
                             
                         </div>
                     )}
-                    
+                    {/* this link messes up the styling of the edit profile forms need to fix */}
                     <Link to='/cardsetupform' className="checkout-button">Add Payment Method</Link>
                     
             </div>
-
+            
         )
         
     }
