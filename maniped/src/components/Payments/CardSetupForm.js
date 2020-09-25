@@ -27,7 +27,7 @@ export default function CardSetupForm() {
         payment_method: {
           card: elements.getElement(CardElement),
           billing_details: {
-              //get name from redux for V
+              //get name from redux for V or just get request to users account in be to get name wither or
             name: 'Ali',
           },
         }
@@ -35,11 +35,13 @@ export default function CardSetupForm() {
   
       if (result.error) {
         console.log('here:', result.error)
+        console.log(result.setupIntent.payment_method)
       } else {
         // The setup has succeeded. Display a success message and send
+        ////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         // result.setupIntent.payment_method to your server to save the
         // card to a Customer
-        console.log('success');
+        console.log('success', result.setupIntent.payment_method)
       }
     })
     .catch(err => {
