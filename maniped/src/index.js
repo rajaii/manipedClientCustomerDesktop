@@ -19,13 +19,13 @@ const stripePromise = loadStripe("pk_test_51HPaoQFSPGPUh8ixB4uWwv7sokfnQTRZ2bXeJ
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk, logger)));
 
 ReactDOM.render(
-  <Elements stripe={stripePromise}>
-    <Provider store={store}>
-      <Router>
-        <App />
-      </Router>
-    </Provider>
-  </Elements>, document.getElementById('root')
+  <Provider store={store}>
+    <Elements stripe={stripePromise}>
+        <Router>
+          <App />
+        </Router>
+    </Elements>
+  </Provider>, document.getElementById('root')
 );
 
 
