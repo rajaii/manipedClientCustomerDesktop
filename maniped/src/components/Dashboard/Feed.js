@@ -71,7 +71,7 @@ class Feed extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        bookings: state.bookingsReducer.bookings
+        bookings: state.bookingsReducer.bookings,
     }
 }
 

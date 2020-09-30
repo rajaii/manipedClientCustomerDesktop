@@ -24,6 +24,7 @@ class DashHeader extends React.Component {
         
     }
 
+
     render() {
         return (
         <div className='search' id='sticky'>
@@ -43,7 +44,7 @@ class DashHeader extends React.Component {
                 
             <div className='midFlex'>
                 <p className='p2'>Welcome {this.props.userInfo && this.props.userInfo.username}</p>
-                <Link className='x' to='/providersearch'>Book an appointment now</Link>
+                <Link className='x' to={'/providersearch'}>Book an appointment now</Link> 
             </div>
         
             <div className='newNavFlex'>
@@ -63,7 +64,7 @@ class DashHeader extends React.Component {
 const mapStateToProps = state => {
     return {
         userInfo: state.userInfoReducer.userInfo,
-        isLoggedIn: state.loginReducer.isLoggedIn
+        isLoggedIn: state.loginReducer.isLoggedIn,
     }
 }
 

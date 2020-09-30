@@ -262,6 +262,7 @@
   .formWrap {
       display: flex;
       align-items: center;
+      margin-top: 2%;
   }
 
   .serviceRate {
@@ -442,7 +443,6 @@
   color: black
  }
 
- .linkwrap {
-   display: flex;
-   flex-direction: column;
+ .linkWrapper {
+   margin-top: 20px;
  }
