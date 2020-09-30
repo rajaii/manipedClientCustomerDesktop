@@ -442,7 +442,6 @@
   color: black
  }
 
- .linkwrap {
-   display: flex;
-   flex-direction: column;
+ .linkWrapper {
+   margin-top: 20px;
  }
