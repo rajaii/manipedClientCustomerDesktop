@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { postBooking, fetchUsersInfo, fetchProviderInfo, fetchAvailableServices, clearNewBooking } from '../actions/appActions.js';
+import { postBooking, fetchUsersInfo, fetchUserInfo, fetchProviderInfo, fetchAvailableServices, clearNewBooking } from '../actions/appActions.js';
 import './BookNow.css';
 
 
@@ -22,7 +22,9 @@ class BookNow extends React.Component {
         }
     }
     componentDidMount() {
+        const userId = localStorage.getItem('uID');
         this.props.fetchAvailableServices();
+        this.props.fetchUserInfo(userId);
     }
     handleChange = e => {
         this.setState({
@@ -32,7 +34,11 @@ class BookNow extends React.Component {
     }
 
     handleBooking = e => {
-        if (this.state.booking_date === '' || this.state.booking_time === '' || this.state.services_and_pricing === '') {
+        if (this.props.userInfo.stripe_custyid === null) {
+            window.confirm('You do not have a card on file.  Please enter your payment in the form that comes up and try the booking again.  You will not be charged until the service has been completed.  Thank you for choosing maniPed for your cosmetic needs!')
+            this.props.history.push('/cardsetupform');
+        }
+        else if (this.state.booking_date === '' || this.state.booking_time === '' || this.state.services_and_pricing === '') {
             alert('You have to enter all fields to book');
             return
         } else {
@@ -190,4 +196,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, { fetchUsersInfo, postBooking, fetchProviderInfo, fetchAvailableServices, clearNewBooking })(BookNow);
+export default connect(mapStateToProps, { fetchUsersInfo, postBooking, fetchUserInfo, fetchProviderInfo, fetchAvailableServices, clearNewBooking })(BookNow);
