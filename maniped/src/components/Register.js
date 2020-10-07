@@ -72,6 +72,7 @@ async handleSubmit (e) {
             verifyPassword: '',
         })
         } 
+        window.confirm('Thank you for signing up for maniPed for your cosmetic needs!  Please login to your email and verify your account...');
         this.props.history.push('/login');
     })
     .catch(err => {
