@@ -59,8 +59,9 @@ class EditProfile extends React.Component {
         </div>
         <p onClick={this.openForm} name='editingUsername' value={this.state.editingUsername} className='editProfile'>Username: {this.props.username}</p>
         {this.state.editingUsername && <EditProfileForm closeEdit={this.props.closeEdit} thing='username' name='username'/>}
-        <p onClick={this.openForm} name='editingEmail' value={this.state.editingEmail} className='editProfile'>Email: {this.props.email}</p>
-        {this.state.editingEmail && <EditProfileForm closeEdit={this.props.closeEdit} thing='email' name='email'/>}
+        <p  name='editingEmail' value={this.state.editingEmail} className='editProfile'>Email: {this.props.email}</p>
+        {/* on line 62 add after p onClick={this.openForm}, and uncomment => to allow users to edit email, will not do that for now.
+         {this.state.editingEmail && <EditProfileForm closeEdit={this.props.closeEdit} thing='email' name='email'/>} */}
         <p onClick={this.openForm} name='editingPhoneNumber' value={this.state.editingPhoneNumber} className='editProfile'>Phone number: {this.props.phone_number}</p>
         {this.state.editingPhoneNumber && <EditProfileForm  closeEdit={this.props.closeEdit}thing='phone number' name='phone_number'/>}
         <p onClick={this.openForm} name='editingPrimaryAddress' value={this.state.editingPrimaryAddress} className='editProfile'>Primary address: {this.props.address}</p>
