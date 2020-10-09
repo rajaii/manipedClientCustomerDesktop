@@ -40,3 +40,16 @@ export const logout = () => {
         
     }
 }
+
+export const FORGOT_USERNAME_START = 'FORGOT_USERNAME_START';
+export const FORGOT_USERNAME_SUCCESS = 'FORGOT_USERNAME_SUCCESS';
+export const FORGOT_USERNAME_FAILURE = 'FORGOT_USERNAME_FAILURE';
+
+export const sendUsername = email => dispatch => {
+    dispatch({type: FORGOT_USERNAME_START});
+    return axios.post('http://localhost:4000/api/auth/forgotusername', email)
+    .then(res => {
+        dispatch({type: FORGOT_USERNAME_SUCCESS, payload: res})
+    })
+    .catch(err => dispatch({type: FORGOT_USERNAME_FAILURE, payload: err}))
+}
