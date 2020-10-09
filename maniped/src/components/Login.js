@@ -89,6 +89,12 @@ class Login extends React.Component {
             <div className='logFlex'>
                 <p>Not yet a user? </p> <Link className='sLink' to='/register'>Signup today</Link> 
             </div>
+            <div className='logFlex'>
+                <p>Forgot username? </p> <Link className='sLink' to='/forgotusername'>Click here</Link> 
+            </div>
+            <div className='logFlex'>
+                <p>Forgot password? </p> <Link className='sLink' to='/forgotpassword'>Click here</Link> 
+            </div>
         </div>
         )
     }
