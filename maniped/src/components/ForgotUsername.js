@@ -2,7 +2,8 @@ import React from 'react';
 import * as yup from 'yup';
 import { connect } from 'react-redux';
 
-import { sendUsername } from '../actions/authActions.js'
+import { sendUsername } from '../actions/authActions.js';
+import './Login.css';
 
 //make this componenet
 //upon completing the action call history.push to login
@@ -35,14 +36,22 @@ class ForgotUserName extends React.Component {
         .then(async d => {
             if (d) {
             
-            await this.props.sendUsername(body);
+            let sent = await this.props.sendUsername(body)
+            console.log(sent)
+            if (sent != undefined && sent.payload.response.data.message === "user with the specified email does not exist") {
+                this.setState({
+                    email: ''
+                })
+                window.confirm("User with the specified email does not exist. Please try again.");
+                this.props.history.push('/login')
+            } else {
             this.setState({
                 email: ''
             })
-            
+            window.confirm("If there is an email associated with the entered email address, your username has been sent to the entered email address. Thank you for choosing maniPed for your cosmetic needs!");
             
             this.props.history.push('/login')
-            
+        } 
         }})
         .catch(err => {
              console.log(err)
@@ -55,16 +64,19 @@ class ForgotUserName extends React.Component {
     render() {
         return (
             <div>
-                <form type='submit' onSubmit={this.getUsername}>
+                <form className='fUCont' type='submit' onSubmit={this.getUsername}>
+                    <p>Enter your email associated with your account here, and if there is an account associated with that email, we will send your username to you.</p>
                     <input
+                    className='twoFive'
                     type='text'
                     onChange={this.handlechange}
                     name='email'
                     value={this.state.email}
+                    placeholder='email'
                     />
                     {this.state.validationError && this.state.validationError.inner.filter(i => i.message === "Email is required").length > 0 ?  <div className="Error">EMAIL IS REQUIRED RE-ENTER AND CLICK SIGN UP</div> : null}
                     {this.state.validationError && this.state.validationError.inner.filter(i => i.message === "Please enter a valid email").length > 0 ?  <div className="Error">MUST BE A VALID EMAIL RE-ENTER AND CLICK SIGN UP</div> : null}
-                    <button>Get username</button>
+                    <button className='twoFive'>Get username</button>
                 </form>
             </div>
         )
