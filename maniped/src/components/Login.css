@@ -11,6 +11,7 @@ label, input {
     font-size: 1.5rem;
 }
 
+
 button {
     height: 66px;
 }
@@ -120,3 +121,16 @@ button {
   .aboveLink {
       margin-bottom: 10px;
   }
+
+  .fUCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  .twoFive {
+      width: 25%;
+  }
+
+ 
