@@ -53,3 +53,29 @@ export const sendUsername = email => dispatch => {
     })
     .catch(err => dispatch({type: FORGOT_USERNAME_FAILURE, payload: err}))
 }
+
+export const FORGOT_PASSWORD_START = 'FORGOT_PASSWORD_START';
+export const FORGOT_PASSWORD_SUCCESS = 'FORGOT_PASSWORD_SUCCESS';
+export const FORGOT_PASSWORD_FAILURE = 'FORGOT_PASSWORD_FAILURE';
+
+export const resetPassword = email => dispatch => {
+    dispatch({type: FORGOT_PASSWORD_START});
+    return axios.post('http://localhost:4000/api/auth/forgotuserpassword', email)
+    .then(res => {
+        dispatch({type: FORGOT_PASSWORD_SUCCESS, payload: res})
+    })
+    .catch(err => dispatch({type: FORGOT_PASSWORD_FAILURE, payload: err}))
+}
+
+export const RESET_PASSWORD_START = 'RESET_PASSWORD_START';
+export const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS';
+export const RESET_PASSWORD_FAILURE = 'RESET_PASSWORD_FAILURE';
+
+export const resetPasswordFin = (id, body) => dispatch => {
+    dispatch({type: RESET_PASSWORD_START});
+    return axios.put(`http://localhost:4000/api/users/${id}`, body)
+    .then(res => {
+        dispatch({type: RESET_PASSWORD_SUCCESS, payload: res})
+    })
+    .catch(err => dispatch({type: RESET_PASSWORD_FAILURE, payload: err}))
+}

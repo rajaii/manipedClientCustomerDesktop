@@ -6,8 +6,8 @@ import HomePage from './components/HomePage.js';
 import About from './components/About.js';
 import Register from './components/Register.js';
 import Login from './components/Login.js';
-import ForgotUsername from './components/ForgotUsername.js';
-import ForgotPassword from './components/ForgotPassword.js';
+import ForgotUsernamePw from './components/ForgotUsernamePw.js';
+import ResetPassword from './components/ResetPassword.js';
 import DashBoard from './components/Dashboard/DashBoard.js';
 import BookNow from './components/BookNow.js';
 import ProviderSearch from './components/ProviderSearch.js';
@@ -16,8 +16,10 @@ import CardSetupForm from './components/Payments/CardSetupForm.js';
 import './App.css';
 
 class App extends React.Component {
+ 
   
  render() {
+   
    return (
      <div>
         
@@ -26,8 +28,8 @@ class App extends React.Component {
             <Route exact path='/about' render={(props) => <About {...props} />}></Route>
             <Route exact path='/register' render={(props) => <Register {...props} />}></Route>
             <Route exact path='/login' render={(props) => <Login {...props} />}></Route>
-            <Route exact path='/forgotusername' render={(props) => <ForgotUsername {...props} />}></Route>
-            <Route exact path='/forgotpassword' render={(props) => <ForgotPassword {...props} />}></Route>
+            <Route exact path='/forgotusernamepw' render={(props) => <ForgotUsernamePw {...props} />}></Route>
+            <Route exact path='/resetpassword' render={(props) => <ResetPassword {...props} />}></Route>
             <Route exact path='/dashboard' render={(props) => <DashBoard {...props} />} ></Route>
             <Route exact path='/booknow' render={(props) => <BookNow {...props} />}></Route>
             <Route exact path='/providersearch' render={(props) => <ProviderSearch {...props} />}></Route>
