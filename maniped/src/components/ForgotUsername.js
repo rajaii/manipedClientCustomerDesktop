@@ -66,7 +66,6 @@ class ForgotUserName extends React.Component {
             if (d) {
             
             let sent = await this.props.resetPassword(body)
-            console.log(sent)
             if (sent != undefined && sent.payload.response.data.message === "user with the specified email does not exist") {
                 this.setState({
                     email: ''
@@ -91,9 +90,10 @@ class ForgotUserName extends React.Component {
     }
  
     render() {
+
         return (
             <div>
-                <form className='fUCont' type='submit' onSubmit={this.state.forgotUsername ? this.getUsername : this.resetPassword}>
+                <form className='fUCont' type='submit' onSubmit={this.props.location.state != undefined ? this.getUsername : this.resetPassword}>
                     <p>Enter your email associated with your account here, and if there is an account associated with that email, we will send you an email with the next steps.</p>
                     <input
                     className='twoFive'

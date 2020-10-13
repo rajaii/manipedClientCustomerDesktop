@@ -93,7 +93,7 @@ class Login extends React.Component {
                 <p>Forgot username? </p> <Link className='sLink' to={{pathname: '/forgotusername', state: {forgotUsername: true}}}>Click here</Link> 
             </div>
             <div className='logFlex'>
-                <p>Forgot password? </p> <Link className='sLink' to={{pathname: '/forgotusername', state: {forgotUsername: false}}}>Click here</Link> 
+                <p>Forgot password? </p> <Link className='sLink' to='/forgotusername'>Click here</Link> 
             </div>
         </div>
         )
