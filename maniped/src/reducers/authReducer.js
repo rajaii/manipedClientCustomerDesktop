@@ -1,5 +1,6 @@
 import {LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_START, REGISTER_SUCCESS, REGISTER_FAILURE, LOGOUT,
-FORGOT_USERNAME_START, FORGOT_USERNAME_SUCCESS, FORGOT_USERNAME_FAILURE } from '../actions/authActions.js';
+FORGOT_USERNAME_START, FORGOT_USERNAME_SUCCESS, FORGOT_USERNAME_FAILURE, FORGOT_PASSWORD_START, FORGOT_PASSWORD_SUCCESS, 
+FORGOT_PASSWORD_FAILURE } from '../actions/authActions.js';
 
 const initialState = {
         successfulRegister: false,
@@ -11,6 +12,8 @@ const initialState = {
         isLoggedIn: false,
         sendingUsername: false,
         usernameSent: '',
+        resettingPassword: false,
+        passwordReset: '',
         error: null
     
 }
@@ -62,6 +65,25 @@ export function loginReducer(state=initialState, action) {
             return {
                 ...state,
                 loggingIn: false,
+                error: action.payload
+            }
+        case FORGOT_PASSWORD_START:
+            return {
+                ...state,
+                resettingPassword: true,
+
+            }
+        case FORGOT_PASSWORD_SUCCESS:
+            return {
+                ...state,
+                resettingPassword: false,
+                passwordReset: action.payload
+
+            }
+        case FORGOT_PASSWORD_FAILURE:
+            return {
+                ...state,
+                resettingPassword: false,
                 error: action.payload
             }
         default:

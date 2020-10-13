@@ -7,7 +7,6 @@ import About from './components/About.js';
 import Register from './components/Register.js';
 import Login from './components/Login.js';
 import ForgotUsername from './components/ForgotUsername.js';
-import ForgotPassword from './components/ForgotPassword.js';
 import DashBoard from './components/Dashboard/DashBoard.js';
 import BookNow from './components/BookNow.js';
 import ProviderSearch from './components/ProviderSearch.js';
@@ -27,7 +26,6 @@ class App extends React.Component {
             <Route exact path='/register' render={(props) => <Register {...props} />}></Route>
             <Route exact path='/login' render={(props) => <Login {...props} />}></Route>
             <Route exact path='/forgotusername' render={(props) => <ForgotUsername {...props} />}></Route>
-            <Route exact path='/forgotpassword' render={(props) => <ForgotPassword {...props} />}></Route>
             <Route exact path='/dashboard' render={(props) => <DashBoard {...props} />} ></Route>
             <Route exact path='/booknow' render={(props) => <BookNow {...props} />}></Route>
             <Route exact path='/providersearch' render={(props) => <ProviderSearch {...props} />}></Route>
