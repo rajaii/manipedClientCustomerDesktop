@@ -66,3 +66,16 @@ export const resetPassword = email => dispatch => {
     })
     .catch(err => dispatch({type: FORGOT_PASSWORD_FAILURE, payload: err}))
 }
+
+export const RESET_PASSWORD_START = 'RESET_PASSWORD_START';
+export const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS';
+export const RESET_PASSWORD_FAILURE = 'RESET_PASSWORD_FAILURE';
+
+export const resetPasswordFin = (id, body) => dispatch => {
+    dispatch({type: RESET_PASSWORD_START});
+    return axios.put(`http://localhost:4000/api/users/${id}`, body)
+    .then(res => {
+        dispatch({type: RESET_PASSWORD_SUCCESS, payload: res})
+    })
+    .catch(err => dispatch({type: RESET_PASSWORD_FAILURE, payload: err}))
+}

@@ -7,7 +7,7 @@ import './Login.css';
 
 
 
-let forgorUsernameSchema = yup.object().shape({
+let forgotUsernameSchema = yup.object().shape({
     email: yup.string().email('Please enter a valid email').required('Email is required'),
   });
 
@@ -29,12 +29,12 @@ class ForgotUserNamePw extends React.Component {
     getUsername = e => {
         e.preventDefault();
         const body = {email: this.state.email}
-        forgorUsernameSchema.validate(body, {abortEarly: false})
+        forgotUsernameSchema.validate(body, {abortEarly: false})
         .then(async d => {
             if (d) {
             
             let sent = await this.props.sendUsername(body)
-            console.log(sent)
+
             if (sent != undefined && sent.payload.response.data.message === "user with the specified email does not exist") {
                 this.setState({
                     email: ''
@@ -61,7 +61,7 @@ class ForgotUserNamePw extends React.Component {
     resetPassword = e => {
         e.preventDefault();
         const body = {email: this.state.email}
-        forgorUsernameSchema.validate(body, {abortEarly: false})
+        forgotUsernameSchema.validate(body, {abortEarly: false})
         .then(async d => {
             if (d) {
             
