@@ -11,7 +11,7 @@ let forgorUsernameSchema = yup.object().shape({
     email: yup.string().email('Please enter a valid email').required('Email is required'),
   });
 
-class ForgotUserName extends React.Component {
+class ForgotUserNamePw extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -112,4 +112,4 @@ class ForgotUserName extends React.Component {
     }
 }
 
-export default connect(null, { sendUsername, resetPassword })(ForgotUserName);
+export default connect(null, { sendUsername, resetPassword })(ForgotUserNamePw);
