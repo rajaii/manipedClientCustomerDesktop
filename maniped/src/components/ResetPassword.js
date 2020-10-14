@@ -1,6 +1,7 @@
 import React from 'react';
 import * as yup from 'yup';
 import { connect } from 'react-redux';
+import * as qs from 'qs';
 
 import { resetPasswordFin } from '../actions/authActions.js';
 import './Login.css';
@@ -36,10 +37,13 @@ class ResetPassword extends React.Component {
         .then(async d => {
             if (d) {
             console.log(this.props.params)
-            //need to define this id 
-            let sent = await this.props.resetPasswordFin(id, putBody);
-            if (sent != undefined) {
-                console.log(sent)
+            const id = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).manid;
+            console.log(`parsed id: ${id}`)
+            await this.props.resetPasswordFin(id, putBody);
+            console.log(this.props.passwordReset)
+            if (this.props.passwordReset.request.status === 200) {
+                /////////////////////////////////////here
+                
                 this.setState({
                     password: '',
                     verifyPassword: ''
@@ -95,4 +99,10 @@ class ResetPassword extends React.Component {
     }
 }
 
-export default connect(null, { resetPasswordFin })(ResetPassword);
+const mapStateToProps = state => {
+    return {
+        passwordReset: state.loginReducer.passwordReset
+    }
+}
+
+export default connect(mapStateToProps, { resetPasswordFin })(ResetPassword);
