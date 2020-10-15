@@ -132,5 +132,9 @@ button {
   .twoFive {
       width: 25%;
   }
-
+.verWarn {
+    color: red;
+    text-align: center;
+    font-size: 2rem;
+}
  

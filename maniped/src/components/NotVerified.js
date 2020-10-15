@@ -63,7 +63,7 @@ class NotVerified extends React.Component {
         return (
             <div>
                 <form className='fUCont' type='submit' onSubmit={this.resendVerification}>
-                    <h1>You have not verified your account yet.  Please log in to your email associated with your account and follow the instructions in the email we sent.  If you do not have the email then enter your email below and we will send you another email with further instructions.</h1>
+                    <h1 className='verWarn'>You have not verified your account yet.  Please log in to your email associated with your account and follow the instructions in the email we sent.  If you do not have the email then enter your email below and we will send you another email with further instructions.</h1>
                     <p>Enter your email associated with your account here, and if there is an account associated with that email, we will send you an email with the next steps.</p>
                     <input
                     className='twoFive'

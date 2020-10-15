@@ -87,7 +87,7 @@ export const RESEND_VERIFICATION_FAILURE = 'RESEND_VERIFICATION_FAILURE';
 
 export const resendVerification = (body) => dispatch => {
     dispatch({type: RESEND_VERIFICATION_START});
-    return axios.put(`http://localhost:4000/api/auth/resendverification`, body)
+    return axios.post(`http://localhost:4000/api/auth/resendverification`, body)
     .then(res => {
         dispatch({type: RESEND_VERIFICATION_SUCCESS, payload: res})
     })
