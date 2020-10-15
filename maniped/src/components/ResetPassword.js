@@ -36,13 +36,14 @@ class ResetPassword extends React.Component {
         registrationSchema.validate(validationBody, {abortEarly: false})
         .then(async d => {
             if (d) {
-            console.log(this.props.params)
+            
             const id = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).manid;
-            console.log(`parsed id: ${id}`)
+            const t = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).t;
+            console.log(t)
+            localStorage.setItem('token', t);
             await this.props.resetPasswordFin(id, putBody);
-            console.log(this.props.passwordReset)
+            
             if (this.props.passwordReset.request.status === 200) {
-                /////////////////////////////////////here
                 
                 this.setState({
                     password: '',

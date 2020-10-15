@@ -1,4 +1,5 @@
 import axios from "axios";
+import axiosWithAuth from './axiosWithAuth.js';
 
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -73,7 +74,7 @@ export const RESET_PASSWORD_FAILURE = 'RESET_PASSWORD_FAILURE';
 
 export const resetPasswordFin = (id, body) => dispatch => {
     dispatch({type: RESET_PASSWORD_START});
-    return axios.put(`http://localhost:4000/api/users/${id}`, body)
+    return axiosWithAuth().put(`http://localhost:4000/api/users/${id}`, body)
     .then(res => {
         dispatch({type: RESET_PASSWORD_SUCCESS, payload: res})
     })
