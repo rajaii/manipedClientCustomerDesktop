@@ -80,3 +80,16 @@ export const resetPasswordFin = (id, body) => dispatch => {
     })
     .catch(err => dispatch({type: RESET_PASSWORD_FAILURE, payload: err}))
 }
+
+export const RESEND_VERIFICATION_START = 'RESEND_VERIFICATION_START';
+export const RESEND_VERIFICATION_SUCCESS = 'RESEND_VERIFICATION_SUCCESS';
+export const RESEND_VERIFICATION_FAILURE = 'RESEND_VERIFICATION_FAILURE';
+
+export const resendVerification = (body) => dispatch => {
+    dispatch({type: RESEND_VERIFICATION_START});
+    return axios.post(`http://localhost:4000/api/auth/resendverification`, body)
+    .then(res => {
+        dispatch({type: RESEND_VERIFICATION_SUCCESS, payload: res})
+    })
+    .catch(err => dispatch({type: RESEND_VERIFICATION_FAILURE, payload: err}))
+}

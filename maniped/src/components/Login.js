@@ -42,7 +42,12 @@ class Login extends React.Component {
         loginSchema.validate(this.state, {abortEarly: false})
         .then(async d => {
             if (d) {
-            await this.props.login(body)
+            let res = await this.props.login(body)
+            console.log(res)
+            if (res != undefined && res.payload.data.message === "please verify your account through your email before logging in...") {
+                this.props.history.push('/notverified');
+            }
+            else {
             this.setState({
                 username: '',
                 password: ''
@@ -50,7 +55,7 @@ class Login extends React.Component {
             
             
             this.props.history.push('/dashboard')
-            
+        }
         }})
         .catch(err => {
              console.log(err)
