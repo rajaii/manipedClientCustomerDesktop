@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { fetchUserInfo } from '../../actions/appActions.js';
@@ -21,6 +21,8 @@ class DashHeader extends React.Component {
     handleLogout = e => {
         e.preventDefault();
         this.props.logout();
+        console.log(this.props)
+        this.props.history.push('/login');
         
     }
 
@@ -50,7 +52,7 @@ class DashHeader extends React.Component {
             <div className='newNavFlex'>
 
                 
-                <p to='/login' onClick={this.handleLogout} className='logout'>Logout</p>
+                <p onClick={this.handleLogout} className='logout'>Logout</p>
                 
 
             </div>
@@ -67,5 +69,6 @@ const mapStateToProps = state => {
         isLoggedIn: state.loginReducer.isLoggedIn,
     }
 }
+const ThisComponent = withRouter(DashHeader);
 
-export default connect(mapStateToProps, { fetchUserInfo, logout })(DashHeader);
+export default connect(mapStateToProps, { fetchUserInfo, logout })(ThisComponent);
