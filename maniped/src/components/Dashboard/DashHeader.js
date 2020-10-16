@@ -22,7 +22,7 @@ class DashHeader extends React.Component {
         e.preventDefault();
         this.props.logout();
         console.log(this.props)
-        this.props.history.push('/login');
+        this.props.history.push('/');
         
     }
 
