@@ -71,6 +71,7 @@
 
 .logout {
     font-size: 1.75rem;
+    text-decoration: none;
 }
 
 .logout:hover {

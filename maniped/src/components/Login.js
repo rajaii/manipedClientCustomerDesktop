@@ -43,7 +43,6 @@ class Login extends React.Component {
         .then(async d => {
             if (d) {
             let res = await this.props.login(body)
-            console.log(res)
             if (res != undefined && res.payload.data.message === "please verify your account through your email before logging in...") {
                 this.props.history.push('/notverified');
             }
