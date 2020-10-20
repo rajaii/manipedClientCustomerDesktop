@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { postUserRatings } from '../../actions/appActions.js';
+import ErrorComponent from '../ErrorComponent.js';
 import './Dashboard.css';
 
 
@@ -13,11 +14,13 @@ class RateService extends React.Component {
         super(props);
         this.state = {
             ratingPosted: false,
+            displayError: false,
             rating: 0,
             provider_id: this.props.service.provider_id,
             user_id: this.props.service.user_id,
             service_id: this.props.service.id
         }
+        this.handleSubmit = this.handleSubmit.bind(this);
        
     }
 
@@ -27,8 +30,9 @@ class RateService extends React.Component {
         })
     }
 
-   handleSubmit = (e) => {
-        const userId = localStorage.getItem('uID')
+   async handleSubmit (e) {
+       
+        
         const body = {
             rating: this.state.rating,
             provider_id: this.state.provider_id,
@@ -36,10 +40,19 @@ class RateService extends React.Component {
             service_id: this.state.service_id
         }
 
-        this.props.postUserRatings(body);
+        const res = await this.props.postUserRatings(body)
+
+        if (res && res.payload.data.message === "please provide a rating to rate your provider...") {
+            this.setState({
+                ratingPosted: true,
+                displayError: true
+            })
+            return;
+        } else {
         this.setState({
             ratingPosted: true
         })
+    }
 }
 
     render() {
@@ -80,7 +93,8 @@ class RateService extends React.Component {
                     </form>
                     <button className='rateButton' onClick={this.handleSubmit}>Submit Rating</button>
                 </div>
-                {this.state.ratingPosted ? <div className="rateDone">Thank you for rating your service! Click above on "Rate this service" to dismantle this message...</div> : null}
+                {this.state.ratingPosted && this.state.displayError ? <ErrorComponent error='Please provide a rating to rate this service...' /> : null}
+                {this.state.ratingPosted && !this.state.displayError ? <div className="rateDone">Thank you for rating your service! Click above on "Rate this service" to dismantle this message...</div> : null}
             </div>
         )
     }
