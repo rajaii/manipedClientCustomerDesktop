@@ -286,14 +286,20 @@
   }  
 
   .rateWrapper {
-    display: flex;
-    align-items: center;
+    margin-top: -61%;
+    
   }
 
   .rateButton {
       height: 25px;
       border-radius: 25px;
 
+  }
+
+  .rateButton:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
   }
 
   .hideRatingForm {
