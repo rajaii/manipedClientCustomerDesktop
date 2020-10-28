@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../actions/authActions.js';
+import { fetchUsersInfo } from '../actions/appActions.js';
 
 
 import './Nav.css';
@@ -13,6 +14,17 @@ function Nav (props) {
         props.logout();
         
     }
+
+    useEffect(() => {
+        if(props.isLoggedIn) {
+            const userId = localStorage.getItem('uID');
+            props.fetchUsersInfo(userId);
+        } else {
+            return;
+        }
+    }, [])
+
+    
 
     return (
        
@@ -54,4 +66,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { logout })(Nav);
+export default connect(mapStateToProps, { logout, fetchUsersInfo })(Nav);

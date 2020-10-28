@@ -33,11 +33,11 @@ class App extends React.Component {
             <Route exact path='/forgotusernamepw' render={(props) => <ForgotUsernamePw {...props} />}></Route>
             <Route exact path='/resetpassword' render={(props) => <ResetPassword {...props} />}></Route>
             <Route exact path='/notverified' render={(props) => <NotVerified {...props} />}></Route>
-            {/* <PrivateRoute exact path='/dashboard' render={(props) => <DashBoard {...props} />} ></PrivateRoute> */}
             <PrivateRoute exact path='/dashboard' component={DashBoard} ></PrivateRoute>
-            <Route exact path='/booknow' render={(props) => <BookNow {...props} />}></Route>
-            <Route exact path='/providersearch' render={(props) => <ProviderSearch {...props} />}></Route>
-            <Route exact path='/cardsetupform' render={(props) => <CardSetupForm {...props} />}></Route>
+            <PrivateRoute exact path='/booknow' component={BookNow}></PrivateRoute> 
+            <PrivateRoute exact path='/cardsetupform' component={CardSetupForm}></PrivateRoute>
+            <PrivateRoute exact path='/providersearch' component={ProviderSearch}></PrivateRoute>
+            
             
       
       </div>

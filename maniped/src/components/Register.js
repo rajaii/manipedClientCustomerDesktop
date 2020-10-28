@@ -61,8 +61,7 @@ async handleSubmit (e) {
     .then(async d => {
         if (d) {
         const registered =  await this.props.register(body)
-        if (registered.payload.response.data.err.detail === `Key (username)=(${this.state.username}) already exists.`) {
-            window.confirm('The username chosen has already been taken.  Please choose another username, and try again...')
+        if (registered === undefined) {
             this.setState({
                 first_name: '',
                 last_name: '',
@@ -72,48 +71,30 @@ async handleSubmit (e) {
                 zipcode: '',
                 password: '',
                 verifyPassword: '',
+            })
+            window.confirm('Thank you for signing up for maniPed for your cosmetic needs!  Please login to your email and verify your account...');
+            this.props.history.push('/login');
+            return
+        } else if (registered.payload.response.data.err.detail === `Key (username)=(${this.state.username}) already exists.`) {
+            window.confirm('The username chosen has already been taken.  Please choose another username, and try again...')
+            this.setState({
+                username: '',
             })
             return
         } else if (registered.payload.response.data.err.detail === `Key (email)=(${this.state.email}) already exists.`) {
             window.confirm('There is already an account associated with that email.  Please choose another email, or click login and click forgot username or password for further instructions...')
             this.setState({
-                first_name: '',
-                last_name: '',
-                username: '',
                 email: '',
-                phone_number: '',
-                zipcode: '',
-                password: '',
-                verifyPassword: '',
             })
             return
         } else if (registered.payload.response.data.err.detail ===  `Key (phone_number)=(${this.state.phone_number}) already exists.`) {
             window.confirm('There is already an account associated with that phone number.  Please choose another phone number, or click login and click forgot username or password for further instructions...')
             this.setState({
-                first_name: '',
-                last_name: '',
-                username: '',
-                email: '',
                 phone_number: '',
-                zipcode: '',
-                password: '',
-                verifyPassword: '',
             })
             return
-        } else {
-        this.setState({
-            first_name: '',
-            last_name: '',
-            username: '',
-            email: '',
-            phone_number: '',
-            zipcode: '',
-            password: '',
-            verifyPassword: '',
-        })
         } 
-        window.confirm('Thank you for signing up for maniPed for your cosmetic needs!  Please login to your email and verify your account...');
-        this.props.history.push('/login');
+        
     }
     })
     .catch(err => {
