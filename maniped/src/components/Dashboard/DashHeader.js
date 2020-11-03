@@ -21,7 +21,6 @@ class DashHeader extends React.Component {
     handleLogout = e => {
         e.preventDefault();
         this.props.logout();
-        console.log(this.props)
         this.props.history.push('/');
         
     }
