@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import RateService from './RateService.js';
 import EditProfile from './EditProfile.js';
@@ -194,8 +194,12 @@ class FeedSub extends React.Component {
 
 
     render() {
-        
+        if (this.props.userInfoError != null) {
+            localStorage.clear();
+            return <Redirect to='/login' />
+        };
         return (
+
             
             <div className='feedSubWrapper'>
                 <div>
@@ -313,6 +317,7 @@ const mapStateToProps = state => {
     return {
         completedServices: state.completedServicesReducer.completedServices,
         userInfo: state.userInfoReducer.userInfo,
+        userInfoError: state.userInfoReducer.error,
         bookings: state.bookingsReducer.bookings,
         settings: state.settingsReducer.settings,
         addresses: state.addressesReducer.addresses,
