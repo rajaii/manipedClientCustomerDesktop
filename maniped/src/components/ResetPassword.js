@@ -73,7 +73,7 @@ class ResetPassword extends React.Component {
         return (
             <div>
                 <form className='fUCont' type='submit' onSubmit={this.handleSubmit}>
-                    <p>Enter your email associated with your account here, and if there is an account associated with that email, we will send you an email with the next steps.</p>
+                    <p>Enter your new password here:</p>
                     <input
                     className='twoFive'
                     type='password'
