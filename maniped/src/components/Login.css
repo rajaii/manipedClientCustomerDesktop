@@ -1,0 +1,140 @@
+.loginCont {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+label, input {
+    height: 33px;
+    font-size: 1.5rem;
+}
+
+
+button {
+    height: 66px;
+}
+.sLink {
+    text-decoration: none;
+    color: black;
+
+}
+.sLink:hover{
+    color: white;
+    background-color: black;
+}
+.logFlex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.existing {
+        margin-bottom: 50px;
+        font-size: 2rem;
+        width: 585px;
+        color: white;
+        text-shadow: 0 0 10px black;
+        -webkit-text-stroke: 1px;
+        -webkit-text-stroke-color: red;
+    }
+
+
+
+.radio {
+    margin-top: -1px;
+    vertical-align: middle;
+}
+
+.distanceOptions {
+    display: flex;
+}
+
+.searchCont {
+    display: flex;
+    justify-content: center;
+}
+
+.searchLabel {
+    margin-bottom: 10px;
+    font-size: 2rem;
+    width: 585px;
+    color: white;
+    text-shadow: 0 0 10px black;
+    -webkit-text-stroke: 1px;
+    -webkit-text-stroke-color: red;
+}
+
+.l {
+    margin-top: 135px;
+}
+
+@keyframes lds-hourglass {
+    0% {
+      transform: rotate(0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    50% {
+      transform: rotate(900deg);
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    100% {
+      transform: rotate(1800deg);
+    }
+  }
+
+  .search {
+    height: 36px;
+    width: 100px;
+    background-color: hotpink;
+  }
+
+  .localFlex {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: white;
+      width: 583px;
+      margin: 0 auto;
+      margin-top: 25px;
+  }
+
+  .locals {
+    border: 2px solid blanchedalmond;
+    font-size: 2rem;
+    background: lightslategray;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 96%;
+    width: 96%;
+    height: 231px;
+    line-height: 40px;
+  }
+
+  .bookLink {
+    text-decoration: none;
+    border: 2px solid purple;
+    margin-top: -10px;
+  }
+
+  .aboveLink {
+      margin-bottom: 10px;
+  }
+
+  .fUCont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  .twoFive {
+      width: 25%;
+  }
+.verWarn {
+    color: red;
+    text-align: center;
+    font-size: 2rem;
+}
+ 

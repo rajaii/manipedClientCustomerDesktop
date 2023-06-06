@@ -1,0 +1,82 @@
+.formCont {
+    padding-top: 219px;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    margin: 0 auto;
+    
+}
+.finFlex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.finFlex .link {
+    text-decoration: none;
+    color: black;
+
+}
+.finFlex .link:hover {
+    cursor: pointer;
+    color: white;
+    background-color: black;
+}
+
+.welcome {
+    margin-bottom: 50px;
+    font-size: 2rem;
+    width: 585px;
+    color: white;
+    text-shadow: 0 0 10px black;
+    -webkit-text-stroke: 1px;
+    -webkit-text-stroke-color: red;
+}
+.p {
+    color: white;
+    margin-bottom: 5px
+}
+
+.lds-hourglass {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-hourglass:after {
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    width: 0;
+    height: 0;
+    margin: 8px;
+    box-sizing: border-box;
+    border: 32px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-hourglass 1.2s infinite;
+  }
+  @keyframes lds-hourglass {
+    0% {
+      transform: rotate(0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    50% {
+      transform: rotate(900deg);
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    100% {
+      transform: rotate(1800deg);
+    }
+  }
+
+  .Error {
+    color: red;
+    margin-top: 25px 
+  }
+   .ErrorB {
+     color: red
+   }
+
+   .flex {
+     display: flex;
+     flex-direction: row;
+   }

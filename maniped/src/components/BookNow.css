@@ -1,0 +1,95 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+}
+
+.checkboxs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.block {
+    display: block;
+    text-align: center;
+}
+.m0a {
+    margin: 0 auto;
+}
+
+.mbmt {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    font-size: 1.25rem;
+    color: white;
+    -webkit-text-stroke: 1px black;
+}
+
+.title {
+    margin-bottom: 15px;
+    color: purple;
+    font-size: 2rem;
+    margin-top: 10px;
+    -webkit-text-stroke: 3px blueviolet;
+}
+
+.bookButton {
+    font-size: 1.2rem;
+    height: 50px;
+    margin-top: 16px;
+    background: hotpink;
+    border-radius: 25px;
+}
+
+.hide {
+    display: none
+}
+
+.success {
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    width: max-content;
+}
+
+.successP {
+    font-size: 1.5rem;
+    color: purple;
+    margin-top: 10px;
+    -webkit-text-stroke: 3px blueviolet;
+
+}
+
+.d {
+    margin-left: 0px;
+}
+
+.successFlex {
+    display: flex;
+    justify-content: center;
+}
+
+.conf {
+    font-size: 3rem;
+}
+
+.serviceList {
+    margin-top: 0px;
+}
+
+.formFlexDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.h1tit {
+    margin-top: 25px;
+    font-size: 3rem;
+    color: white;
+}

@@ -1,0 +1,454 @@
+.dash {
+    display: flex;
+    flex-direction: column;
+}
+
+.serviceList {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+    font-size: 1.75rem;
+    justify-content: space-evenly;
+    background-color: #FF5EAA;
+    height: 100px;
+    align-items: center;
+    color: #FFFFFF;
+    margin-top: 100px;
+    width: 100%;
+}
+
+/* #sticky {
+    position: fixed;
+    top: 0;
+    width: 100%; 
+    z-index: 1;
+    height: 109px;
+    background-color:  #CC1559;
+} */
+
+.each:hover {
+    cursor: pointer;
+    color: #585858;
+}
+
+#needed {
+    margin-top: 100px;
+}
+
+.service:hover {
+    cursor: pointer;
+}
+.feed {
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    overflow: auto;
+    height: auto;
+    padding: .5rem;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+}
+
+.feedtitle {
+    font-size: 3rem;
+    color: #585858;
+    font-family: fantasy;
+    margin-top: 125px;
+}
+.mappeddiv {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #585858;
+    font-family: cursive;
+    
+}
+
+.service {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.feedWrap {
+    display: flex;
+    overflow: hidden;
+    height: 100vh;
+    margin-top: -100px;
+    padding-top: 100px;
+    position: relative;
+    width: 100%;
+    backface-visibility: hidden;
+    will-change: overflow;
+}
+
+.settings:hover {
+    background-color: white;
+    cursor: pointer;
+    
+}
+
+.feedSubWrapper {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    height: auto;
+    padding: .5rem;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    width: 60%;
+    
+}
+
+.feed::-webkit-scrollbar,
+.feedSubWrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.serviceTitle {
+    font-size: 2.5rem;
+    color: white;
+    font-family: fantasy;
+}
+
+.serviceCat {
+    font-size: 1.5rem;
+    color: white;
+    font-family: cursive;
+}
+
+.serviceWrapper {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.settingsWrap {
+    background-color: #585858;
+    height: 100%;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+
+}
+.settingsTit {
+    font-size: 3rem;
+    text-align: center;
+}
+
+.settingsP {
+    font-size: 1.5rem;
+}
+
+.editProfileWrapper {
+    background-color: #FFFFFF;
+    color: black;
+}
+
+.editProfile:hover {
+    cursor: pointer;
+    color: #CC1559;
+}
+
+.E {
+    font-size: 1.5rem;
+}
+
+.E:hover {
+    cursor: pointer;
+    color: #FF5EAA;
+}
+
+.settingsP, .editProfile {
+    width: fit-content;
+}
+
+.slider.round {
+    border-radius: 34px;
+  }
+  
+.slider.round:before {
+    border-radius: 50%;
+  }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+
+  .checkedWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+      
+  }
+
+  .addressWrapper {
+    display: flex;
+    justify-content: space-between;
+    border: .5px solid white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+  
+
+  .deleteAddressButton {
+    height: 18px;
+    background-color: white;
+    border-radius: 25px;
+  }
+
+  .deleteAddressButton:hover {
+      cursor: pointer;
+      color: white;
+      background-color: red;
+  }
+
+  .editProfileButton {
+    height: 25px;
+    background-color: #CC1559;
+    color: white;
+    
+  }
+
+  .formWrap {
+      display: flex;
+      align-items: center;
+      margin-top: 2%;
+  }
+
+  .serviceRate {
+    font-size: 1.5rem;
+    color: white;
+    font-family: cursive;
+  }
+
+  .serviceRate:hover {
+      color: black;
+      font-family: fantasy;
+      cursor: pointer;
+  }
+
+  .ratewrap {
+      background: white;
+  } 
+  
+  .hideRateComp {
+    display: none;
+  }  
+
+  .rateWrapper {
+    margin-top: -61%;
+    
+  }
+
+  .rateButton {
+      height: 25px;
+      border-radius: 25px;
+
+  }
+
+  .rateButton:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+  }
+
+  .hideRatingForm {
+      display: none;
+  }
+
+
+.serviceRate {
+  width: fit-content;
+}
+
+
+
+
+
+
+
+
+
+
+
+  .rating {
+    display: inline-block;
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+    font-size: 50px;
+    background-color: white;
+  }
+  
+  .rating label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    cursor: pointer;
+  }
+  
+  .rating label:last-child {
+    position: static;
+  }
+  
+  .rating label:nth-child(1) {
+    z-index: 5;
+  }
+  
+  .rating label:nth-child(2) {
+    z-index: 4;
+  }
+  
+  .rating label:nth-child(3) {
+    z-index: 3;
+  }
+  
+  .rating label:nth-child(4) {
+    z-index: 2;
+  }
+  
+  .rating label:nth-child(5) {
+    z-index: 1;
+  }
+  
+  .rating label input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+  
+  .rating label .icon {
+    float: left;
+    color: transparent;
+  }
+  
+  .rating label:last-child .icon {
+    color: #000;
+  }
+  
+  .rating:not(:hover) label input:checked ~ .icon,
+  .rating:hover label:hover input ~ .icon {
+    color: #09f;
+  }
+  
+  .rating label input:focus:not(:checked) ~ .icon:last-child {
+    color: #000;
+    text-shadow: 0 0 5px #09f;
+  }
+
+  .rateDone {
+  background-color: white;
+  color: green;
+  height: 50px;
+  font-size: 1.5rem;
+  font-family: monospace;
+
+  }
+
+  .deleteBookingButton {
+    height: 20%;
+    border-radius: 37%;
+    background-color: darkred;
+    color: white;
+  }
+
+  .deleteBookingButton:hover {
+    background-color: red;
+    cursor: pointer;
+  }
+
+ .providerWrap {
+   display: flex;
+   flex-direction: column;
+ }
+
+ .Book {
+   text-decoration: none;
+   width: fit-content;
+   border: 1px solid white;
+   border-radius: 25px;
+ }
+
+ .Book:hover {
+  color: green;
+  background-color: white;
+  border: 2px solid green;
+ }
+
+ .profileImg {
+   width: 50%;
+ }
+
+ .editProfileImg {
+   width: 18%;
+ }
+
+ .photoWrap {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+ }
+
+ .checkout-button {
+  border: 1px solid black;
+  width: fit-content;
+  font-size: 2rem;
+  background-color: white;
+  color: black
+ }
+
+ .linkWrapper {
+   margin-top: 20px;
+ }

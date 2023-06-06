@@ -1,0 +1,99 @@
+.search {
+    height: 109px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:  #CC1559;
+}  
+
+#sticky {
+    position: fixed;
+    top: 0;
+    width: 100%; 
+    z-index: 1;
+    height: 109px;
+    background-color:  #CC1559;
+}
+.frontFlex  {
+    display: flex;
+    width: 200px;
+
+}
+.frontFlex img {
+    margin-top: 29px;
+    margin-right: 10px;
+}
+.frontFlex .p2 {
+    margin-left: 10px; 
+    font-family: cursive;
+    
+}
+.frontFlex p {
+    font-size: 2rem;
+}
+.navFlex {
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+}
+.navFlex .p {
+    margin-right: 20px;
+    color: black;
+    text-decoration: none;
+}
+
+.navFlex .p:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.hide {
+    display: none
+}
+
+.l {
+    display: none
+}
+
+/*DASHHEADER DIFFS VVV **************************************************************************************** */
+
+.midFlex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.newNavFlex {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.logout {
+    font-size: 1.75rem;
+    text-decoration: none;
+}
+
+.logout:hover {
+    cursor: pointer;
+    font-family: fantasy;
+    color: white;
+}
+
+.x {
+    text-decoration: none;
+    font-size: 2rem;
+    color: #96B3D3;
+    font-family: cursive;
+}
+
+.x:hover {
+    cursor: pointer;
+    color: #FFFFFF;
+    font-family: fantasy;
+}
+
+.p2 {
+    font-size: 2rem;    
+    font-family: fantasy;
+}
